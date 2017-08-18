@@ -5,6 +5,9 @@ public class PersonaDTO
 	private int idPersona;
 	private String nombre;
 	private String telefono;
+	private String mail;
+	private String fechaCumpleaños;
+	private String tipoDeContacto;
 
 	public PersonaDTO(int idPersona, String nombre, String telefono)
 	{
@@ -13,6 +16,17 @@ public class PersonaDTO
 		this.telefono = telefono;
 	}
 	
+	public PersonaDTO(int idPersona, String nombre, String telefono, String mail, String fechaCumpleaños,
+			String tipoDeContacto) {
+		super();
+		this.idPersona = idPersona;
+		this.nombre = nombre;
+		this.telefono = telefono;
+		this.mail = mail;
+		this.fechaCumpleaños = fechaCumpleaños;
+		this.tipoDeContacto = tipoDeContacto;
+	}
+
 	public int getIdPersona() 
 	{
 		return this.idPersona;
