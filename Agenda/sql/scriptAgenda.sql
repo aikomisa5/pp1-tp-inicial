@@ -1,9 +1,9 @@
 use agenda;
 
-
-drop table if exists tiposDeContacto;
-drop table if exists domicilios;
 drop table if exists personas;
+drop table if exists tiposDeContacto; 
+drop table if exists domicilios;
+
 
 CREATE TABLE  tiposDeContacto
 (
@@ -35,3 +35,18 @@ CREATE TABLE  personas
   FOREIGN KEY (Tipo) references tiposDeContacto (Tipo),
   FOREIGN KEY (Domicilio) references domicilios (idDomicilio)
 );
+
+
+
+# comandos de insercion de datos, correrlos antes de correr el test!!
+
+insert into tiposDeContacto (Tipo) values ('Familia');
+insert into tiposDeContacto (Tipo) values ('Amigos');
+insert into tiposDeContacto (Tipo) values ('Trabajo');
+
+insert into domicilios (calle, altura, piso, departamento, localidad)
+ values ('sarasa', 12312, 3, '4b', 'San miguel');
+ 
+ insert into personas (Nombre, telefono, mail, cumpleanios, tipo, domicilio)
+ values ('Mix 2.0', '123123123', 'ProfeDanielLover@gmail.com', '1995-02-04', 'Amigos', 1);
+

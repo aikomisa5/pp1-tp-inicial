@@ -21,7 +21,7 @@ public class PersonaDAOImplTest {
 	public void pruebaJoin() {
 		ArrayList<PersonaDTO>resultado = (ArrayList<PersonaDTO>) dao.readAll();
 		for(PersonaDTO p : resultado) {
-			System.out.println(p.getNombre()+" de "+p.getDomicilio().getLocalidad());
+			System.out.println(p.getNombre()+" de "+p.getDomicilio().getLocalidad()+" tipo de contacto: "+p.getTipoDeContacto());
 		}
 	}
 
