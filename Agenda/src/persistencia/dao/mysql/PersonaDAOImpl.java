@@ -8,6 +8,7 @@ import java.util.List;
 
 import persistencia.conexion.Conexion;
 import persistencia.dao.interfaz.PersonaDAO;
+import dto.DomicilioDTO;
 import dto.PersonaDTO;
 
 public class PersonaDAOImpl implements PersonaDAO
@@ -15,6 +16,7 @@ public class PersonaDAOImpl implements PersonaDAO
 	private static final String insert = "INSERT INTO personas(idPersona, nombre, telefono) VALUES(?, ?, ?)";
 	private static final String delete = "DELETE FROM personas WHERE idPersona = ?";
 	private static final String readall = "SELECT * FROM personas";
+	private static final String personasJoinDomicilios = "SELECT * FROM personas inner join domicilios on personas.Domicilio = domicilios.idDomicilio";
 	private static final Conexion conexion = Conexion.getConexion();
 	
 	public boolean insert(PersonaDTO persona)
@@ -70,12 +72,15 @@ public class PersonaDAOImpl implements PersonaDAO
 		ArrayList<PersonaDTO> personas = new ArrayList<PersonaDTO>();
 		try 
 		{
-			statement = conexion.getSQLConexion().prepareStatement(readall);
+			statement = conexion.getSQLConexion().prepareStatement(personasJoinDomicilios);
 			resultSet = statement.executeQuery();
 			
 			while(resultSet.next())
 			{
-				personas.add(new PersonaDTO(resultSet.getInt("idPersona"), resultSet.getString("Nombre"), resultSet.getString("Telefono")));
+				personas.add(new PersonaDTO(resultSet.getInt("idPersona"), resultSet.getString("Nombre"), resultSet.getString("Telefono"),
+						resultSet.getString("Mail"), resultSet.getDate("Cumpleanios"), resultSet.getString("Tipo"), 
+						new DomicilioDTO(resultSet.getInt("idDomicilio"), resultSet.getString("calle"), resultSet.getInt("altura"), resultSet.getInt("piso"),
+								resultSet.getString("departamento"), resultSet.getString("localidad") ) ) );
 			}
 		} 
 		catch (SQLException e) 

@@ -10,6 +10,7 @@ public class PersonaDTO
 	private String mail;
 	private Date fechaCumpleaños;
 	private String tipoDeContacto;
+	private DomicilioDTO domicilio;
 
 	public PersonaDTO(int idPersona, String nombre, String telefono)
 	{
@@ -17,9 +18,9 @@ public class PersonaDTO
 		this.nombre = nombre;
 		this.telefono = telefono;
 	}
-	
+
 	public PersonaDTO(int idPersona, String nombre, String telefono, String mail, Date fechaCumpleaños,
-			String tipoDeContacto) {
+			String tipoDeContacto, DomicilioDTO domicilio) {
 		super();
 		this.idPersona = idPersona;
 		this.nombre = nombre;
@@ -27,7 +28,10 @@ public class PersonaDTO
 		this.mail = mail;
 		this.fechaCumpleaños = fechaCumpleaños;
 		this.tipoDeContacto = tipoDeContacto;
+		this.domicilio = domicilio;
 	}
+
+
 
 	public int getIdPersona() 
 	{
@@ -83,6 +87,14 @@ public class PersonaDTO
 		this.tipoDeContacto = tipoDeContacto;
 	}
 
+	public DomicilioDTO getDomicilio() {
+		return domicilio;
+	}
+
+	public void setDomicilio(DomicilioDTO domicilio) {
+		this.domicilio = domicilio;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -92,6 +104,11 @@ public class PersonaDTO
 		if (getClass() != obj.getClass())
 			return false;
 		PersonaDTO other = (PersonaDTO) obj;
+		if (domicilio == null) {
+			if (other.domicilio != null)
+				return false;
+		} else if (!domicilio.equals(other.domicilio))
+			return false;
 		if (fechaCumpleaños == null) {
 			if (other.fechaCumpleaños != null)
 				return false;
@@ -121,6 +138,6 @@ public class PersonaDTO
 			return false;
 		return true;
 	}
-	
-	
+
+		
 }

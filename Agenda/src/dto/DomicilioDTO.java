@@ -1,19 +1,25 @@
 package dto;
 
 public class DomicilioDTO {
+	private int idDomicilio;
 	private String calle;
 	private int altura;
 	private int piso;
 	private String departamento;
 	private String localidad;
 	
-	public DomicilioDTO(String calle, int altura, int piso, String departamento, String localidad) {
+	public DomicilioDTO(int idDomicilio, String calle, int altura, int piso, String departamento, String localidad) {
 		super();
+		this.idDomicilio = idDomicilio;
 		this.calle = calle;
 		this.altura = altura;
 		this.piso = piso;
 		this.departamento = departamento;
 		this.localidad = localidad;
+	}
+
+	public DomicilioDTO() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public String getCalle() {
@@ -54,6 +60,14 @@ public class DomicilioDTO {
 
 	public void setLocalidad(String localidad) {
 		this.localidad = localidad;
+	}
+	
+	public int getIdDomicilio() {
+		return idDomicilio;
+	}
+
+	public void setIdDomicilio(int idDomicilio) {
+		this.idDomicilio = idDomicilio;
 	}
 
 	@Override
