@@ -6,7 +6,7 @@ import dto.LocalidadDTO;
 
 public interface LocalidadDAO {
 
-	public boolean insert(LocalidadDTO localidad);
+	public int insert(LocalidadDTO localidad);
 	
 	public boolean delete(LocalidadDTO localidad);
 	

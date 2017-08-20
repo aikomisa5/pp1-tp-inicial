@@ -11,24 +11,31 @@ import com.mysql.jdbc.Statement;
 import persistencia.conexion.Conexion;
 import persistencia.dao.interfaz.PersonaDAO;
 import dto.DomicilioDTO;
+import dto.LocalidadDTO;
 import dto.PersonaDTO;
+import dto.TipoDeContactoDTO;
 
 public class PersonaDAOImpl implements PersonaDAO
 {
+	private static final Conexion conexion = Conexion.getConexion();
+	
 	private static final String insertPersona = "INSERT INTO personas(nombre, telefono, mail, cumpleanios, tipo, domicilio) VALUES(?, ?, ?, ?, ?, ?)";
-	private static final String insertDomicilio="INSERT INTO domicilios(calle, altura, piso, departamento, localidad) VALUES(?, ?, ?, ?, ?)";
 	private static final String delete = "DELETE FROM personas WHERE idPersona = ?";
 	private static final String readall = "SELECT * FROM personas";
-	private static final String personasJoinDomicilios = "SELECT * FROM personas inner join domicilios on personas.Domicilio = domicilios.idDomicilio";
-	private static final Conexion conexion = Conexion.getConexion();
+	private static final String personasJoinDomicilios = "SELECT * FROM personas p "
+														+ "inner join domicilios d "
+														+ "on d.idDomicilio = p.idDomicilio "
+														+ "inner join localidades l "
+														+ "on d.idLocalidad = l.idLocalidad "
+														+ "inner join TiposDeContacto t "
+														+ "on t.idTipo = p.idTipo";
+	
 	private static final String update = "UPDATE personas " + 
 						"SET Nombre = ?, telefono = ?, mail = ?, cumpleanios = ?, tipo =?, domicilio =? " + 
 						"WHERE idPersona = ?";
 	
 	public boolean insert(PersonaDTO persona)
 	{
-		int pkDomicilio=insertDomicilio(persona.getDomicilio());
-		persona.getDomicilio().setIdDomicilio(pkDomicilio);
 		PreparedStatement statement;
 		try 
 		{
@@ -37,7 +44,7 @@ public class PersonaDAOImpl implements PersonaDAO
 			statement.setString(2, persona.getTelefono());
 			statement.setString(3, persona.getMail());
 			statement.setDate(4, persona.getFechaCumpleaños());
-			statement.setString(5, persona.getTipoDeContacto());
+			statement.setInt(5, persona.getTipoDeContacto().getId());
 			statement.setInt(6, persona.getDomicilio().getIdDomicilio());
 			if(statement.executeUpdate() > 0) //Si se ejecutÃ³ devuelvo true
 				return true;
@@ -52,42 +59,7 @@ public class PersonaDAOImpl implements PersonaDAO
 		}
 		return false;
 	}
-	
-	private int insertDomicilio(DomicilioDTO domicilio)
-	{
-		PreparedStatement statement;
-		ResultSet rs;
-		try 
-		{
-			statement = conexion.getSQLConexion().prepareStatement(insertDomicilio, Statement.RETURN_GENERATED_KEYS);
-			statement.setString(1, domicilio.getCalle());
-			statement.setInt(2, domicilio.getAltura());
-			statement.setInt(3, domicilio.getPiso());
-			statement.setString(4, domicilio.getDepartamento());
-			statement.setString(5, domicilio.getLocalidad());
-			
-			
-			
-			if(statement.executeUpdate() > 0) //Si se ejecutÃ³ devuelvo true
-			{	
-				//con esto obtengo el numero autogenerado por mysql, luego lo uso para setearselo a la persona
-				rs=statement.getGeneratedKeys();
-				if(rs.next())
-					return rs.getInt(1);
-			}
-			
-		} 
-		catch (SQLException e) 
-		{
-			e.printStackTrace();
-		}
-		finally //Se ejecuta siempre
-		{
-			conexion.cerrarConexion();
-		}
-		return -1;
-	}
-	
+		
 	public boolean delete(PersonaDTO persona_a_eliminar)
 	{
 		PreparedStatement statement;
@@ -124,9 +96,10 @@ public class PersonaDAOImpl implements PersonaDAO
 			while(resultSet.next())
 			{
 				personas.add(new PersonaDTO(resultSet.getInt("idPersona"), resultSet.getString("Nombre"), resultSet.getString("Telefono"),
-						resultSet.getString("Mail"), resultSet.getDate("Cumpleanios"), resultSet.getString("Tipo"), 
-						new DomicilioDTO(resultSet.getInt("idDomicilio"), resultSet.getString("calle"), resultSet.getInt("altura"), resultSet.getInt("piso"),
-								resultSet.getString("departamento"), resultSet.getString("localidad") ) ) );
+						resultSet.getString("Mail"), resultSet.getDate("Cumpleanios"), new TipoDeContactoDTO(resultSet.getInt("idTipo"), resultSet.getString("nombreTipo")), 
+						new DomicilioDTO(resultSet.getInt("idDomicilio"), resultSet.getString("calle"), 
+								resultSet.getInt("altura"), resultSet.getInt("piso"), resultSet.getString("departamento"), new LocalidadDTO(resultSet.getInt("idLocalidad"), 
+										resultSet.getString("nombreLocalidad"))) ) );
 			}
 		} 
 		catch (SQLException e) 
@@ -151,7 +124,7 @@ public class PersonaDAOImpl implements PersonaDAO
 			statement.setString(2, persona.getTelefono());
 			statement.setString(3, persona.getMail());
 			statement.setDate(4, persona.getFechaCumpleaños());
-			statement.setString(5, persona.getTipoDeContacto());
+			statement.setInt(5, persona.getTipoDeContacto().getId());
 			statement.setInt(6, persona.getDomicilio().getIdDomicilio());
 			statement.setInt(7, persona.getIdPersona());
 						

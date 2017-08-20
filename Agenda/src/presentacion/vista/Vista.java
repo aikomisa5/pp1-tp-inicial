@@ -8,6 +8,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
+import java.awt.Color;
 
 public class Vista {
 	private JFrame frame;
@@ -17,7 +18,9 @@ public class Vista {
 	private JButton btnEditar;
 	private JButton btnReporte;
 	private DefaultTableModel modelPersonas;
-	private String[] nombreColumnas = { "Nombre y apellido", "Teléfono" };
+	private  String[] nombreColumnas = {"Nombre y apellido","Teléfono","Calle","Altura","Piso","Depto","Localidad","Mail","FechaNac","TipoContacto"};
+
+
 
 	public Vista() {
 		super();
@@ -32,17 +35,18 @@ public class Vista {
 		}
 
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 913, 355);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 434, 262);
+		panel.setBackground(Color.LIGHT_GRAY);
+		panel.setBounds(0, 0, 897, 262);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 
 		JScrollPane spPersonas = new JScrollPane();
-		spPersonas.setBounds(10, 11, 414, 182);
+		spPersonas.setBounds(10, 11, 877, 182);
 		panel.add(spPersonas);
 
 		modelPersonas = new DefaultTableModel(null, nombreColumnas);

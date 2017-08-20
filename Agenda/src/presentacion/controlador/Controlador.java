@@ -75,12 +75,7 @@ public class Controlador implements ActionListener
 				reporte.mostrar();				
 			}
 			else if(e.getSource() == this.ventanaPersona.getBtnAgregarPersona())
-			{
-				SimpleDateFormat parser = new SimpleDateFormat("dd/MM/YYYY");
-				Date fechaNac = Date.valueOf(LocalDate.now());
-				
-				PersonaDTO nuevaPersona = new PersonaDTO(0, ventanaPersona.getTfNombre().getText(), ventanaPersona.getTfTelefono().getText(), ventanaPersona.getTfEmail().getText(), fechaNac, "Amigos", new DomicilioDTO("una calle", 123, 1, "", new LocalidadDTO("tortuguitas")));
-				this.agenda.agregarPersona(nuevaPersona);
+			{				
 				this.llenarTabla();
 				this.ventanaPersona.dispose();
 			}

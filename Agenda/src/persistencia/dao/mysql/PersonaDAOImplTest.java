@@ -15,18 +15,15 @@ import persistencia.dao.interfaz.PersonaDAO;
 public class PersonaDAOImplTest {
 	PersonaDAOImpl dao = new PersonaDAOImpl();
 	
-	//	@Test
-	//	public void pruebaJoin() {
-	//		ArrayList<PersonaDTO>resultado = (ArrayList<PersonaDTO>) dao.readAll();
-	//		for(PersonaDTO p : resultado) {
-	//			System.out.println(p.getNombre()+" de "+p.getDomicilio().getLocalidad()+" tipo de contacto: "+p.getTipoDeContacto()+ " Fecha cumpleaños "+p.getFechaCumpleaños().toString());
-	//		}
-	//	}
-	//	
-	//	@Test
-	//	public void insertDomicilio() {
-	//		dao.insertDomicilio(new DomicilioDTO(0, "RAFAELA",5104, 0, "0", "Buenos aires"));
-	//	}
+		@Test
+		public void pruebaJoin() {
+			ArrayList<PersonaDTO>resultado = (ArrayList<PersonaDTO>) dao.readAll();
+			for(PersonaDTO p : resultado) {
+				System.out.println(p.getNombre()+" de "+p.getDomicilio().getLocalidad().getNombre()+" tipo de contacto: "+p.getTipoDeContacto().getNombre()
+						+ " Fecha cumpleaños "+p.getFechaCumpleaños().toString());
+			}
+		}
+			
 		
 	//	@Test 
 	//	public void insertPersona() {
@@ -36,18 +33,18 @@ public class PersonaDAOImplTest {
 	//		dao.insert(p);
 	//	}
 	
-		@Test
-		public void updateTest() {
-			List<PersonaDTO>personas = (ArrayList<PersonaDTO>) dao.readAll();
-			System.out.println("Personas antes de modificar");
-			personas.forEach(p -> System.out.println(p.getNombre()));
-			personas.forEach(p ->{
-				p.setNombre("Modificado1");
-				dao.update(p);
-				});
-			personas = dao.readAll();
-			System.out.println("Personas luego de modificar");
-			personas.forEach( p -> System.out.println(p.getNombre()));		
-		}
+//		@Test
+//		public void updateTest() {
+//			List<PersonaDTO>personas = (ArrayList<PersonaDTO>) dao.readAll();
+//			System.out.println("Personas antes de modificar");
+//			personas.forEach(p -> System.out.println(p.getNombre()));
+//			personas.forEach(p ->{
+//				p.setNombre("Modificado1");
+//				dao.update(p);
+//				});
+//			personas = dao.readAll();
+//			System.out.println("Personas luego de modificar");
+//			personas.forEach( p -> System.out.println(p.getNombre()));		
+//		}
 
 }

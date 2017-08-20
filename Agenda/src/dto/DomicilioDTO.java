@@ -27,8 +27,6 @@ public class DomicilioDTO {
 		this.localidad = localidad;
 	}
 
-
-
 	public DomicilioDTO() {
 		// TODO Auto-generated constructor stub
 	}
