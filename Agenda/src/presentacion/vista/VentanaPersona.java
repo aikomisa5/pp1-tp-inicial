@@ -10,14 +10,19 @@ import javax.swing.border.EmptyBorder;
 
 import org.jdesktop.swingx.JXDatePicker;
 
+import dto.LocalidadDTO;
 import dto.PersonaDTO;
+import dto.TipoDeContactoDTO;
 import presentacion.controlador.Controlador;
 import java.awt.Color;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.swing.JComboBox;
 
 public class VentanaPersona extends JFrame {
 	private PersonaDTO persona = null;
-	
+
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField tfLocalidad;
@@ -32,39 +37,60 @@ public class VentanaPersona extends JFrame {
 	private JTextField tfDepto;
 	private JTextField tfEmail;
 	private JXDatePicker datePicker;
-	private JComboBox comboLocalidad;
-	private JComboBox comboTipoDeContacto;
-	
-	
-	String[] Localidades = { "17 de Agosto", "25 de Mayo", "9 de Julio / La Niña", "Acassuso", "Aguas Verdes",
-			"Alberti", "Arenas Verdes", "Arrecifes", "Avellaneda", "Ayacucho", "Azul", "Bahía Blanca", "Bahía San Blas",
-			"Balcarce", "Balneario Marisol", "Balneario Orense", "Balneario Reta", "Balneario San Cayetano", "Baradero",
-			"Bella Vista", "Benito Juárez", "Berazategui", "Berisso", "Boulogne", "Bragado", "Brandsen", "Campana",
-			"Capilla del Señor", "Capital Federal", "Capitán Sarmiento", "Carapachay", "Carhue", "Carhué",
-			"Carlos Keen", "Carmen de Areco", "Carmen de Patagones", "Caseros", "Castelar", "Castelli", "Chacabuco",
-			"Chascomús", "Chivilcoy", "City Bell", "Ciudadela", "Claromecó", "Colón", "Coronel Dorrego",
-			"Coronel Pringles", "Coronel Suárez", "Darregueira", "Dunamar", "Escobar", "Ezeiza", "Florencio Varela",
-			"Florida", "Fortín Mercedes", "Garin", "General Arenales", "General Belgrano", "General Madariaga",
-			"General Villegas", "Gral. Daniel Cerri", "Gran Buenos Aires", "Guaminí", "Haedo", "Huanguelen",
-			"Hurlingham", "Isla Martín García", "Ituzaingo", "Junín", "La Plata", "La Tablada", "Laferrere", "Lanus",
-			"Laprida", "Las Flores", "Las Gaviotas", "Las Toninas", "Lima", "Lisandro Olmos", "Llavallol", "Lobos",
-			"Lomas de Zamora", "Los Toldos - Gral. Viamonte", "Los Polvorines", "Lucila del Mar", "Luis Guillón",
-			"Luján", "Magdalena", "Maipú", "Mar Azul", "Mar Chiquita", "Mar de Ajó", "Mar de Cobo", "Mar del Plata",
-			"Mar del Sud", "Mar del Tuyú", "Martinez", "Médanos / Laguna Chasicó", "Mercedes", "Merlo", "Miramar",
-			"Monte Hermoso", "Moreno", "Morón", "Munro", "Navarro", "Necochea", "Nueva Atlantis", "Olavarría", "Olivos",
-			"Open Door", "Ostende", "Pedro Luro", "Pehuajó", "Pehuen Có", "Pergamino", "Pigüé", "Pilar", "Pinamar",
-			"Provincia de Buenos Aires", "Puan", "Punta Alta", "Punta Indio", "Punta Lara", "Quequén", "Quilmes",
-			"Ramallo", "Ramos Mejía", "Ranchos", "Rauch", "Rivadavia", "Rojas", "Roque Pérez", "Saenz Peña",
-			"Saladillo", "Salto", "San Antonio de Areco", "San Bernardo", "San Cayetano", "San Clemente del Tuyú",
-			"San Fernando", "San Isidro", "San Justo", "San Martin", "San Miguel del Monte", "San Nicolás", "San Pedro",
-			"San Vicente", "Santa Clara del Mar", "Santa Teresita", "Sarandí", "Sierra de la Ventana",
-			"Sierra de los Padres", "Sierras de los Padres", "Tandil", "Tapalqué", "Temperley", "Tigre",
-			"Tornquist / Ruta Prov. 76", "Trenque Lauquen", "Tres Arroyos", "Turdera", "Valentin Alsina",
-			"Vicente Lopez", "Victoria", "Villa Ballester", "Villa Gesell", "Villa Lynch", "Villa Serrana La Gruta",
-			"Villa Ventana", "Villalonga", "Wilde", "Zárate" };
+	private JComboBox<String> comboLocalidad;
+	private JComboBox<String> comboTipoDeContacto;
 
-	String[] TipoDeContacto = { "Amigos", "Trabajo", "Familia", "Universidad", "Escuela", "Club" };
+	private List<LocalidadDTO> localidades = null;
 
+	// TODO crear método para agregar esta lista de localidades a la bd.
+	/*
+	 * { "17 de Agosto", "25 de Mayo", "9 de Julio / La Niña", "Acassuso",
+	 * "Aguas Verdes", "Alberti", "Arenas Verdes", "Arrecifes", "Avellaneda",
+	 * "Ayacucho", "Azul", "Bahía Blanca", "Bahía San Blas", "Balcarce",
+	 * "Balneario Marisol", "Balneario Orense", "Balneario Reta",
+	 * "Balneario San Cayetano", "Baradero", "Bella Vista", "Benito Juárez",
+	 * "Berazategui", "Berisso", "Boulogne", "Bragado", "Brandsen", "Campana",
+	 * "Capilla del Señor", "Capital Federal", "Capitán Sarmiento", "Carapachay",
+	 * "Carhue", "Carhué", "Carlos Keen", "Carmen de Areco", "Carmen de Patagones",
+	 * "Caseros", "Castelar", "Castelli", "Chacabuco", "Chascomús", "Chivilcoy",
+	 * "City Bell", "Ciudadela", "Claromecó", "Colón", "Coronel Dorrego",
+	 * "Coronel Pringles", "Coronel Suárez", "Darregueira", "Dunamar", "Escobar",
+	 * "Ezeiza", "Florencio Varela", "Florida", "Fortín Mercedes", "Garin",
+	 * "General Arenales", "General Belgrano", "General Madariaga",
+	 * "General Villegas", "Gral. Daniel Cerri", "Gran Buenos Aires", "Guaminí",
+	 * "Haedo", "Huanguelen", "Hurlingham", "Isla Martín García", "Ituzaingo",
+	 * "Junín", "La Plata", "La Tablada", "Laferrere", "Lanus", "Laprida",
+	 * "Las Flores", "Las Gaviotas", "Las Toninas", "Lima", "Lisandro Olmos",
+	 * "Llavallol", "Lobos", "Lomas de Zamora", "Los Toldos - Gral. Viamonte",
+	 * "Los Polvorines", "Lucila del Mar", "Luis Guillón", "Luján", "Magdalena",
+	 * "Maipú", "Mar Azul", "Mar Chiquita", "Mar de Ajó", "Mar de Cobo",
+	 * "Mar del Plata", "Mar del Sud", "Mar del Tuyú", "Martinez",
+	 * "Médanos / Laguna Chasicó", "Mercedes", "Merlo", "Miramar", "Monte Hermoso",
+	 * "Moreno", "Morón", "Munro", "Navarro", "Necochea", "Nueva Atlantis",
+	 * "Olavarría", "Olivos", "Open Door", "Ostende", "Pedro Luro", "Pehuajó",
+	 * "Pehuen Có", "Pergamino", "Pigüé", "Pilar", "Pinamar",
+	 * "Provincia de Buenos Aires", "Puan", "Punta Alta", "Punta Indio",
+	 * "Punta Lara", "Quequén", "Quilmes", "Ramallo", "Ramos Mejía", "Ranchos",
+	 * "Rauch", "Rivadavia", "Rojas", "Roque Pérez", "Saenz Peña", "Saladillo",
+	 * "Salto", "San Antonio de Areco", "San Bernardo", "San Cayetano",
+	 * "San Clemente del Tuyú", "San Fernando", "San Isidro", "San Justo",
+	 * "San Martin", "San Miguel del Monte", "San Nicolás", "San Pedro",
+	 * "San Vicente", "Santa Clara del Mar", "Santa Teresita", "Sarandí",
+	 * "Sierra de la Ventana", "Sierra de los Padres", "Sierras de los Padres",
+	 * "Tandil", "Tapalqué", "Temperley", "Tigre", "Tornquist / Ruta Prov. 76",
+	 * "Trenque Lauquen", "Tres Arroyos", "Turdera", "Valentin Alsina",
+	 * "Vicente Lopez", "Victoria", "Villa Ballester", "Villa Gesell",
+	 * "Villa Lynch", "Villa Serrana La Gruta", "Villa Ventana", "Villalonga",
+	 * "Wilde", "Zárate" };
+	 */
+
+	private List<TipoDeContactoDTO> tiposDeContacto = null;
+
+	private String[] comboLocalidadItems = {"asd","dsa"};
+
+	private String[] comboTipoDeContactoItems = {"asd","dasdsa"};
+	
+	private JPanel panel;
 
 	public VentanaPersona(Controlador controlador) {
 		super();
@@ -78,12 +104,12 @@ public class VentanaPersona extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		panel.setBackground(Color.LIGHT_GRAY);
 		panel.setBounds(10, 11, 307, 402);
 		contentPane.add(panel);
 		panel.setLayout(null);
-				
+
 		datePicker = new JXDatePicker();
 		datePicker.setBounds(133, 257, 164, 22);
 		datePicker.setVisible(true);
@@ -101,7 +127,7 @@ public class VentanaPersona extends JFrame {
 		tfNombre.setBounds(133, 11, 164, 20);
 		panel.add(tfNombre);
 		tfNombre.setColumns(10);
-		
+
 		tfTelefono = new JTextField();
 		tfTelefono.setBounds(133, 42, 164, 20);
 		panel.add(tfTelefono);
@@ -178,35 +204,11 @@ public class VentanaPersona extends JFrame {
 		label_2.setBounds(20, 291, 113, 14);
 		panel.add(label_2);
 
-		comboLocalidad = new JComboBox(Localidades);
-		comboLocalidad.setBounds(133, 288, 164, 20);
-		panel.add(comboLocalidad);
-
 		JLabel lblTipoDeContacto = new JLabel("Tipo de Contacto");
 		lblTipoDeContacto.setBounds(20, 323, 113, 14);
 		panel.add(lblTipoDeContacto);
 
-		comboTipoDeContacto = new JComboBox(TipoDeContacto);
-		comboTipoDeContacto.setBounds(133, 320, 164, 20);
-		panel.add(comboTipoDeContacto);
-
 		this.setVisible(true);
-	}
-
-	public String[] getLocalidades() {
-		return Localidades;
-	}
-
-	public void setLocalidades(String[] localidades) {
-		Localidades = localidades;
-	}
-
-	public String[] getTipoDeContacto() {
-		return TipoDeContacto;
-	}
-
-	public void setTipoDeContacto(String[] tipoDeContacto) {
-		TipoDeContacto = tipoDeContacto;
 	}
 
 	public static long getSerialversionuid() {
@@ -263,7 +265,43 @@ public class VentanaPersona extends JFrame {
 
 	public void cargarPersonaEnFormulario() {
 		// TODO Auto-generated method stub
+
+	}
+
+	public void cargarDatosEnDTO() {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void setLocalidad(List<LocalidadDTO> localidades) {
+		this.localidades = localidades;
+	}
+
+	public void setTiposDeContacto(List<TipoDeContactoDTO> tiposDeContacto) {
+		this.tiposDeContacto = tiposDeContacto;
+	}
+
+	public void cargarCombos() {
+
+		List<String> listaLocalidades = localidades.stream()
+				.map(l -> l.toString())
+				.collect(Collectors.toList());
+		comboLocalidadItems = new String[listaLocalidades.size()];
+		comboLocalidadItems = listaLocalidades.toArray(comboLocalidadItems);
 		
+		comboLocalidad = new JComboBox<>(comboLocalidadItems);
+		comboLocalidad.setBounds(133, 288, 164, 20);
+		panel.add(comboLocalidad);
+
+		
+		List<String> listaTiposDeContacto = tiposDeContacto.stream()
+				.map(l -> l.toString())
+				.collect(Collectors.toList());
+		comboTipoDeContactoItems = new String[listaTiposDeContacto.size()];
+		comboTipoDeContactoItems = listaTiposDeContacto.toArray(comboLocalidadItems);
+		comboTipoDeContacto = new JComboBox<>(comboTipoDeContactoItems);
+		comboTipoDeContacto.setBounds(133, 320, 164, 20);
+		panel.add(comboTipoDeContacto);
 	}
 
 }
