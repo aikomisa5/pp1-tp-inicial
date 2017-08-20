@@ -20,7 +20,7 @@ public class LocalidadDAOImpl implements LocalidadDAO{
 	private static final String insertDomicilio="INSERT INTO localidades(nombreLocalidad) VALUES(?)";
 	private static final String delete = "DELETE FROM localidades WHERE idLocalidad = ?";
 	private static final String update = "UPDATE localidades " + 
-			"SET nombreLocalidad =?" + 
+			"SET nombreLocalidad = ? " + 
 			"WHERE idLocalidad = ?";
 	private static final String readAll="select * from localidades";
 
@@ -32,7 +32,6 @@ public class LocalidadDAOImpl implements LocalidadDAO{
 		{
 			statement = conexion.getSQLConexion().prepareStatement(insertDomicilio, Statement.RETURN_GENERATED_KEYS);
 			statement.setString(1, localidad.getNombre());
-			
 			
 			if(statement.executeUpdate() > 0) //Si se ejecutó devuelvo true
 			{	
@@ -83,6 +82,9 @@ public class LocalidadDAOImpl implements LocalidadDAO{
 		{
 			statement = conexion.getSQLConexion().prepareStatement(update);
 			statement.setString(1, localidad.getNombre());
+			statement.setInt(2, localidad.getId());
+			if(statement.executeUpdate() > 0)
+				return true;
 		} 
 		catch (Exception e)
 		{

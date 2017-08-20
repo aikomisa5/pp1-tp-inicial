@@ -17,5 +17,16 @@ public class LocalidadDAOImplTest {
 		ArrayList<LocalidadDTO> localidades = (ArrayList<LocalidadDTO>) dao.readAll();
 		localidades.forEach(l -> System.out.println(l.getNombre()));
 	}
+	
+	@Test
+	public void update()
+	{
+		assertTrue(dao.update(new LocalidadDTO(1, "Neuquen")));
+	}
+	
+	@Test 
+	public void insert() {
+		assertNotEquals(-1, dao.insert(new LocalidadDTO("Nueva localidad")));
+	}
 
 }
