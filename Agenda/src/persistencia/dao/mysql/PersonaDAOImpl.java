@@ -21,6 +21,9 @@ public class PersonaDAOImpl implements PersonaDAO
 	private static final String readall = "SELECT * FROM personas";
 	private static final String personasJoinDomicilios = "SELECT * FROM personas inner join domicilios on personas.Domicilio = domicilios.idDomicilio";
 	private static final Conexion conexion = Conexion.getConexion();
+	private static final String update = "UPDATE personas " + 
+						"SET Nombre = ?, telefono = ?, mail = ?, cumpleanios = ?, tipo =?, domicilio =? " + 
+						"WHERE idPersona = ?";
 	
 	public boolean insert(PersonaDTO persona)
 	{
@@ -138,8 +141,32 @@ public class PersonaDAOImpl implements PersonaDAO
 	}
 
 	@Override
-	public boolean edit(PersonaDTO personaOriginal, PersonaDTO personaEditada) {
-		// TODO Auto-generated method stub
+	public boolean update(PersonaDTO persona) 
+	{
+		PreparedStatement statement;
+		try 
+ 		{
+			statement = conexion.getSQLConexion().prepareStatement(update);
+			statement.setString(1, persona.getNombre());
+			statement.setString(2, persona.getTelefono());
+			statement.setString(3, persona.getMail());
+			statement.setDate(4, persona.getFechaCumpleaños());
+			statement.setString(5, persona.getTipoDeContacto());
+			statement.setInt(6, persona.getDomicilio().getIdDomicilio());
+			statement.setInt(7, persona.getIdPersona());
+						
+			if(statement.executeUpdate() > 0) //Si se ejecutó devuelvo true
+				 				return true;
+ 		}
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+		}
+		finally //Se ejecuta siempre
+		{
+			conexion.cerrarConexion();
+		}
 		return false;
 	}
+
 }
