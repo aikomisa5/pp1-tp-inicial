@@ -75,6 +75,13 @@ public class Controlador implements ActionListener
 				this.llenarTabla();
 				this.ventanaPersona.dispose();
 			}
+			else if(e.getSource() == this.vista.getBtnEditar())
+			{
+				PersonaDTO nuevaPersona = new PersonaDTO(0,this.ventanaPersona.getTxtNombre().getText(), ventanaPersona.getTxtTelefono().getText());
+				this.agenda.agregarPersona(nuevaPersona);
+				this.llenarTabla();
+				this.ventanaPersona.dispose();
+			}
 		}
 
 }
