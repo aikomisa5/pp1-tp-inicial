@@ -17,6 +17,17 @@ public class DomicilioDTO {
 		this.departamento = departamento;
 		this.localidad = localidad;
 	}
+	
+	public DomicilioDTO(String calle, int altura, int piso, String departamento, String localidad) {
+		super();
+		this.calle = calle;
+		this.altura = altura;
+		this.piso = piso;
+		this.departamento = departamento;
+		this.localidad = localidad;
+	}
+
+
 
 	public DomicilioDTO() {
 		// TODO Auto-generated constructor stub

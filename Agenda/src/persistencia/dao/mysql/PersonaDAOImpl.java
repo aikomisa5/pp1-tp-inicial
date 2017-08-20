@@ -24,7 +24,8 @@ public class PersonaDAOImpl implements PersonaDAO
 	
 	public boolean insert(PersonaDTO persona)
 	{
-		insertDomicilio(persona.getDomicilio());
+		int pkDomicilio=insertDomicilio(persona.getDomicilio());
+		persona.getDomicilio().setIdDomicilio(pkDomicilio);
 		PreparedStatement statement;
 		try 
 		{
@@ -49,7 +50,7 @@ public class PersonaDAOImpl implements PersonaDAO
 		return false;
 	}
 	
-	public boolean insertDomicilio(DomicilioDTO domicilio)
+	private int insertDomicilio(DomicilioDTO domicilio)
 	{
 		PreparedStatement statement;
 		ResultSet rs;
@@ -69,8 +70,7 @@ public class PersonaDAOImpl implements PersonaDAO
 				//con esto obtengo el numero autogenerado por mysql, luego lo uso para setearselo a la persona
 				rs=statement.getGeneratedKeys();
 				if(rs.next())
-					System.out.println(rs.getInt(1));
-				return true;
+					return rs.getInt(1);
 			}
 			
 		} 
@@ -82,7 +82,7 @@ public class PersonaDAOImpl implements PersonaDAO
 		{
 			conexion.cerrarConexion();
 		}
-		return false;
+		return -1;
 	}
 	
 	public boolean delete(PersonaDTO persona_a_eliminar)
