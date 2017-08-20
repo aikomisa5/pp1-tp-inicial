@@ -23,11 +23,7 @@ public class PersonaDAOImplTest {
 						+ " Fecha cumpleaños "+p.getFechaCumpleaños().toString());
 			}
 		}
-	//	
-	//	@Test
-	//	public void insertDomicilio() {
-	//		dao.insertDomicilio(new DomicilioDTO(0, "RAFAELA",5104, 0, "0", "Buenos aires"));
-	//	}
+			
 		
 	//	@Test 
 	//	public void insertPersona() {
