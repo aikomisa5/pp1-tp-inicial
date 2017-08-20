@@ -23,7 +23,7 @@ public class DomicilioDAOImpl implements DomicilioDAO {
 	private static final String update = "UPDATE domicilios " + 
 			"SET calle = ?, altura = ?, piso = ?, departamento = ?, localidad =?" + 
 			"WHERE idDomicilio = ?";
-	private static final String readAll="select * from domicilios";
+	private static final String readAll="select * from domicilios d inner join localidades l on d.idLocalidad = l.idLocalidad";
 	
 	@Override
 	public int insert(DomicilioDTO domicilio) {
@@ -116,7 +116,7 @@ public class DomicilioDAOImpl implements DomicilioDAO {
 			while(resultSet.next())
 			{
 				domicilios.add(new DomicilioDTO(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3), resultSet.getInt(4), 
-						resultSet.getString(5), null));
+						resultSet.getString(5), new LocalidadDTO(resultSet.getInt("idLocalidad"), resultSet.getString("nombreLocalidad"))));
 			}
 		} 
 		catch (SQLException e) 

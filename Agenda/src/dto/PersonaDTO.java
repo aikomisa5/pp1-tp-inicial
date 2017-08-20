@@ -9,7 +9,7 @@ public class PersonaDTO
 	private String telefono;
 	private String mail;
 	private Date fechaCumpleaños;
-	private String tipoDeContacto;
+	private TipoDeContactoDTO tipoDeContacto;
 	private DomicilioDTO domicilio;
 
 	public PersonaDTO(int idPersona, String nombre, String telefono)
@@ -20,7 +20,7 @@ public class PersonaDTO
 	}
 
 	public PersonaDTO(int idPersona, String nombre, String telefono, String mail, Date fechaCumpleaños,
-			String tipoDeContacto, DomicilioDTO domicilio) {
+			TipoDeContactoDTO tipoDeContacto, DomicilioDTO domicilio) {
 		super();
 		this.idPersona = idPersona;
 		this.nombre = nombre;
@@ -79,11 +79,11 @@ public class PersonaDTO
 		this.fechaCumpleaños = fechaCumpleaños;
 	}
 
-	public String getTipoDeContacto() {
+	public TipoDeContactoDTO getTipoDeContacto() {
 		return tipoDeContacto;
 	}
 
-	public void setTipoDeContacto(String tipoDeContacto) {
+	public void setTipoDeContacto(TipoDeContactoDTO tipoDeContacto) {
 		this.tipoDeContacto = tipoDeContacto;
 	}
 
@@ -95,49 +95,6 @@ public class PersonaDTO
 		this.domicilio = domicilio;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		PersonaDTO other = (PersonaDTO) obj;
-		if (domicilio == null) {
-			if (other.domicilio != null)
-				return false;
-		} else if (!domicilio.equals(other.domicilio))
-			return false;
-		if (fechaCumpleaños == null) {
-			if (other.fechaCumpleaños != null)
-				return false;
-		} else if (!fechaCumpleaños.equals(other.fechaCumpleaños))
-			return false;
-		if (idPersona != other.idPersona)
-			return false;
-		if (mail == null) {
-			if (other.mail != null)
-				return false;
-		} else if (!mail.equals(other.mail))
-			return false;
-		if (nombre == null) {
-			if (other.nombre != null)
-				return false;
-		} else if (!nombre.equals(other.nombre))
-			return false;
-		if (telefono == null) {
-			if (other.telefono != null)
-				return false;
-		} else if (!telefono.equals(other.telefono))
-			return false;
-		if (tipoDeContacto == null) {
-			if (other.tipoDeContacto != null)
-				return false;
-		} else if (!tipoDeContacto.equals(other.tipoDeContacto))
-			return false;
-		return true;
-	}
-
+	
 		
 }
