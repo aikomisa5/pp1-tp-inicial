@@ -18,7 +18,7 @@ public class DomicilioDAOImpl implements DomicilioDAO {
 	
 	private static final Conexion conexion = Conexion.getConexion();
 	
-	private static final String insertDomicilio="INSERT INTO domicilios(calle, altura, piso, departamento, localidad) VALUES(?, ?, ?, ?, ?)";
+	private static final String insertLocalidad="INSERT INTO domicilios(calle, altura, piso, departamento, localidad) VALUES(?, ?, ?, ?, ?)";
 	private static final String delete = "DELETE FROM domicilios WHERE idDomicilio = ?";
 	private static final String update = "UPDATE domicilios " + 
 			"SET calle = ?, altura = ?, piso = ?, departamento = ?, localidad =?" + 
@@ -31,7 +31,7 @@ public class DomicilioDAOImpl implements DomicilioDAO {
 		ResultSet rs;
 		try 
 		{
-			statement = conexion.getSQLConexion().prepareStatement(insertDomicilio, Statement.RETURN_GENERATED_KEYS);
+			statement = conexion.getSQLConexion().prepareStatement(insertLocalidad, Statement.RETURN_GENERATED_KEYS);
 			statement.setString(1, domicilio.getCalle());
 			statement.setInt(2, domicilio.getAltura());
 			statement.setInt(3, domicilio.getPiso());
