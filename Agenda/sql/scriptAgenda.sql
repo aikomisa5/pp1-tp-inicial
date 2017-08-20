@@ -56,9 +56,15 @@ CREATE TABLE  personas
 insert into tiposDeContacto (nombreTipo) values ('Familia');
 insert into tiposDeContacto (nombreTipo) values ('Amigos');
 insert into tiposDeContacto (nombreTipo) values ('Trabajo');
+insert into tiposDeContacto (nombreTipo) values ('Universidad');
+insert into tiposDeContacto (nombreTipo) values ('Club');
 
 
 insert into localidades (nombreLocalidad) values ('San miguel');
+insert into localidades (nombreLocalidad) values ('Tortuguitas');
+insert into localidades (nombreLocalidad) values ('Pablo Nogues');
+insert into localidades (nombreLocalidad) values ('Polvorines');
+insert into localidades (nombreLocalidad) values ('Don Tortcuato');
 
 insert into domicilios (calle, altura, piso, departamento, idLocalidad)
  values ('sarasa', 12312, 3, '4b', 1);
