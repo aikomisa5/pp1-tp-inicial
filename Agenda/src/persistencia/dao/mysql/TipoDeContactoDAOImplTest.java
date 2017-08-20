@@ -2,14 +2,10 @@ package persistencia.dao.mysql;
 
 import static org.junit.Assert.*;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
-import org.junit.After;
 import org.junit.Test;
 
-import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
-import com.mysql.jdbc.exceptions.jdbc4.MySQLDataException;
 
 import dto.TipoDeContactoDTO;
 import persistencia.dao.interfaz.TipoDeContactoDAO;
