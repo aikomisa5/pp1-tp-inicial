@@ -7,11 +7,16 @@ import modelo.Agenda;
 import presentacion.reportes.ReporteAgenda;
 import presentacion.vista.VentanaPersona;
 import presentacion.vista.Vista;
+import dto.DomicilioDTO;
+import dto.LocalidadDTO;
 import dto.PersonaDTO;
+import dto.TipoDeContactoDTO;
 
 public class Controlador implements ActionListener {
 	private Vista vista;
 	private List<PersonaDTO> personasEnTabla;
+	private List<LocalidadDTO> localidades;
+	private List<TipoDeContactoDTO> tiposDeContacto;
 	private VentanaPersona ventanaPersona;
 	private Agenda agenda;
 
@@ -22,6 +27,8 @@ public class Controlador implements ActionListener {
 		this.vista.getBtnReporte().addActionListener(this);
 		this.agenda = agenda;
 		this.personasEnTabla = null;
+		localidades = agenda.getLocalidades();
+		tiposDeContacto = agenda.getTiposDeContacto();			
 	}
 
 	public void inicializar() {
@@ -68,7 +75,16 @@ public class Controlador implements ActionListener {
 	}
 
 	private void agregarPersona() {
-		// TODO
+		if(camposSonValidos()) {
+			ventanaPersona.cargarDatosEnDTO();
+			agenda.agregarPersona(ventanaPersona.getPersona());
+		}		
+	}
+
+	private boolean camposSonValidos() {
+		// TODO efectuar validación
+		boolean sonValidos = true;		
+		return sonValidos;
 	}
 
 	private void borrarPersonasSeleccionadas() {
@@ -80,8 +96,15 @@ public class Controlador implements ActionListener {
 
 	private void abrirVentanaPersona(PersonaDTO persona) {
 		ventanaPersona = new VentanaPersona(this);
+		
+		ventanaPersona.setLocalidad(localidades);
+		ventanaPersona.setTiposDeContacto(tiposDeContacto);
+		ventanaPersona.cargarCombos();
+		
 		ventanaPersona.setPersona(persona);
 		ventanaPersona.cargarPersonaEnFormulario();
+		
+		
 		ventanaPersona.setVisible(true);
 	}
 
