@@ -13,7 +13,7 @@ public class TipoDeContactoDAOImplTest {
 	
 	TipoDeContactoDAO dao = new TipoDeContactoDAOImpl();
 	
-	
+	//
 	@Test
 	public void test() {
 		ArrayList<TipoDeContactoDTO> tiposDeContacto = (ArrayList<TipoDeContactoDTO>) dao.readAll();
