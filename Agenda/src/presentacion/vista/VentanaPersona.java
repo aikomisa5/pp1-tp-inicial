@@ -10,11 +10,14 @@ import javax.swing.border.EmptyBorder;
 
 import org.jdesktop.swingx.JXDatePicker;
 
+import dto.PersonaDTO;
 import presentacion.controlador.Controlador;
 import java.awt.Color;
 import javax.swing.JComboBox;
 
 public class VentanaPersona extends JFrame {
+	private PersonaDTO persona = null;
+	
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField tfLocalidad;
@@ -29,7 +32,10 @@ public class VentanaPersona extends JFrame {
 	private JTextField tfDepto;
 	private JTextField tfEmail;
 	private JXDatePicker datePicker;
-
+	private JComboBox comboLocalidad;
+	private JComboBox comboTipoDeContacto;
+	
+	
 	String[] Localidades = { "17 de Agosto", "25 de Mayo", "9 de Julio / La Niña", "Acassuso", "Aguas Verdes",
 			"Alberti", "Arenas Verdes", "Arrecifes", "Avellaneda", "Ayacucho", "Azul", "Bahía Blanca", "Bahía San Blas",
 			"Balcarce", "Balneario Marisol", "Balneario Orense", "Balneario Reta", "Balneario San Cayetano", "Baradero",
@@ -59,6 +65,7 @@ public class VentanaPersona extends JFrame {
 
 	String[] TipoDeContacto = { "Amigos", "Trabajo", "Familia", "Universidad", "Escuela", "Club" };
 
+
 	public VentanaPersona(Controlador controlador) {
 		super();
 		this.controlador = controlador;
@@ -76,8 +83,7 @@ public class VentanaPersona extends JFrame {
 		panel.setBounds(10, 11, 307, 402);
 		contentPane.add(panel);
 		panel.setLayout(null);
-		//panel.add(tfFechaNac);
-		
+				
 		datePicker = new JXDatePicker();
 		datePicker.setBounds(133, 257, 164, 22);
 		datePicker.setVisible(true);
@@ -172,7 +178,7 @@ public class VentanaPersona extends JFrame {
 		label_2.setBounds(20, 291, 113, 14);
 		panel.add(label_2);
 
-		JComboBox comboLocalidad = new JComboBox(Localidades);
+		comboLocalidad = new JComboBox(Localidades);
 		comboLocalidad.setBounds(133, 288, 164, 20);
 		panel.add(comboLocalidad);
 
@@ -180,7 +186,7 @@ public class VentanaPersona extends JFrame {
 		lblTipoDeContacto.setBounds(20, 323, 113, 14);
 		panel.add(lblTipoDeContacto);
 
-		JComboBox comboTipoDeContacto = new JComboBox(TipoDeContacto);
+		comboTipoDeContacto = new JComboBox(TipoDeContacto);
 		comboTipoDeContacto.setBounds(133, 320, 164, 20);
 		panel.add(comboTipoDeContacto);
 
@@ -245,6 +251,19 @@ public class VentanaPersona extends JFrame {
 
 	public JButton getBtnAgregarPersona() {
 		return btnAgregarPersona;
+	}
+
+	public PersonaDTO getPersona() {
+		return persona;
+	}
+
+	public void setPersona(PersonaDTO persona) {
+		this.persona = persona;
+	}
+
+	public void cargarPersonaEnFormulario() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
