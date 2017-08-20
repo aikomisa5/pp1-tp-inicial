@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import org.jdesktop.swingx.JXDatePicker;
+
 import presentacion.controlador.Controlador;
 import java.awt.Color;
 import javax.swing.JComboBox;
@@ -26,6 +28,7 @@ public class VentanaPersona extends JFrame {
 	private JTextField tfPiso;
 	private JTextField tfDepto;
 	private JTextField tfEmail;
+	private JXDatePicker datePicker;
 
 	String[] Localidades = { "17 de Agosto", "25 de Mayo", "9 de Julio / La Niña", "Acassuso", "Aguas Verdes",
 			"Alberti", "Arenas Verdes", "Arrecifes", "Avellaneda", "Ayacucho", "Azul", "Bahía Blanca", "Bahía San Blas",
@@ -73,6 +76,12 @@ public class VentanaPersona extends JFrame {
 		panel.setBounds(10, 11, 307, 402);
 		contentPane.add(panel);
 		panel.setLayout(null);
+		//panel.add(tfFechaNac);
+		
+		datePicker = new JXDatePicker();
+		datePicker.setBounds(133, 257, 164, 22);
+		datePicker.setVisible(true);
+		panel.add(datePicker);
 
 		JLabel lblNombreYApellido = new JLabel("Nombre y apellido");
 		lblNombreYApellido.setBounds(20, 14, 113, 14);
@@ -86,7 +95,7 @@ public class VentanaPersona extends JFrame {
 		tfNombre.setBounds(133, 11, 164, 20);
 		panel.add(tfNombre);
 		tfNombre.setColumns(10);
-
+		
 		tfTelefono = new JTextField();
 		tfTelefono.setBounds(133, 42, 164, 20);
 		panel.add(tfTelefono);
@@ -150,7 +159,6 @@ public class VentanaPersona extends JFrame {
 		tfFechaNac = new JTextField();
 		tfFechaNac.setColumns(10);
 		tfFechaNac.setBounds(133, 257, 164, 20);
-		panel.add(tfFechaNac);
 
 		JLabel lblEmail = new JLabel("E-mail");
 		lblEmail.setBounds(20, 230, 113, 14);
