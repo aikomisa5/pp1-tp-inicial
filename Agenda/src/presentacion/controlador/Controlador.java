@@ -2,11 +2,17 @@ package presentacion.controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.List;
 import modelo.Agenda;
 import presentacion.reportes.ReporteAgenda;
 import presentacion.vista.VentanaPersona;
 import presentacion.vista.Vista;
+import dto.DomicilioDTO;
+import dto.LocalidadDTO;
 import dto.PersonaDTO;
 
 public class Controlador implements ActionListener
@@ -70,14 +76,17 @@ public class Controlador implements ActionListener
 			}
 			else if(e.getSource() == this.ventanaPersona.getBtnAgregarPersona())
 			{
-				PersonaDTO nuevaPersona = new PersonaDTO(0,this.ventanaPersona.getTxtNombre().getText(), ventanaPersona.getTxtTelefono().getText());
+				SimpleDateFormat parser = new SimpleDateFormat("dd/MM/YYYY");
+				Date fechaNac = Date.valueOf(LocalDate.now());
+				
+				PersonaDTO nuevaPersona = new PersonaDTO(0, ventanaPersona.getTfNombre().getText(), ventanaPersona.getTfTelefono().getText(), ventanaPersona.getTfEmail().getText(), fechaNac, "Amigos", new DomicilioDTO("una calle", 123, 1, "", new LocalidadDTO("tortuguitas")));
 				this.agenda.agregarPersona(nuevaPersona);
 				this.llenarTabla();
 				this.ventanaPersona.dispose();
 			}
 			else if(e.getSource() == this.vista.getBtnEditar())
 			{
-				PersonaDTO nuevaPersona = new PersonaDTO(0,this.ventanaPersona.getTxtNombre().getText(), ventanaPersona.getTxtTelefono().getText());
+				PersonaDTO nuevaPersona = new PersonaDTO(0,this.ventanaPersona.getTfNombre().getText(), ventanaPersona.getTfTelefono().getText());
 				this.agenda.agregarPersona(nuevaPersona);
 				this.llenarTabla();
 				this.ventanaPersona.dispose();
