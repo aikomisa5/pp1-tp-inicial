@@ -10,8 +10,9 @@ drop table if exists localidades;
 
 CREATE TABLE  tiposDeContacto
 (
-	Tipo varchar(30) not null,
-    primary key (Tipo)
+	idTipo int not null auto_increment,
+	nombreTipo varchar(30) not null,
+    primary key (idTipo)
 );
 
 
@@ -41,10 +42,10 @@ CREATE TABLE  personas
   Telefono varchar(20) NOT NULL,
   Mail varchar(45) NOT NULL,
   Cumpleanios date NOT NULL,
-  Tipo varchar(30) NOT NULL,
+  idTipo int NOT NULL,
   Domicilio int not null,
   PRIMARY KEY (idPersona),
-  FOREIGN KEY (Tipo) references tiposDeContacto (Tipo),
+  FOREIGN KEY (idTipo) references tiposDeContacto (idTipo),
   FOREIGN KEY (Domicilio) references domicilios (idDomicilio)
 );
 
@@ -52,17 +53,23 @@ CREATE TABLE  personas
 
 # comandos de insercion de datos, correrlos antes de correr el test!!
 
-insert into tiposDeContacto (Tipo) values ('Familia');
-insert into tiposDeContacto (Tipo) values ('Amigos');
-insert into tiposDeContacto (Tipo) values ('Trabajo');
+insert into tiposDeContacto (nombreTipo) values ('Familia');
+insert into tiposDeContacto (nombreTipo) values ('Amigos');
+insert into tiposDeContacto (nombreTipo) values ('Trabajo');
 
 insert into localidades (nombreLocalidad) values ('San miguel');
 
 insert into domicilios (calle, altura, piso, departamento, idLocalidad)
  values ('sarasa', 12312, 3, '4b', 1);
  
- insert into personas (Nombre, telefono, mail, cumpleanios, tipo, domicilio)
- values ('Mix 2.0', '123123123', 'ProfeDanielLover@gmail.com', '1995-02-04', 'Amigos', 1);
+ insert into personas (Nombre, telefono, mail, cumpleanios, idTipo, domicilio)
+ values ('Mix 2.0', '123123123', 'ProfeDanielLover@gmail.com', '1995-02-04', 2, 1);
+ 
+ update tiposDeContacto
+ set nombreTipo = "familias"
+ where idTipo=1;
+ 
+ select * from tiposDeContacto;
  
  
  #Query de verificacion
