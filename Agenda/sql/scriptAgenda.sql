@@ -3,12 +3,23 @@ use agenda;
 drop table if exists personas;
 drop table if exists tiposDeContacto; 
 drop table if exists domicilios;
+drop table if exists localidades;
+
+
 
 
 CREATE TABLE  tiposDeContacto
 (
 	Tipo varchar(30) not null,
     primary key (Tipo)
+);
+
+
+CREATE TABLE localidades
+(
+	idLocalidad int not null auto_increment,
+    nombreLocalidad varchar(45) not null,
+    primary key (idLocalidad)
 );
 
 CREATE TABLE  domicilios
@@ -18,8 +29,9 @@ CREATE TABLE  domicilios
 	altura int not null,
 	piso int not null,
 	departamento varchar(15) not null,
-	localidad varchar(45) not null,
-    primary key (idDomicilio)
+	idLocalidad int not null,
+    primary key (idDomicilio),
+    foreign key (idLocalidad) references localidades (idLocalidad)
 );
 
 CREATE TABLE  personas 
@@ -44,9 +56,19 @@ insert into tiposDeContacto (Tipo) values ('Familia');
 insert into tiposDeContacto (Tipo) values ('Amigos');
 insert into tiposDeContacto (Tipo) values ('Trabajo');
 
-insert into domicilios (calle, altura, piso, departamento, localidad)
- values ('sarasa', 12312, 3, '4b', 'San miguel');
+insert into localidades (nombreLocalidad) values ('San miguel');
+
+insert into domicilios (calle, altura, piso, departamento, idLocalidad)
+ values ('sarasa', 12312, 3, '4b', 1);
  
  insert into personas (Nombre, telefono, mail, cumpleanios, tipo, domicilio)
  values ('Mix 2.0', '123123123', 'ProfeDanielLover@gmail.com', '1995-02-04', 'Amigos', 1);
-
+ 
+ 
+ #Query de verificacion
+ 
+ select * from personas p 
+ inner join domicilios d
+ on p.domicilio = d.idDomicilio
+ inner join localidades l
+ on d.idLocalidad = l.idLocalidad;
