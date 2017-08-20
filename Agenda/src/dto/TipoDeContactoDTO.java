@@ -36,5 +36,9 @@ public class TipoDeContactoDTO {
 		this.nombre = nombre;
 	}
 	
+	@Override
+	public String toString() {
+		return id + " - " + nombre;
+	}
 	
 }
