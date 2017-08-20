@@ -19,7 +19,7 @@ public class PersonaDAOImpl implements PersonaDAO
 {
 	private static final Conexion conexion = Conexion.getConexion();
 	
-	private static final String insertPersona = "INSERT INTO personas(nombre, telefono, mail, cumpleanios, tipo, domicilio) VALUES(?, ?, ?, ?, ?, ?)";
+	private static final String insertPersona = "INSERT INTO personas(nombre, telefono, mail, cumpleanios, idTipo, idDomicilio) VALUES(?, ?, ?, ?, ?, ?)";
 	private static final String delete = "DELETE FROM personas WHERE idPersona = ?";
 	private static final String readall = "SELECT * FROM personas";
 	private static final String personasJoinDomicilios = "SELECT * FROM personas p "

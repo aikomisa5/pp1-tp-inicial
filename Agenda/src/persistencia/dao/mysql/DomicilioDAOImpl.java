@@ -18,10 +18,10 @@ public class DomicilioDAOImpl implements DomicilioDAO {
 	
 	private static final Conexion conexion = Conexion.getConexion();
 	
-	private static final String insertLocalidad="INSERT INTO domicilios(calle, altura, piso, departamento, localidad) VALUES(?, ?, ?, ?, ?)";
+	private static final String insertLocalidad="INSERT INTO domicilios(calle, altura, piso, Departamento, idlocalidad) VALUES(?, ?, ?, ?, ?)";
 	private static final String delete = "DELETE FROM domicilios WHERE idDomicilio = ?";
 	private static final String update = "UPDATE domicilios " + 
-			"SET calle = ?, altura = ?, piso = ?, departamento = ?, localidad =?" + 
+			"SET calle = ?, altura = ?, piso = ?, departamento = ?, idLocalidad = ? " + 
 			"WHERE idDomicilio = ?";
 	private static final String readAll="select * from domicilios d inner join localidades l on d.idLocalidad = l.idLocalidad";
 	
@@ -69,10 +69,13 @@ public class DomicilioDAOImpl implements DomicilioDAO {
 			statement.setInt(3, domicilio.getPiso());
 			statement.setString(4, domicilio.getDepartamento());
 			statement.setInt(5, domicilio.getLocalidad().getId());
+			statement.setInt(6, domicilio.getIdDomicilio());
+			if(statement.executeUpdate() > 0)
+				return true;
 		} 
 		catch (Exception e)
 		{
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 		finally {
 			conexion.cerrarConexion();

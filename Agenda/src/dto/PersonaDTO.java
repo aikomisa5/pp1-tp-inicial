@@ -41,6 +41,11 @@ public class PersonaDTO
 		this.tipoDeContacto = tipoDeContacto;
 		this.domicilio = domicilio;
 	}
+	
+	public PersonaDTO(int idPersona) {
+		super();
+		this.idPersona = idPersona;
+	}
 
 	public int getIdPersona() 
 	{

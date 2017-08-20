@@ -35,27 +35,9 @@ public class PersonaDAOImplTest {
 			assertTrue(dao.insert(new PersonaDTO("Profe daniel", "12346", "pd@dasdsa", Date.valueOf("1969-12-31"), new TipoDeContactoDTO(1), new DomicilioDTO(1))));
 		}
 			
-		
-	//	@Test 
-	//	public void insertPersona() {
-	//		DomicilioDTO dom = new DomicilioDTO("Rio neuquen", 13, 0, "1a", "San patricio del chañar");
-	//		
-	//		PersonaDTO p = new PersonaDTO(0, "danilo Ultimo", "15 15151", "dsadas@dasd", Date.valueOf("1993-02-06"), "Amigos", dom);
-	//		dao.insert(p);
-	//	}
-	
-//		@Test
-//		public void updateTest() {
-//			List<PersonaDTO>personas = (ArrayList<PersonaDTO>) dao.readAll();
-//			System.out.println("Personas antes de modificar");
-//			personas.forEach(p -> System.out.println(p.getNombre()));
-//			personas.forEach(p ->{
-//				p.setNombre("Modificado1");
-//				dao.update(p);
-//				});
-//			personas = dao.readAll();
-//			System.out.println("Personas luego de modificar");
-//			personas.forEach( p -> System.out.println(p.getNombre()));		
-//		}
+		@Test
+		public void delete() {
+			assertTrue(dao.delete(new PersonaDTO(2)));
+		}
 
 }

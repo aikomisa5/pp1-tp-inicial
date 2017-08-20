@@ -26,6 +26,11 @@ public class DomicilioDTO {
 		this.departamento = departamento;
 		this.localidad = localidad;
 	}
+	
+	public DomicilioDTO(int idDomicilio) {
+		super();
+		this.idDomicilio = idDomicilio;
+	}
 
 	public DomicilioDTO() {
 		// TODO Auto-generated constructor stub
