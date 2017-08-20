@@ -11,7 +11,7 @@ drop table if exists localidades;
 CREATE TABLE  tiposDeContacto
 (
 	idTipo int not null auto_increment,
-	nombreTipo varchar(30) not null,
+	nombreTipo varchar(30) not null unique,
     primary key (idTipo)
 );
 
@@ -56,6 +56,7 @@ CREATE TABLE  personas
 insert into tiposDeContacto (nombreTipo) values ('Familia');
 insert into tiposDeContacto (nombreTipo) values ('Amigos');
 insert into tiposDeContacto (nombreTipo) values ('Trabajo');
+
 
 insert into localidades (nombreLocalidad) values ('San miguel');
 

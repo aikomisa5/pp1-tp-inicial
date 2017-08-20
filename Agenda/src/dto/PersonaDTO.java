@@ -31,7 +31,16 @@ public class PersonaDTO
 		this.domicilio = domicilio;
 	}
 
-
+	public PersonaDTO(String nombre, String telefono, String mail, Date fechaCumpleaños,
+			TipoDeContactoDTO tipoDeContacto, DomicilioDTO domicilio) {
+		super();
+		this.nombre = nombre;
+		this.telefono = telefono;
+		this.mail = mail;
+		this.fechaCumpleaños = fechaCumpleaños;
+		this.tipoDeContacto = tipoDeContacto;
+		this.domicilio = domicilio;
+	}
 
 	public int getIdPersona() 
 	{

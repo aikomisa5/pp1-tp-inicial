@@ -31,7 +31,7 @@ public class PersonaDAOImpl implements PersonaDAO
 														+ "on t.idTipo = p.idTipo";
 	
 	private static final String update = "UPDATE personas " + 
-						"SET Nombre = ?, telefono = ?, mail = ?, cumpleanios = ?, tipo =?, domicilio =? " + 
+						"SET Nombre = ?, telefono = ?, mail = ?, cumpleanios = ?, idTipo = ?, idDomicilio = ? " + 
 						"WHERE idPersona = ?";
 	
 	public boolean insert(PersonaDTO persona)

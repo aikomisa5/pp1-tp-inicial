@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import dto.DomicilioDTO;
 import dto.PersonaDTO;
+import dto.TipoDeContactoDTO;
 import persistencia.dao.interfaz.PersonaDAO;
 
 public class PersonaDAOImplTest {
@@ -22,6 +23,16 @@ public class PersonaDAOImplTest {
 				System.out.println(p.getNombre()+" de "+p.getDomicilio().getLocalidad().getNombre()+" tipo de contacto: "+p.getTipoDeContacto().getNombre()
 						+ " Fecha cumpleaños "+p.getFechaCumpleaños().toString());
 			}
+		}
+		
+		@Test
+		public void update() {
+			assertTrue(dao.update(new PersonaDTO(1, "carlitos", "123132", "ddasdas@dasd", Date.valueOf("1993-05-06"), new TipoDeContactoDTO(3), new DomicilioDTO(2))));
+		}
+		
+		@Test
+		public void insert() {
+			assertTrue(dao.insert(new PersonaDTO("Profe daniel", "12346", "pd@dasdsa", Date.valueOf("1969-12-31"), new TipoDeContactoDTO(1), new DomicilioDTO(1))));
 		}
 			
 		
