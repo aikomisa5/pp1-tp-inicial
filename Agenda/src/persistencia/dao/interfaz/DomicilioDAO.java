@@ -13,6 +13,6 @@ public interface DomicilioDAO {
 		
 	public boolean delete(DomicilioDTO domicilio); 
 	
-	public List<LocalidadDTO> readAll();
+	public List<DomicilioDTO> readAll();
 
 }
