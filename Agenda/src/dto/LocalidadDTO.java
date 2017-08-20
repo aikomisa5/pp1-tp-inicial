@@ -15,11 +15,6 @@ public class LocalidadDTO
 		super();
 		this.nombre = nombre;
 	}
-	
-	public LocalidadDTO(int id) {
-		super();
-		this.id = id;
-	}
 
 	public int getId() {
 		return id;
