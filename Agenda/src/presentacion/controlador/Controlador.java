@@ -25,49 +25,64 @@ public class Controlador implements ActionListener {
 	}
 
 	public void inicializar() {
-		this.llenarTabla();
+		this.updateTabla();
 	}
 
-	private void llenarTabla() {
+	private void updateTabla() {
 		this.vista.getModelPersonas().setRowCount(0); // Para vaciar la tabla
 		this.vista.getModelPersonas().setColumnCount(0);
 		this.vista.getModelPersonas().setColumnIdentifiers(this.vista.getNombreColumnas());
+
 		this.personasEnTabla = agenda.obtenerPersonas();
-		personasEnTabla.forEach(p -> {
-			Object[] fila = { p.getNombre(), p.getTelefono(), p.getDomicilio().getCalle(), p.getDomicilio().getAltura(),
-					p.getDomicilio().getPiso(), p.getDomicilio().getDepartamento(),
-					p.getDomicilio().getLocalidad().getNombre(), p.getMail(), p.getFechaCumpleaños(),
-					p.getTipoDeContacto().getNombre() };
-			vista.getModelPersonas().addRow(fila);
-		});
+		personasEnTabla.forEach(this::añadirPersonaATabla);
+
 		this.vista.show();
 	}
 
+	private void añadirPersonaATabla(PersonaDTO p) {
+		Object[] fila = { p.getNombre(), p.getTelefono(), p.getDomicilio().getCalle(), p.getDomicilio().getAltura(),
+				p.getDomicilio().getPiso(), p.getDomicilio().getDepartamento(),
+				p.getDomicilio().getLocalidad().getNombre(), p.getMail(), p.getFechaCumpleaños(),
+				p.getTipoDeContacto().getNombre() };
+		vista.getModelPersonas().addRow(fila);
+	}
+
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == this.vista.getBtnAgregar()) {
-			this.ventanaPersona = new VentanaPersona(this);
-			this.ventanaPersona.setVisible(true);
-		} else if (e.getSource() == this.vista.getBtnBorrar()) {
-			int[] filas_seleccionadas = this.vista.getTablaPersonas().getSelectedRows();
-			for (int fila : filas_seleccionadas) {
-				this.agenda.borrarPersona(this.personasEnTabla.get(fila));
-			}
+		if (e.getSource() == vista.getBtnAgregar()) {
+			abrirVentanaPersona(null);
+		} else if (e.getSource() == vista.getBtnBorrar()) {
+			borrarPersonasSeleccionadas();
+			updateTabla();
 
-			this.llenarTabla();
-
-		} else if (e.getSource() == this.vista.getBtnReporte()) {
+		} else if (e.getSource() == vista.getBtnReporte()) {
 			ReporteAgenda reporte = new ReporteAgenda(agenda.obtenerPersonas());
 			reporte.mostrar();
-		} else if (e.getSource() == this.ventanaPersona.getBtnAgregarPersona()) {
-			this.llenarTabla();
-			this.ventanaPersona.dispose();
-		} else if (e.getSource() == this.vista.getBtnEditar()) {
-			PersonaDTO nuevaPersona = new PersonaDTO(0, this.ventanaPersona.getTfNombre().getText(),
-					ventanaPersona.getTfTelefono().getText());
-			this.agenda.agregarPersona(nuevaPersona);
-			this.llenarTabla();
-			this.ventanaPersona.dispose();
+		} else if (e.getSource() == ventanaPersona.getBtnAgregarPersona()) {
+			agregarPersona();
+			updateTabla();
+			ventanaPersona.dispose();
+		} else if (e.getSource() == vista.getBtnEditar()) {
+			int indexFilaSeleccionada = vista.getTablaPersonas().getSelectedRow();
+			abrirVentanaPersona(personasEnTabla.get(indexFilaSeleccionada));			
 		}
+	}
+
+	private void agregarPersona() {
+		// TODO
+	}
+
+	private void borrarPersonasSeleccionadas() {
+		int[] filas_seleccionadas = this.vista.getTablaPersonas().getSelectedRows();
+		for (int fila : filas_seleccionadas) {
+			this.agenda.borrarPersona(this.personasEnTabla.get(fila));
+		}
+	}
+
+	private void abrirVentanaPersona(PersonaDTO persona) {
+		ventanaPersona = new VentanaPersona(this);
+		ventanaPersona.setPersona(persona);
+		ventanaPersona.cargarPersonaEnFormulario();
+		ventanaPersona.setVisible(true);
 	}
 
 }
