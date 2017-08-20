@@ -17,10 +17,10 @@ public class TipoDeContactoDAOImpl implements TipoDeContactoDAO {
 
 	private static final Conexion conexion = Conexion.getConexion();
 	
-	private static final String insert="INSERT INTO tiposDeContacto(nombreTipo) VALUES(?)";
+	private static final String insert="INSERT INTO tiposDeContacto (nombreTipo) VALUES(?)";
 	private static final String delete = "DELETE FROM tiposDeContacto WHERE idTipo = ?";
 	private static final String update = "UPDATE tiposDeContacto " + 
-			"SET nombreTipo =?" + 
+			"SET nombreTipo = ? " + 
 			"WHERE idTipo = ?";
 	private static final String readAll="select * from tiposDeContacto";
 	
@@ -60,6 +60,9 @@ public class TipoDeContactoDAOImpl implements TipoDeContactoDAO {
 		{
 			statement = conexion.getSQLConexion().prepareStatement(update);
 			statement.setString(1, tipoDeContacto.getNombre());
+			statement.setInt(2, tipoDeContacto.getId());
+			if(statement.executeUpdate() > 0)
+				return true;
 		} 
 		catch (Exception e)
 		{
