@@ -11,7 +11,6 @@ import modelo.Agenda;
 import modelo.Validador;
 import presentacion.reportes.ReporteAgenda;
 import presentacion.vista.FormularioContactos;
-import presentacion.vista.GestionDeLocalidades;
 import presentacion.vista.Principal;
 import dto.LocalidadDTO;
 import dto.PersonaDTO;
