@@ -61,9 +61,16 @@ public class Controlador implements ActionListener {
 		if (e.getSource() == vista.getBtnAgregar()) {
 			abrirVentanaPersona(null);
 		} else if (e.getSource() == vista.getBtnBorrar()) {
-			borrarPersonasSeleccionadas();
-			updateTabla();
-
+			
+			int indexFilaSeleccionada = vista.getTablaPersonas().getSelectedRow();
+			if (indexFilaSeleccionada != -1){
+				borrarPersonasSeleccionadas();
+				updateTabla();}
+			else 
+				JOptionPane.showMessageDialog(null,
+						"Selecciona una persona para borrar primero", "Aviso",
+						JOptionPane.ERROR_MESSAGE);
+			
 		} else if (e.getSource() == vista.getBtnReporte()) {
 			ReporteAgenda reporte = new ReporteAgenda(agenda.obtenerPersonas());
 			reporte.mostrar();
