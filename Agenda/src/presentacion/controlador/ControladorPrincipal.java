@@ -33,6 +33,8 @@ public class ControladorPrincipal implements ActionListener {
 		this.vista.getBtnBorrar().addActionListener(this);
 		this.vista.getBtnEditar().addActionListener(this);
 		this.vista.getBtnReporte().addActionListener(this);
+		this.vista.getBtnGestionDeTipos().addActionListener(this);
+		this.vista.getBtnGestionLocalidades().addActionListener(this);
 		this.agenda = agenda;
 		this.personasEnTabla = null;
 		localidades = agenda.getLocalidades();

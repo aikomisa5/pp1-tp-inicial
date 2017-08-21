@@ -1,21 +1,130 @@
 package presentacion.controlador;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
+
+import javax.swing.JOptionPane;
+
+import dto.LocalidadDTO;
+import dto.TipoDeContactoDTO;
 import modelo.Agenda;
+import modelo.Validador;
+import presentacion.vista.VistaLocalidades;
 import presentacion.vista.VistaTiposDeContacto;
 
-public class ControladorGestionDeTiposContacto {
+public class ControladorGestionDeTiposContacto implements ActionListener {
+	
+	private static ControladorGestionDeTiposContacto controlador=null;
+	private Agenda agenda;
+	private VistaTiposDeContacto vistaTipoDeContacto;
+	private List<TipoDeContactoDTO>tiposDeContactoEnTabla;
 
-	private ControladorGestionDeTiposContacto(Agenda agenda, VistaTiposDeContacto vistaTiposDeContacto) {// TODO hacer singleton de agenda/modelo.
-		// TODO Auto-generated constructor stub
+	private ControladorGestionDeTiposContacto() {// TODO hacer singleton de agenda/modelo.
+		this.agenda = new Agenda();
+		this.vistaTipoDeContacto= new VistaTiposDeContacto();
+		this.vistaTipoDeContacto.getBtnAgregar().addActionListener(this);
+		this.vistaTipoDeContacto.getBtnEditar().addActionListener(this);
+		this.vistaTipoDeContacto.getBtnEliminar().addActionListener(this);
 	}
 
 	public static ControladorGestionDeTiposContacto getInstance() {
-		// TODO Auto-generated method stub
-		return null;
+		if(controlador==null)
+			controlador=new ControladorGestionDeTiposContacto();
+		return controlador;
 	}
 
 	public void abrirVentana() {
+		vistaTipoDeContacto.mostrar();
+		inicializar();
+	}
+	
+	public void inicializar() {
+		updateTabla();
+	}
+	
+	private void updateTabla() {
+		this.vistaTipoDeContacto.getModelTipoDeContacto().setRowCount(0); // Para vaciar la tabla
+		this.vistaTipoDeContacto.getModelTipoDeContacto().setColumnCount(0);
+		this.vistaTipoDeContacto.getModelTipoDeContacto().setColumnIdentifiers(this.vistaTipoDeContacto.getNombreColumnas());
+
+		this.tiposDeContactoEnTabla = agenda.getTiposDeContacto();
+		tiposDeContactoEnTabla.forEach(this::añadirTipoDeContacto);
+
+		vistaTipoDeContacto.mostrar();
+	}
+	
+	private void añadirTipoDeContacto(TipoDeContactoDTO tipoDeContactoDTO) {
+		Object[] fila = { tipoDeContactoDTO.getNombre()};
+		vistaTipoDeContacto.getModelTipoDeContacto().addRow(fila);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == vistaTipoDeContacto.getBtnAgregar()) {
+			agregar();
+		} else if(e.getSource() == vistaTipoDeContacto.getBtnEditar()) {
+			int indexFilaSeleccionada = vistaTipoDeContacto.getTablaTipoDeContacto().getSelectedRow();
+			if(indexFilaSeleccionada != -1) {
+				editar(indexFilaSeleccionada);
+			}else {
+				JOptionPane.showMessageDialog(null, "Debe seleccionar una etiqueta");
+			}
+			
+		} else if(e.getSource() == vistaTipoDeContacto.getBtnEliminar()) {
+			int indexFilaSeleccionada = vistaTipoDeContacto.getTablaTipoDeContacto().getSelectedRow();
+			if(indexFilaSeleccionada != -1) {
+				borrar(indexFilaSeleccionada);
+			}else {
+				JOptionPane.showMessageDialog(null, "Debe seleccionar una etiqueta");
+			}
+		}
 		
 	}
+
+	private boolean esValido(String nombre) {
+		return Validador.esLongitudValida(nombre, 1, 30);
+	}
+	
+	private void agregar() {
+		String nombre=JOptionPane.showInputDialog("Ingrese el nombre de la etiqueta que desea ingresar ");
+		if(esValido(nombre)) {
+			try {
+				this.agenda.agregarTipoDeContacto(new TipoDeContactoDTO(nombre));
+				updateTabla();
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "Error, verifique que la etiqueta que desea ingresa no exista");
+			}
+		}else {
+			JOptionPane.showMessageDialog(null, "Error, el nombre ingresado no es valido");
+		}
+	
+	}
+
+	private void editar(int indexFilaSeleccionada) {
+		String nombre=JOptionPane.showInputDialog("Ingrese el nuevo nombre ");
+		if(esValido(nombre)) {
+			try {
+				this.agenda.modificarTipoDeContacto(new TipoDeContactoDTO(tiposDeContactoEnTabla.get(indexFilaSeleccionada).getId(), nombre));
+				updateTabla();
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "Error, verifique que la etiqueta que desea ingresa no exista");
+				}
+			
+		}else {
+			JOptionPane.showMessageDialog(null, "Error, el nombre ingresado no es valido");
+		}
+	}
+	
+	private void borrar(int indexFilaSeleccionada) {
+		try {
+			this.agenda.borrarTipoDeContacto(new TipoDeContactoDTO(tiposDeContactoEnTabla.get(indexFilaSeleccionada).getId()));
+			updateTabla();
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Error, verifique que la etiqueta no este siendo utilizada en algun contacto");
+		}
+	
+	}
+	
 
 }

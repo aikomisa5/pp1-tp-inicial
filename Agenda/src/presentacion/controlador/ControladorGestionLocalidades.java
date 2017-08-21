@@ -8,8 +8,8 @@ import javax.swing.JOptionPane;
 
 import dto.LocalidadDTO;
 import modelo.Agenda;
+import modelo.Validador;
 import presentacion.vista.VistaLocalidades;
-import presentacion.vista.VistaTiposDeContacto;
 
 public class ControladorGestionLocalidades implements ActionListener {
 	
@@ -60,26 +60,66 @@ public class ControladorGestionLocalidades implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == vistaLocalidades.getBtnAgregar()) {
-			String nombre=JOptionPane.showInputDialog("Ingrese el nombre de la localidad que desea ingresar ");
-			this.agenda.agregarLocalidad(new LocalidadDTO(nombre));
-			updateTabla();
+			agregar();
 		} else if(e.getSource() == vistaLocalidades.getBtnEditar()) {
 			int indexFilaSeleccionada = vistaLocalidades.getTablaLocalidades().getSelectedRow();
 			if(indexFilaSeleccionada != -1) {
-				String nombre=JOptionPane.showInputDialog("Ingrese el nuevo nombre ");
-				this.agenda.modificarLocalidad(new LocalidadDTO(localidadesEnTabla.get(indexFilaSeleccionada).getId(), nombre));
-				updateTabla();
+				editar(indexFilaSeleccionada);
+			}else {
+				JOptionPane.showMessageDialog(null, "Debe seleccionar una localidad");
 			}
 			
 		} else if(e.getSource() == vistaLocalidades.getBtnEliminar()) {
 			int indexFilaSeleccionada = vistaLocalidades.getTablaLocalidades().getSelectedRow();
 			if(indexFilaSeleccionada != -1) {
-				this.agenda.borrarLocalidad(new LocalidadDTO(localidadesEnTabla.get(indexFilaSeleccionada).getId()));
-				updateTabla();
+				borrar(indexFilaSeleccionada);
+			}else {
+				JOptionPane.showMessageDialog(null, "Debe seleccionar una localidad");
 			}
 		}
 		
 	}
+
+	private boolean esValido(String nombre) {
+		return Validador.esLongitudValida(nombre, 1, 45);
+	}
+
+	private void agregar() {
+		String nombre=JOptionPane.showInputDialog("Ingrese el nombre de la localidad que desea ingresar ");
+		if(esValido(nombre)) {
+			this.agenda.agregarLocalidad(new LocalidadDTO(nombre));
+			updateTabla();
+		} else{
+			JOptionPane.showMessageDialog(null, "El valor ingresado es invalido");
+		}
+	}
+	
+	private void editar(int indexFilaSeleccionada) {
+		String nombre=JOptionPane.showInputDialog("Ingrese el nuevo nombre ");
+		if(esValido(nombre)) {
+			try {
+				this.agenda.modificarLocalidad(new LocalidadDTO(localidadesEnTabla.get(indexFilaSeleccionada).getId(), nombre));
+				updateTabla();
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "Error, verifique haber seleccionado una fila");
+			}
+		
+		} else {
+			JOptionPane.showMessageDialog(null, "El valor ingresado es invalido");
+		}
+	}
+	
+	private void borrar(int indexFilaSeleccionada) {
+		try {
+				this.agenda.borrarLocalidad(new LocalidadDTO(localidadesEnTabla.get(indexFilaSeleccionada).getId()));
+				updateTabla();
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Error, verifique que la localidad no este siendo usada en algun contacto");
+		}
+		
+	}
+	
+
 	
 	
 
