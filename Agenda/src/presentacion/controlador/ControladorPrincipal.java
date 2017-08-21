@@ -10,7 +10,7 @@ import javax.swing.JTextField;
 import modelo.Agenda;
 import modelo.Validador;
 import presentacion.reportes.ReporteAgenda;
-import presentacion.vista.VentanaPersona;
+import presentacion.vista.FormularioContactos;
 import presentacion.vista.GestionDeLocalidades;
 import presentacion.vista.Principal;
 import dto.LocalidadDTO;
@@ -22,10 +22,11 @@ public class ControladorPrincipal implements ActionListener {
 	private List<PersonaDTO> personasEnTabla;
 	private List<LocalidadDTO> localidades;
 	private List<TipoDeContactoDTO> tiposDeContacto;
-	private VentanaPersona ventanaPersona;
+	private FormularioContactos ventanaPersona;
 	private Agenda agenda;
 	private ControladorGestionLocalidades controladorLocalidades;
 	private ControladorGestionDeTiposContacto controladorTipos;
+	private ControladorContactos controladorContactos;
 
 	public ControladorPrincipal(Principal vista, Agenda agenda) {
 		this.vista = vista;
@@ -39,6 +40,7 @@ public class ControladorPrincipal implements ActionListener {
 		tiposDeContacto = agenda.getTiposDeContacto();
 		controladorLocalidades = ControladorGestionLocalidades.getInstance();
 		controladorTipos = ControladorGestionDeTiposContacto.getInstance();
+		controladorContactos = ControladorContactos.getInstance();
 	}
 
 	public void inicializar() {
@@ -166,7 +168,7 @@ public class ControladorPrincipal implements ActionListener {
 	}
 
 	private void abrirVentanaPersona(PersonaDTO persona) {
-		ventanaPersona = new VentanaPersona(this);
+		ventanaPersona = new FormularioContactos(this);
 
 		ventanaPersona.setLocalidad(localidades);
 		ventanaPersona.setTiposDeContacto(tiposDeContacto);

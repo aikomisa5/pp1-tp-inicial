@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 
 import javax.swing.JComboBox;
 
-public class VentanaPersona extends JFrame {
+public class FormularioContactos extends JFrame {
 	private PersonaDTO persona = null;
 
 	private static final long serialVersionUID = 1L;
@@ -95,7 +95,7 @@ public class VentanaPersona extends JFrame {
 
 	private JPanel panel;
 
-	public VentanaPersona(ControladorPrincipal controlador) {
+	public FormularioContactos(ControladorPrincipal controlador) {
 		super();
 		this.controlador = controlador;
 
