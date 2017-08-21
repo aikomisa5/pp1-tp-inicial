@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import dto.LocalidadDTO;
 import dto.TipoDeContactoDTO;
 import modelo.Agenda;
+import modelo.Validador;
 import presentacion.vista.VistaLocalidades;
 import presentacion.vista.VistaTiposDeContacto;
 
@@ -61,25 +62,69 @@ public class ControladorGestionDeTiposContacto implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == vistaTipoDeContacto.getBtnAgregar()) {
-			String nombre=JOptionPane.showInputDialog("Ingrese el nombre de la localidad que desea ingresar ");
-			this.agenda.agregarTipoDeContacto(new TipoDeContactoDTO(nombre));
-			updateTabla();
+			agregar();
 		} else if(e.getSource() == vistaTipoDeContacto.getBtnEditar()) {
 			int indexFilaSeleccionada = vistaTipoDeContacto.getTablaTipoDeContacto().getSelectedRow();
 			if(indexFilaSeleccionada != -1) {
-				String nombre=JOptionPane.showInputDialog("Ingrese el nuevo nombre ");
-				this.agenda.modificarTipoDeContacto(new TipoDeContactoDTO(tiposDeContactoEnTabla.get(indexFilaSeleccionada).getId(), nombre));
-				updateTabla();
+				editar(indexFilaSeleccionada);
+			}else {
+				JOptionPane.showMessageDialog(null, "Debe seleccionar una etiqueta");
 			}
 			
 		} else if(e.getSource() == vistaTipoDeContacto.getBtnEliminar()) {
 			int indexFilaSeleccionada = vistaTipoDeContacto.getTablaTipoDeContacto().getSelectedRow();
 			if(indexFilaSeleccionada != -1) {
-				this.agenda.borrarTipoDeContacto(new TipoDeContactoDTO(tiposDeContactoEnTabla.get(indexFilaSeleccionada).getId()));
-				updateTabla();
+				borrar(indexFilaSeleccionada);
+			}else {
+				JOptionPane.showMessageDialog(null, "Debe seleccionar una etiqueta");
 			}
 		}
 		
 	}
+
+	private boolean esValido(String nombre) {
+		return Validador.esLongitudValida(nombre, 1, 30);
+	}
+	
+	private void agregar() {
+		String nombre=JOptionPane.showInputDialog("Ingrese el nombre de la etiqueta que desea ingresar ");
+		if(esValido(nombre)) {
+			try {
+				this.agenda.agregarTipoDeContacto(new TipoDeContactoDTO(nombre));
+				updateTabla();
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "Error, verifique que la etiqueta que desea ingresa no exista");
+			}
+		}else {
+			JOptionPane.showMessageDialog(null, "Error, el nombre ingresado no es valido");
+		}
+	
+	}
+
+	private void editar(int indexFilaSeleccionada) {
+		String nombre=JOptionPane.showInputDialog("Ingrese el nuevo nombre ");
+		if(esValido(nombre)) {
+			try {
+				this.agenda.modificarTipoDeContacto(new TipoDeContactoDTO(tiposDeContactoEnTabla.get(indexFilaSeleccionada).getId(), nombre));
+				updateTabla();
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "Error, verifique que la etiqueta que desea ingresa no exista");
+				}
+			
+		}else {
+			JOptionPane.showMessageDialog(null, "Error, el nombre ingresado no es valido");
+		}
+	}
+	
+	private void borrar(int indexFilaSeleccionada) {
+		try {
+			this.agenda.borrarTipoDeContacto(new TipoDeContactoDTO(tiposDeContactoEnTabla.get(indexFilaSeleccionada).getId()));
+			updateTabla();
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Error, verifique que la etiqueta no este siendo utilizada en algun contacto");
+		}
+	
+	}
+	
 
 }
