@@ -63,16 +63,15 @@ public class Controlador implements ActionListener {
 		if (e.getSource() == vista.getBtnAgregar()) {
 			abrirVentanaPersona(null);
 		} else if (e.getSource() == vista.getBtnBorrar()) {
-			
+
 			int indexFilaSeleccionada = vista.getTablaPersonas().getSelectedRow();
-			if (indexFilaSeleccionada != -1){
+			if (indexFilaSeleccionada != -1) {
 				borrarPersonasSeleccionadas();
-				updateTabla();}
-			else 
-				JOptionPane.showMessageDialog(null,
-						"Selecciona una persona para borrar primero", "Aviso",
+				updateTabla();
+			} else
+				JOptionPane.showMessageDialog(null, "Selecciona una persona para borrar primero", "Aviso",
 						JOptionPane.ERROR_MESSAGE);
-			
+
 		} else if (e.getSource() == vista.getBtnReporte()) {
 			ReporteAgenda reporte = new ReporteAgenda(agenda.obtenerPersonas());
 			reporte.mostrar();
@@ -81,8 +80,7 @@ public class Controlador implements ActionListener {
 			if (indexFilaSeleccionada != -1)
 				abrirVentanaPersona(personasEnTabla.get(indexFilaSeleccionada));
 			else
-				JOptionPane.showMessageDialog(null,
-						"Selecciona una persona para editar primero", "Aviso",
+				JOptionPane.showMessageDialog(null, "Selecciona una persona para editar primero", "Aviso",
 						JOptionPane.ERROR_MESSAGE);
 		} else if (e.getSource() == ventanaPersona.getBtnAgregarPersona()) {
 			agregarPersona();
@@ -122,17 +120,15 @@ public class Controlador implements ActionListener {
 			String altura = ventanaPersona.getTfAltura().getText();
 			String piso = ventanaPersona.getTfPiso().getText();
 			String depto = ventanaPersona.getTfDepto().getText();
-			String email = ventanaPersona.getTfEmail().getText(); 
-						
+			String email = ventanaPersona.getTfEmail().getText();
+
 			sonValidos = Validador.esStringNoEmpezadoEnEspacios(nombre, 45)
-						&& Validador.esIntValido(telefono)
-						&& Validador.esStringNoEmpezadoEnEspacios(calle, 45)
-						&& Validador.esIntValido(altura)
-						&& Validador.esIntValido(piso)
-						&& Validador.esStringNoEmpezadoEnEspacios(depto, 15)
-						&& Validador.esMailValido(email, 45);
+					&& Validador.esStringNoEmpezadoEnEspacios(telefono, 20)
+					&& Validador.esStringNoEmpezadoEnEspacios(calle, 45) && Validador.esIntValido(altura)
+					&& Validador.esIntValido(piso) && Validador.esStringNoEmpezadoEnEspacios(depto, 15)
+					&& Validador.esMailValido(email, 45);
 		}
-		
+
 		return sonValidos;
 	}
 
@@ -140,8 +136,7 @@ public class Controlador implements ActionListener {
 		return ventanaPersona.getTfAltura().getText().isEmpty() || ventanaPersona.getTfCalle().getText().isEmpty()
 				|| ventanaPersona.getTfDepto().getText().isEmpty() || ventanaPersona.getTfEmail().getText().isEmpty()
 				|| ventanaPersona.getTfTelefono().getText().isEmpty()
-				|| ventanaPersona.getTfNombre().getText().isEmpty()
-				|| ventanaPersona.getTfPiso().getText().isEmpty();
+				|| ventanaPersona.getTfNombre().getText().isEmpty() || ventanaPersona.getTfPiso().getText().isEmpty();
 	}
 
 	private void borrarPersonasSeleccionadas() {
