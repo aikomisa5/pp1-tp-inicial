@@ -45,6 +45,7 @@ public class ValidadorTest {
 	public void validarString() {
 		assertTrue(Validador.StringNoEmpezadoEnEspacioPattern.matcher("asd").matches());
 		assertFalse(Validador.StringNoEmpezadoEnEspacioPattern.matcher(" asd").matches());
+		assertTrue(Validador.StringNoEmpezadoEnEspacioPattern.matcher("asd 234").matches());
 	}
 	
 }
