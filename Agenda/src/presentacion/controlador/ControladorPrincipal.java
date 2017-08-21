@@ -11,20 +11,23 @@ import modelo.Agenda;
 import modelo.Validador;
 import presentacion.reportes.ReporteAgenda;
 import presentacion.vista.VentanaPersona;
-import presentacion.vista.Vista;
+import presentacion.vista.GestionDeLocalidades;
+import presentacion.vista.Principal;
 import dto.LocalidadDTO;
 import dto.PersonaDTO;
 import dto.TipoDeContactoDTO;
 
-public class Controlador implements ActionListener {
-	private Vista vista;
+public class ControladorPrincipal implements ActionListener {
+	private Principal vista;
 	private List<PersonaDTO> personasEnTabla;
 	private List<LocalidadDTO> localidades;
 	private List<TipoDeContactoDTO> tiposDeContacto;
 	private VentanaPersona ventanaPersona;
 	private Agenda agenda;
+	private ControladorGestionLocalidades controladorLocalidades;
+	private ControladorGestionDeTiposContacto controladorTipos;
 
-	public Controlador(Vista vista, Agenda agenda) {
+	public ControladorPrincipal(Principal vista, Agenda agenda) {
 		this.vista = vista;
 		this.vista.getBtnAgregar().addActionListener(this);
 		this.vista.getBtnBorrar().addActionListener(this);
@@ -34,6 +37,8 @@ public class Controlador implements ActionListener {
 		this.personasEnTabla = null;
 		localidades = agenda.getLocalidades();
 		tiposDeContacto = agenda.getTiposDeContacto();
+		controladorLocalidades = ControladorGestionLocalidades.getInstance();
+		controladorTipos = ControladorGestionDeTiposContacto.getInstance();
 	}
 
 	public void inicializar() {
@@ -82,9 +87,24 @@ public class Controlador implements ActionListener {
 			else
 				JOptionPane.showMessageDialog(null, "Selecciona una persona para editar primero", "Aviso",
 						JOptionPane.ERROR_MESSAGE);
-		} else if (e.getSource() == ventanaPersona.getBtnAgregarPersona()) {
+		}
+		else if (e.getSource() == vista.getBtnGestionDeTipos()) {
+			abrirGestionDeTipos();
+		}
+		else if (e.getSource() == vista.getBtnGestionLocalidades()) {
+			abrirGestionLocalidades();
+		}
+		else if (e.getSource() == ventanaPersona.getBtnAgregarPersona()) {//XXX esto debe volar!
 			agregarPersona();
 		}
+	}
+
+	private void abrirGestionLocalidades() {
+		controladorLocalidades.abrirVentana();
+	}
+
+	private void abrirGestionDeTipos() {
+		controladorTipos.abrirVentana();
 	}
 
 	private void agregarPersona() {
@@ -103,17 +123,16 @@ public class Controlador implements ActionListener {
 						JOptionPane.ERROR_MESSAGE);
 
 			}
-		} else {
-			JOptionPane.showMessageDialog(ventanaPersona, "No se pudo agregar el contacto. Algún campo esta vacio",
-					"Error de alta de contacto", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
 	private boolean camposSonValidos() {
 		boolean sonValidos = false;
-		if (algunCampoEstaVacio())
+		if (algunCampoEstaVacio()) {
+			JOptionPane.showMessageDialog(ventanaPersona, "No se pudo agregar el contacto. Algún campo esta vacio",
+					"Error de alta de contacto", JOptionPane.ERROR_MESSAGE);
 			return false;
-		else {
+		} else {
 			String nombre = ventanaPersona.getTfNombre().getText();
 			String telefono = ventanaPersona.getTfTelefono().getText();
 			String calle = ventanaPersona.getTfCalle().getText();

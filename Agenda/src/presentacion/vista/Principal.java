@@ -9,7 +9,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 import java.awt.Color;
 
-public class Vista {
+public class Principal {
 	private JFrame frame;
 	private JTable tablaPersonas;
 	private JButton btnAgregar;
@@ -18,10 +18,12 @@ public class Vista {
 	private JButton btnReporte;
 	private DefaultTableModel modelPersonas;
 	private  String[] nombreColumnas = {"Nombre y apellido","Teléfono","Calle","Altura","Piso","Depto","Localidad","Mail","FechaNac","TipoContacto"};
+	private JButton btnGestionDeTipos;
+	private JButton btnGestionLocalidades;
 
 
 
-	public Vista() {
+	public Principal() {
 		super();
 		initialize();
 	}
@@ -73,6 +75,14 @@ public class Vista {
 		btnReporte = new JButton("Reporte");
 		btnReporte.setBounds(307, 228, 89, 23);
 		panel.add(btnReporte);
+		
+		btnGestionLocalidades = new JButton("Gestion de Localidades");
+		btnGestionLocalidades.setBounds(406, 228, 151, 23);
+		panel.add(btnGestionLocalidades);
+		
+		btnGestionDeTipos = new JButton("Gestion de Tipos de Contacto");
+		btnGestionDeTipos.setBounds(567, 228, 192, 23);
+		panel.add(btnGestionDeTipos);
 	}
 
 	public void show() {
@@ -93,6 +103,14 @@ public class Vista {
 
 	public JButton getBtnReporte() {
 		return btnReporte;
+	}
+
+	public JButton getBtnGestionDeTipos() {
+		return btnGestionDeTipos;
+	}
+
+	public JButton getBtnGestionLocalidades() {
+		return btnGestionLocalidades;
 	}
 
 	public DefaultTableModel getModelPersonas() {

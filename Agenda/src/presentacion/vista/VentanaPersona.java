@@ -14,7 +14,7 @@ import dto.DomicilioDTO;
 import dto.LocalidadDTO;
 import dto.PersonaDTO;
 import dto.TipoDeContactoDTO;
-import presentacion.controlador.Controlador;
+import presentacion.controlador.ControladorPrincipal;
 import java.awt.Color;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -31,7 +31,7 @@ public class VentanaPersona extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JButton btnAgregarPersona;
-	private Controlador controlador;
+	private ControladorPrincipal controlador;
 	private JTextField tfNombre;
 	private JTextField tfTelefono;
 	private JTextField tfCalle;
@@ -95,7 +95,7 @@ public class VentanaPersona extends JFrame {
 
 	private JPanel panel;
 
-	public VentanaPersona(Controlador controlador) {
+	public VentanaPersona(ControladorPrincipal controlador) {
 		super();
 		this.controlador = controlador;
 
