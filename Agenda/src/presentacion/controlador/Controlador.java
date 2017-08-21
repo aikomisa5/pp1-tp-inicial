@@ -26,6 +26,7 @@ public class Controlador implements ActionListener {
 		this.vista = vista;
 		this.vista.getBtnAgregar().addActionListener(this);
 		this.vista.getBtnBorrar().addActionListener(this);
+		this.vista.getBtnEditar().addActionListener(this);
 		this.vista.getBtnReporte().addActionListener(this);
 		this.agenda = agenda;
 		this.personasEnTabla = null;
@@ -66,11 +67,16 @@ public class Controlador implements ActionListener {
 		} else if (e.getSource() == vista.getBtnReporte()) {
 			ReporteAgenda reporte = new ReporteAgenda(agenda.obtenerPersonas());
 			reporte.mostrar();
-		} else if (e.getSource() == ventanaPersona.getBtnAgregarPersona()) {
-			agregarPersona();
 		} else if (e.getSource() == vista.getBtnEditar()) {
 			int indexFilaSeleccionada = vista.getTablaPersonas().getSelectedRow();
-			abrirVentanaPersona(personasEnTabla.get(indexFilaSeleccionada));
+			if (indexFilaSeleccionada != -1)
+				abrirVentanaPersona(personasEnTabla.get(indexFilaSeleccionada));
+			else
+				JOptionPane.showMessageDialog(null,
+						"Selecciona una persona para editar primero", "Aviso",
+						JOptionPane.ERROR_MESSAGE);
+		} else if (e.getSource() == ventanaPersona.getBtnAgregarPersona()) {
+			agregarPersona();
 		}
 	}
 
