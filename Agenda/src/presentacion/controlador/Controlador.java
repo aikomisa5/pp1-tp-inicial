@@ -5,8 +5,10 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 import modelo.Agenda;
+import modelo.Validador;
 import presentacion.reportes.ReporteAgenda;
 import presentacion.vista.VentanaPersona;
 import presentacion.vista.Vista;
@@ -110,19 +112,36 @@ public class Controlador implements ActionListener {
 	}
 
 	private boolean camposSonValidos() {
-		// TODO efectuar validación
+		boolean sonValidos = false;
 		if (algunCampoEstaVacio())
 			return false;
 		else {
+			String nombre = ventanaPersona.getTfNombre().getText();
+			String telefono = ventanaPersona.getTfTelefono().getText();
+			String calle = ventanaPersona.getTfCalle().getText();
+			String altura = ventanaPersona.getTfAltura().getText();
+			String piso = ventanaPersona.getTfPiso().getText();
+			String depto = ventanaPersona.getTfDepto().getText();
+			String email = ventanaPersona.getTfEmail().getText(); 
+						
+			sonValidos = Validador.esStringNoEmpezadoEnEspacios(nombre, 45)
+						&& Validador.esIntValido(telefono)
+						&& Validador.esStringNoEmpezadoEnEspacios(calle, 45)
+						&& Validador.esIntValido(altura)
+						&& Validador.esIntValido(piso)
+						&& Validador.esStringNoEmpezadoEnEspacios(depto, 15)
+						&& Validador.esMailValido(email, 45);
 		}
-		boolean sonValidos = true;
+		
 		return sonValidos;
 	}
 
 	private boolean algunCampoEstaVacio() {
 		return ventanaPersona.getTfAltura().getText().isEmpty() || ventanaPersona.getTfCalle().getText().isEmpty()
 				|| ventanaPersona.getTfDepto().getText().isEmpty() || ventanaPersona.getTfEmail().getText().isEmpty()
-				|| ventanaPersona.getTfTelefono().getText().isEmpty();
+				|| ventanaPersona.getTfTelefono().getText().isEmpty()
+				|| ventanaPersona.getTfNombre().getText().isEmpty()
+				|| ventanaPersona.getTfPiso().getText().isEmpty();
 	}
 
 	private void borrarPersonasSeleccionadas() {
