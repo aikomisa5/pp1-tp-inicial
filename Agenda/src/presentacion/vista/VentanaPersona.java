@@ -19,6 +19,7 @@ import java.awt.Color;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -269,16 +270,48 @@ public class VentanaPersona extends JFrame {
 		if (persona == null)
 			persona = new PersonaDTO(0);
 
+		LocalidadDTO localidadSeleccionada = getLocalidadSeleccionada();
+		TipoDeContactoDTO tipoDeContactoSeleccionado = getTipoDeContactoSeleccionado();
+
 		persona.setDomicilio(new DomicilioDTO(tfCalle.getText(), Integer.parseInt(tfAltura.getText()),
-				Integer.parseInt(tfPiso.getText()), tfDepto.getText(),
-				localidades.get(comboLocalidad.getSelectedIndex())));
+				Integer.parseInt(tfPiso.getText()), tfDepto.getText(), localidadSeleccionada));
 		java.util.Date date = datePicker.getDate();
 		LocalDate ldate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 		persona.setFechaCumpleaños(java.sql.Date.valueOf(ldate));
 		persona.setMail(tfEmail.getText());
 		persona.setNombre(tfNombre.getText());
 		persona.setTelefono(tfTelefono.getText());
-		persona.setTipoDeContacto(tiposDeContacto.get(comboTipoDeContacto.getSelectedIndex()));
+		persona.setTipoDeContacto(tipoDeContactoSeleccionado);
+	}
+
+	private LocalidadDTO getLocalidadSeleccionada() {
+		String stringLocalidadSeleccionada = comboLocalidad.getItemAt(comboLocalidad.getSelectedIndex());
+		LocalidadDTO l = null;
+		LocalidadDTO unaLocalidad = null;
+		boolean encontro = false;
+		for (Iterator<LocalidadDTO> it = localidades.iterator(); !encontro && it.hasNext();) {
+			unaLocalidad = it.next();
+			if (unaLocalidad.toString().equals(stringLocalidadSeleccionada)) {
+				l = unaLocalidad;
+				encontro = true;
+			}
+		}
+		return l;
+	}
+
+	private TipoDeContactoDTO getTipoDeContactoSeleccionado() {
+		String stringTipoDeContactoSeleccionado = comboTipoDeContacto.getItemAt(comboTipoDeContacto.getSelectedIndex());
+		TipoDeContactoDTO t = null;
+		TipoDeContactoDTO unTipoDeContacto = null;
+		boolean encontro = false;
+		for (Iterator<TipoDeContactoDTO> it = tiposDeContacto.iterator(); !encontro && it.hasNext();) {
+			unTipoDeContacto = it.next();
+			if (unTipoDeContacto.toString().equals(stringTipoDeContactoSeleccionado)) {
+				t = unTipoDeContacto;
+				encontro = true;
+			}
+		}
+		return t;
 	}
 
 	public void setLocalidad(List<LocalidadDTO> localidades) {
