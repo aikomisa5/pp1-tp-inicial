@@ -15,13 +15,11 @@ import dto.LocalidadDTO;
 import dto.PersonaDTO;
 import dto.TipoDeContactoDTO;
 import presentacion.controlador.ControladorContactos;
-import presentacion.controlador.ControladorPrincipal;
 import java.awt.Color;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Iterator;
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 import javax.swing.JComboBox;
 
@@ -31,7 +29,7 @@ public class FormularioContactos extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JButton btnAgregarPersona;
+	private JButton btnGuardarPersona;
 	private ControladorContactos controlador;
 	private JTextField tfNombre;
 	private JTextField tfTelefono;
@@ -41,8 +39,8 @@ public class FormularioContactos extends JFrame {
 	private JTextField tfDepto;
 	private JTextField tfEmail;
 	private JXDatePicker datePicker;
-	private JComboBox<String> comboLocalidad;
-	private JComboBox<String> comboTipoDeContacto;
+	private JComboBox<LocalidadDTO> comboLocalidad;
+	private JComboBox<TipoDeContactoDTO> comboTipoDeContacto;
 
 	private List<LocalidadDTO> localidades = null;
 
@@ -90,10 +88,6 @@ public class FormularioContactos extends JFrame {
 
 	private List<TipoDeContactoDTO> tiposDeContacto = null;
 
-	private String[] comboLocalidadItems;
-
-	private String[] comboTipoDeContactoItems;
-
 	private JPanel panel;
 
 	public FormularioContactos(ControladorContactos controlador) {
@@ -137,10 +131,10 @@ public class FormularioContactos extends JFrame {
 		panel.add(tfTelefono);
 		tfTelefono.setColumns(10);
 
-		btnAgregarPersona = new JButton("Agregar");
-		btnAgregarPersona.addActionListener(this.controlador);
-		btnAgregarPersona.setBounds(34, 375, 89, 23);
-		panel.add(btnAgregarPersona);
+		btnGuardarPersona = new JButton("Guardar");
+		btnGuardarPersona.addActionListener(this.controlador);
+		btnGuardarPersona.setBounds(34, 375, 89, 23);
+		panel.add(btnGuardarPersona);
 
 		tfCalle = new JTextField();
 		tfCalle.setColumns(10);
@@ -208,11 +202,11 @@ public class FormularioContactos extends JFrame {
 		return serialVersionUID;
 	}
 
-	public JComboBox<String> getComboLocalidad() {
+	public JComboBox<LocalidadDTO> getComboLocalidad() {
 		return comboLocalidad;
 	}
 
-	public JComboBox<String> getComboTipoDeContacto() {
+	public JComboBox<TipoDeContactoDTO> getComboTipoDeContacto() {
 		return comboTipoDeContacto;
 	}
 
@@ -248,8 +242,8 @@ public class FormularioContactos extends JFrame {
 		return tfEmail;
 	}
 
-	public JButton getBtnAgregarPersona() {
-		return btnAgregarPersona;
+	public JButton getBtnGuardarPersona() {
+		return btnGuardarPersona;
 	}
 
 	public PersonaDTO getPersona() {
@@ -258,11 +252,6 @@ public class FormularioContactos extends JFrame {
 
 	public void setPersona(PersonaDTO persona) {
 		this.persona = persona;
-	}
-
-	public void cargarPersonaEnFormulario() {
-		// TODO Auto-generated method stub
-
 	}
 
 	public void cargarDatosEnDTO() {
@@ -284,33 +273,13 @@ public class FormularioContactos extends JFrame {
 	}
 
 	private LocalidadDTO getLocalidadSeleccionada() {
-		String stringLocalidadSeleccionada = comboLocalidad.getItemAt(comboLocalidad.getSelectedIndex());
-		LocalidadDTO l = null;
-		LocalidadDTO unaLocalidad = null;
-		boolean encontro = false;
-		for (Iterator<LocalidadDTO> it = localidades.iterator(); !encontro && it.hasNext();) {
-			unaLocalidad = it.next();
-			if (unaLocalidad.toString().equals(stringLocalidadSeleccionada)) {
-				l = unaLocalidad;
-				encontro = true;
-			}
-		}
-		return l;
+		LocalidadDTO localidadSeleccionada = comboLocalidad.getItemAt(comboLocalidad.getSelectedIndex());
+		return localidadSeleccionada;
 	}
 
 	private TipoDeContactoDTO getTipoDeContactoSeleccionado() {
-		String stringTipoDeContactoSeleccionado = comboTipoDeContacto.getItemAt(comboTipoDeContacto.getSelectedIndex());
-		TipoDeContactoDTO t = null;
-		TipoDeContactoDTO unTipoDeContacto = null;
-		boolean encontro = false;
-		for (Iterator<TipoDeContactoDTO> it = tiposDeContacto.iterator(); !encontro && it.hasNext();) {
-			unTipoDeContacto = it.next();
-			if (unTipoDeContacto.toString().equals(stringTipoDeContactoSeleccionado)) {
-				t = unTipoDeContacto;
-				encontro = true;
-			}
-		}
-		return t;
+		TipoDeContactoDTO tipoDeContactoSeleccionado = comboTipoDeContacto.getItemAt(comboTipoDeContacto.getSelectedIndex());
+		return tipoDeContactoSeleccionado;
 	}
 
 	public void setLocalidad(List<LocalidadDTO> localidades) {
@@ -323,21 +292,22 @@ public class FormularioContactos extends JFrame {
 
 	public void cargarCombos() {
 
-		List<String> listaLocalidades = localidades.stream().map(l -> l.toString()).collect(Collectors.toList());
-		comboLocalidadItems = new String[listaLocalidades.size()];
-		comboLocalidadItems = listaLocalidades.toArray(comboLocalidadItems);
-
-		comboLocalidad = new JComboBox<>(comboLocalidadItems);
+		comboLocalidad = new JComboBox<>();
+		localidades.forEach(l -> comboLocalidad.addItem(l));
 		comboLocalidad.setBounds(133, 288, 164, 20);
 		panel.add(comboLocalidad);
 
-		List<String> listaTiposDeContacto = tiposDeContacto.stream().map(l -> l.toString())
-				.collect(Collectors.toList());
-		comboTipoDeContactoItems = new String[listaTiposDeContacto.size()];
-		comboTipoDeContactoItems = listaTiposDeContacto.toArray(comboLocalidadItems);
-		comboTipoDeContacto = new JComboBox<>(comboTipoDeContactoItems);
+		comboTipoDeContacto = new JComboBox<>();
+		tiposDeContacto.forEach(t -> comboTipoDeContacto.addItem(t));
 		comboTipoDeContacto.setBounds(133, 320, 164, 20);
 		panel.add(comboTipoDeContacto);
 	}
+	
+	public void resetCombos() {
+		comboLocalidad.setSelectedItem(localidades.get(0));
+		comboTipoDeContacto.setSelectedItem(localidades.get(0));
+	}
+	
+	
 
 }

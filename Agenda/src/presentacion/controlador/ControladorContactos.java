@@ -14,9 +14,10 @@ public class ControladorContactos implements ActionListener {
 	private static ControladorContactos instancia;
 	private static FormularioContactos formularioContactos;
 	private static Agenda agenda;
-	
+	private static ControladorPrincipal controladorPrincipal;
+
 	private ControladorContactos() {
-		agenda=new Agenda();	
+		agenda = new Agenda();
 		formularioContactos = new FormularioContactos(this);
 	}
 
@@ -25,44 +26,74 @@ public class ControladorContactos implements ActionListener {
 			instancia = new ControladorContactos();
 		return instancia;
 	}
+	
+	public void setControladorPrincipal(ControladorPrincipal cp) {
+		controladorPrincipal = cp;
+	}
 
 	public void abrirVentana(PersonaDTO persona) {
-		abrirformularioContactos(persona);		
-	}
-	
-	private void abrirformularioContactos(PersonaDTO persona) {
-		
+
 		formularioContactos.setLocalidad(agenda.getLocalidades());
 		formularioContactos.setTiposDeContacto(agenda.getTiposDeContacto());
 		formularioContactos.cargarCombos();
-
 		formularioContactos.setPersona(persona);
-		formularioContactos.cargarPersonaEnFormulario();
+		if (persona == null) {
+			limpiarCampos();
+		} else
+			cargarCampos(persona);
 
 		formularioContactos.setVisible(true);
 	}
 
+	private void limpiarCampos() {
+
+		formularioContactos.getTfAltura().setText(null);
+		formularioContactos.getTfCalle().setText(null);
+		formularioContactos.getTfDepto().setText(null);
+		formularioContactos.getTfEmail().setText(null);
+		formularioContactos.getTfNombre().setText(null);
+		formularioContactos.getTfPiso().setText(null);
+		formularioContactos.getTfTelefono().setText(null);
+		formularioContactos.resetCombos();
+	}
+
+	private void cargarCampos(PersonaDTO persona) {
+		formularioContactos.setPersona(persona);
+		formularioContactos.getTfAltura().setText(Integer.toString(persona.getDomicilio().getAltura()));
+		formularioContactos.getTfCalle().setText(persona.getDomicilio().getCalle());
+		formularioContactos.getTfDepto().setText(persona.getDomicilio().getDepartamento());
+		formularioContactos.getTfEmail().setText(persona.getMail());
+		formularioContactos.getTfNombre().setText(persona.getNombre());
+		formularioContactos.getTfPiso().setText(Integer.toString(persona.getDomicilio().getPiso()));
+		formularioContactos.getTfTelefono().setText(persona.getTelefono());
+		formularioContactos.resetCombos();
+
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == formularioContactos.getBtnAgregarPersona()) {
-			agregarPersona();
+		if (e.getSource() == formularioContactos.getBtnGuardarPersona()) {
+			guardarPersona();
 		}
-		
+
 	}
-	
-	private void agregarPersona() {
+
+	private void guardarPersona() {
 		if (camposSonValidos()) {
 			formularioContactos.cargarDatosEnDTO();
 			PersonaDTO persona = formularioContactos.getPersona();
 			int idDomicilio = agenda.agregarDomicilio(persona.getDomicilio());
 			if (idDomicilio != -1) {
 				persona.getDomicilio().setIdDomicilio(idDomicilio);
-				agenda.agregarPersona(persona);
-				//updateTabla();
+				if (persona.getIdPersona() == 0)
+					agenda.agregarPersona(persona);
+				else
+					agenda.modificarPersona(persona);
+				controladorPrincipal.updateTabla();
 				formularioContactos.dispose();
 			} else {
 				JOptionPane.showMessageDialog(formularioContactos,
-						"No se pudo agregar el contacto. No se pudo guardar el domicilio", "Error de alta de contacto",
+						"No se pudo guardar el contacto. No se pudo guardar el domicilio", "Error de alta de contacto",
 						JOptionPane.ERROR_MESSAGE);
 
 			}
@@ -93,12 +124,15 @@ public class ControladorContactos implements ActionListener {
 
 		return sonValidos;
 	}
-	
+
 	private boolean algunCampoEstaVacio() {
-		return formularioContactos.getTfAltura().getText().isEmpty() || formularioContactos.getTfCalle().getText().isEmpty()
-				|| formularioContactos.getTfDepto().getText().isEmpty() || formularioContactos.getTfEmail().getText().isEmpty()
+		return formularioContactos.getTfAltura().getText().isEmpty()
+				|| formularioContactos.getTfCalle().getText().isEmpty()
+				|| formularioContactos.getTfDepto().getText().isEmpty()
+				|| formularioContactos.getTfEmail().getText().isEmpty()
 				|| formularioContactos.getTfTelefono().getText().isEmpty()
-				|| formularioContactos.getTfNombre().getText().isEmpty() || formularioContactos.getTfPiso().getText().isEmpty();
+				|| formularioContactos.getTfNombre().getText().isEmpty()
+				|| formularioContactos.getTfPiso().getText().isEmpty();
 	}
 
 }

@@ -40,13 +40,14 @@ public class ControladorPrincipal implements ActionListener {
 		controladorLocalidades = ControladorGestionLocalidades.getInstance();
 		controladorTipos = ControladorGestionDeTiposContacto.getInstance();
 		controladorContactos = ControladorContactos.getInstance();
+		controladorContactos.setControladorPrincipal(this);
 	}
 
 	public void inicializar() {
 		this.updateTabla();
 	}
 
-	private void updateTabla() {
+	public void updateTabla() {
 		this.vista.getModelPersonas().setRowCount(0); // Para vaciar la tabla
 		this.vista.getModelPersonas().setColumnCount(0);
 		this.vista.getModelPersonas().setColumnIdentifiers(this.vista.getNombreColumnas());
