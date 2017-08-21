@@ -14,11 +14,11 @@ import dto.DomicilioDTO;
 import dto.LocalidadDTO;
 import dto.PersonaDTO;
 import dto.TipoDeContactoDTO;
+import presentacion.controlador.ControladorContactos;
 import presentacion.controlador.ControladorPrincipal;
 import java.awt.Color;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,12 +26,13 @@ import java.util.stream.Collectors;
 import javax.swing.JComboBox;
 
 public class FormularioContactos extends JFrame {
+	
 	private PersonaDTO persona = null;
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JButton btnAgregarPersona;
-	private ControladorPrincipal controlador;
+	private ControladorContactos controlador;
 	private JTextField tfNombre;
 	private JTextField tfTelefono;
 	private JTextField tfCalle;
@@ -95,7 +96,7 @@ public class FormularioContactos extends JFrame {
 
 	private JPanel panel;
 
-	public FormularioContactos(ControladorPrincipal controlador) {
+	public FormularioContactos(ControladorContactos controlador) {
 		super();
 		this.controlador = controlador;
 
@@ -201,8 +202,6 @@ public class FormularioContactos extends JFrame {
 		JLabel lblTipoDeContacto = new JLabel("Tipo de Contacto");
 		lblTipoDeContacto.setBounds(20, 323, 113, 14);
 		panel.add(lblTipoDeContacto);
-
-		this.setVisible(true);
 	}
 
 	public static long getSerialversionuid() {
