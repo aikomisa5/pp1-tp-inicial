@@ -33,7 +33,8 @@ public class ControladorGestionLocalidades implements ActionListener {
 	}
 
 	public void abrirVentana() {
-		vistaLocalidades.setVisible(true);
+		vistaLocalidades.mostrar();
+		inicializar();
 	}
 	
 	public void inicializar() {
@@ -48,7 +49,7 @@ public class ControladorGestionLocalidades implements ActionListener {
 		this.localidadesEnTabla = agenda.getLocalidades();
 		localidadesEnTabla.forEach(this::añadirLocalidadATabla);
 
-		this.vistaLocalidades.show();
+		vistaLocalidades.mostrar();
 	}
 	
 	private void añadirLocalidadATabla(LocalidadDTO localidad) {
@@ -67,12 +68,14 @@ public class ControladorGestionLocalidades implements ActionListener {
 			if(indexFilaSeleccionada != -1) {
 				String nombre=JOptionPane.showInputDialog("Ingrese el nuevo nombre ");
 				this.agenda.modificarLocalidad(new LocalidadDTO(localidadesEnTabla.get(indexFilaSeleccionada).getId(), nombre));
+				updateTabla();
 			}
 			
 		} else if(e.getSource() == vistaLocalidades.getBtnEliminar()) {
 			int indexFilaSeleccionada = vistaLocalidades.getTablaLocalidades().getSelectedRow();
 			if(indexFilaSeleccionada != -1) {
 				this.agenda.borrarLocalidad(new LocalidadDTO(localidadesEnTabla.get(indexFilaSeleccionada).getId()));
+				updateTabla();
 			}
 		}
 		

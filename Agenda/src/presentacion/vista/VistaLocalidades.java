@@ -30,7 +30,7 @@ public class VistaLocalidades extends JFrame {
 //			public void run() {
 //				try {
 //					VistaLocalidades frame = new VistaLocalidades();
-//					frame.setVisible(true);
+//					frame.show();
 //				} catch (Exception e) {
 //					e.printStackTrace();
 //				}
@@ -51,8 +51,6 @@ public class VistaLocalidades extends JFrame {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setBounds(100, 100, 548, 455);
 		
 		panel = new JPanel();
@@ -111,7 +109,7 @@ public class VistaLocalidades extends JFrame {
 		return btnEliminar;
 	}
 	
-	public void show() {
+	public void mostrar() {
 		this.setVisible(true);
 	}
 
