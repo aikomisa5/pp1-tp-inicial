@@ -67,7 +67,7 @@ public class ControladorPrincipal implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == vista.getBtnAgregar()) {
-			abrirVentanaPersona(null);
+			controladorContactos.abrirVentana(null);
 		} else if (e.getSource() == vista.getBtnBorrar()) {
 
 			int indexFilaSeleccionada = vista.getTablaPersonas().getSelectedRow();
@@ -84,7 +84,7 @@ public class ControladorPrincipal implements ActionListener {
 		} else if (e.getSource() == vista.getBtnEditar()) {
 			int indexFilaSeleccionada = vista.getTablaPersonas().getSelectedRow();
 			if (indexFilaSeleccionada != -1)
-				abrirVentanaPersona(personasEnTabla.get(indexFilaSeleccionada));
+				controladorContactos.abrirVentana(personasEnTabla.get(indexFilaSeleccionada));
 			else
 				JOptionPane.showMessageDialog(null, "Selecciona una persona para editar primero", "Aviso",
 						JOptionPane.ERROR_MESSAGE);
@@ -94,10 +94,7 @@ public class ControladorPrincipal implements ActionListener {
 		}
 		else if (e.getSource() == vista.getBtnGestionLocalidades()) {
 			abrirGestionLocalidades();
-		}
-		else if (e.getSource() == ventanaPersona.getBtnAgregarPersona()) {//XXX esto debe volar!
-			agregarPersona();
-		}
+		}		
 	}
 
 	private void abrirGestionLocalidades() {
@@ -108,56 +105,9 @@ public class ControladorPrincipal implements ActionListener {
 		controladorTipos.abrirVentana();
 	}
 
-	private void agregarPersona() {
-		if (camposSonValidos()) {
-			ventanaPersona.cargarDatosEnDTO();
-			PersonaDTO persona = ventanaPersona.getPersona();
-			int idDomicilio = agenda.agregarDomicilio(persona.getDomicilio());
-			if (idDomicilio != -1) {
-				persona.getDomicilio().setIdDomicilio(idDomicilio);
-				agenda.agregarPersona(persona);
-				updateTabla();
-				ventanaPersona.dispose();
-			} else {
-				JOptionPane.showMessageDialog(ventanaPersona,
-						"No se pudo agregar el contacto. No se pudo guardar el domicilio", "Error de alta de contacto",
-						JOptionPane.ERROR_MESSAGE);
+	
 
-			}
-		}
-	}
-
-	private boolean camposSonValidos() {
-		boolean sonValidos = false;
-		if (algunCampoEstaVacio()) {
-			JOptionPane.showMessageDialog(ventanaPersona, "No se pudo agregar el contacto. Algún campo esta vacio",
-					"Error de alta de contacto", JOptionPane.ERROR_MESSAGE);
-			return false;
-		} else {
-			String nombre = ventanaPersona.getTfNombre().getText();
-			String telefono = ventanaPersona.getTfTelefono().getText();
-			String calle = ventanaPersona.getTfCalle().getText();
-			String altura = ventanaPersona.getTfAltura().getText();
-			String piso = ventanaPersona.getTfPiso().getText();
-			String depto = ventanaPersona.getTfDepto().getText();
-			String email = ventanaPersona.getTfEmail().getText();
-
-			sonValidos = Validador.esStringNoEmpezadoEnEspacios(nombre, 45)
-					&& Validador.esStringNoEmpezadoEnEspacios(telefono, 20)
-					&& Validador.esStringNoEmpezadoEnEspacios(calle, 45) && Validador.esIntValido(altura)
-					&& Validador.esIntValido(piso) && Validador.esStringNoEmpezadoEnEspacios(depto, 15)
-					&& Validador.esMailValido(email, 45);
-		}
-
-		return sonValidos;
-	}
-
-	private boolean algunCampoEstaVacio() {
-		return ventanaPersona.getTfAltura().getText().isEmpty() || ventanaPersona.getTfCalle().getText().isEmpty()
-				|| ventanaPersona.getTfDepto().getText().isEmpty() || ventanaPersona.getTfEmail().getText().isEmpty()
-				|| ventanaPersona.getTfTelefono().getText().isEmpty()
-				|| ventanaPersona.getTfNombre().getText().isEmpty() || ventanaPersona.getTfPiso().getText().isEmpty();
-	}
+	
 
 	private void borrarPersonasSeleccionadas() {
 		int[] filas_seleccionadas = this.vista.getTablaPersonas().getSelectedRows();
@@ -166,17 +116,6 @@ public class ControladorPrincipal implements ActionListener {
 		}
 	}
 
-	private void abrirVentanaPersona(PersonaDTO persona) {
-		ventanaPersona = new FormularioContactos(this);
-
-		ventanaPersona.setLocalidad(localidades);
-		ventanaPersona.setTiposDeContacto(tiposDeContacto);
-		ventanaPersona.cargarCombos();
-
-		ventanaPersona.setPersona(persona);
-		ventanaPersona.cargarPersonaEnFormulario();
-
-		ventanaPersona.setVisible(true);
-	}
+	
 
 }
