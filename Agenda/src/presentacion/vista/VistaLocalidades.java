@@ -15,9 +15,12 @@ import javax.swing.JButton;
 public class VistaLocalidades extends JFrame {
 
 	private JPanel panel;
-	private JTable table;
+	private JTable tablaLocalidades;
 	private String [] nombreColumnas= {"Localidad"};
 	private DefaultTableModel modelLocalidades;
+	JButton btnAgregar = new JButton("Agregar");
+	JButton btnEditar = new JButton("Editar");
+	JButton btnEliminar = new JButton("Eliminar");
 
 	/**
 	 * Launch the application.
@@ -63,23 +66,54 @@ public class VistaLocalidades extends JFrame {
 		
 		
 		modelLocalidades = new DefaultTableModel(null, nombreColumnas);
-		table = new JTable(modelLocalidades);
-		table.setBounds(503, 312, -376, -257);
+		tablaLocalidades = new JTable(modelLocalidades);
+		tablaLocalidades.setBounds(503, 312, -376, -257);
 		
-		spLocalidades.setViewportView(table);
+		spLocalidades.setViewportView(tablaLocalidades);
 		
-		JButton btnAgregar = new JButton("Agregar");
 		btnAgregar.setBounds(49, 244, 91, 23);
 		panel.add(btnAgregar);
 		
-		JButton btnEditar = new JButton("Editar");
 		btnEditar.setBounds(211, 244, 91, 23);
 		panel.add(btnEditar);
 		
-		JButton btnEliminar = new JButton("Eliminar");
 		btnEliminar.setBounds(372, 244, 91, 23);
 		panel.add(btnEliminar);
 		
 		//panel.add(table);
 	}
+
+	public JPanel getPanel() {
+		return panel;
+	}
+
+	public JTable getTablaLocalidades() {
+		return tablaLocalidades;
+	}
+
+	public String[] getNombreColumnas() {
+		return nombreColumnas;
+	}
+
+	public DefaultTableModel getModelLocalidades() {
+		return modelLocalidades;
+	}
+
+	public JButton getBtnAgregar() {
+		return btnAgregar;
+	}
+
+	public JButton getBtnEditar() {
+		return btnEditar;
+	}
+
+	public JButton getBtnEliminar() {
+		return btnEliminar;
+	}
+	
+	public void show() {
+		this.setVisible(true);
+	}
+
+	
 }
