@@ -60,5 +60,14 @@ public class Agenda {
 		return tipoDeContacto.readAll();
 	}
 	
+	public void modificarLocalidad(LocalidadDTO localidadNueva) {
+		localidad.update(localidadNueva);
+	}
+
+	public void borrarLocalidad(LocalidadDTO localidadABorrar) {
+		localidad.delete(localidadABorrar);
+		
+	}
+	
 
 }

@@ -4,9 +4,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import dto.LocalidadDTO;
 import modelo.Agenda;
 import presentacion.vista.VistaLocalidades;
+import presentacion.vista.VistaTiposDeContacto;
 
 public class ControladorGestionLocalidades implements ActionListener {
 	
@@ -33,6 +36,10 @@ public class ControladorGestionLocalidades implements ActionListener {
 		vistaLocalidades.setVisible(true);
 	}
 	
+	public void inicializar() {
+		updateTabla();
+	}
+	
 	private void updateTabla() {
 		this.vistaLocalidades.getModelLocalidades().setRowCount(0); // Para vaciar la tabla
 		this.vistaLocalidades.getModelLocalidades().setColumnCount(0);
@@ -51,7 +58,23 @@ public class ControladorGestionLocalidades implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		if(e.getSource() == vistaLocalidades.getBtnAgregar()) {
+			String nombre=JOptionPane.showInputDialog("Ingrese el nombre de la localidad que desea ingresar ");
+			this.agenda.agregarLocalidad(new LocalidadDTO(nombre));
+			updateTabla();
+		} else if(e.getSource() == vistaLocalidades.getBtnEditar()) {
+			int indexFilaSeleccionada = vistaLocalidades.getTablaLocalidades().getSelectedRow();
+			if(indexFilaSeleccionada != -1) {
+				String nombre=JOptionPane.showInputDialog("Ingrese el nuevo nombre ");
+				this.agenda.modificarLocalidad(new LocalidadDTO(localidadesEnTabla.get(indexFilaSeleccionada).getId(), nombre));
+			}
+			
+		} else if(e.getSource() == vistaLocalidades.getBtnEliminar()) {
+			int indexFilaSeleccionada = vistaLocalidades.getTablaLocalidades().getSelectedRow();
+			if(indexFilaSeleccionada != -1) {
+				this.agenda.borrarLocalidad(new LocalidadDTO(localidadesEnTabla.get(indexFilaSeleccionada).getId()));
+			}
+		}
 		
 	}
 	
