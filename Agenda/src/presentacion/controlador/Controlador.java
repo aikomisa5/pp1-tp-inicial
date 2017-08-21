@@ -77,9 +77,19 @@ public class Controlador implements ActionListener {
 	private void agregarPersona() {
 		if (camposSonValidos()) {
 			ventanaPersona.cargarDatosEnDTO();
-			agenda.agregarPersona(ventanaPersona.getPersona());
-			updateTabla();
-			ventanaPersona.dispose();
+			PersonaDTO persona = ventanaPersona.getPersona();
+			int idDomicilio = agenda.agregarDomicilio(persona.getDomicilio());
+			if (idDomicilio != -1) {
+				persona.getDomicilio().setIdDomicilio(idDomicilio);
+				agenda.agregarPersona(persona);
+				updateTabla();
+				ventanaPersona.dispose();
+			} else {
+				JOptionPane.showMessageDialog(ventanaPersona,
+						"No se pudo agregar el contacto. No se pudo guardar el domicilio", "Error de alta de contacto",
+						JOptionPane.ERROR_MESSAGE);
+
+			}
 		} else {
 			JOptionPane.showMessageDialog(ventanaPersona, "No se pudo agregar el contacto. Algún campo esta vacio",
 					"Error de alta de contacto", JOptionPane.ERROR_MESSAGE);
@@ -90,7 +100,8 @@ public class Controlador implements ActionListener {
 		// TODO efectuar validación
 		if (algunCampoEstaVacio())
 			return false;
-		else {}
+		else {
+		}
 		boolean sonValidos = true;
 		return sonValidos;
 	}

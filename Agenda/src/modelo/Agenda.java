@@ -6,9 +6,11 @@ import dto.DomicilioDTO;
 import dto.LocalidadDTO;
 import dto.PersonaDTO;
 import dto.TipoDeContactoDTO;
+import persistencia.dao.interfaz.DomicilioDAO;
 import persistencia.dao.interfaz.LocalidadDAO;
 import persistencia.dao.interfaz.PersonaDAO;
 import persistencia.dao.interfaz.TipoDeContactoDAO;
+import persistencia.dao.mysql.DomicilioDAOImpl;
 import persistencia.dao.mysql.LocalidadDAOImpl;
 import persistencia.dao.mysql.PersonaDAOImpl;
 import persistencia.dao.mysql.TipoDeContactoDAOImpl;
@@ -17,12 +19,13 @@ public class Agenda {
 	private PersonaDAO persona;
 	private LocalidadDAO localidad;
 	private TipoDeContactoDAO tipoDeContacto;
-	private DomicilioDTO domicilio;
+	private DomicilioDAO domicilio;
 
 	public Agenda() {
 		persona = new PersonaDAOImpl();
 		localidad = new LocalidadDAOImpl();
 		tipoDeContacto = new TipoDeContactoDAOImpl();
+		domicilio = new DomicilioDAOImpl();
 	}
 
 	public void agregarPersona(PersonaDTO nuevaPersona) {
@@ -45,8 +48,8 @@ public class Agenda {
 		localidad.insert(nuevaLocalidad);
 	}
 	
-	public void agregarDomicilio(DomicilioDTO nuevoDomicilio) {
-		//TODO
+	public int agregarDomicilio(DomicilioDTO nuevoDomicilio) {
+		return domicilio.insert(nuevoDomicilio);
 	}
 	
 	public List<LocalidadDTO> getLocalidades() {
