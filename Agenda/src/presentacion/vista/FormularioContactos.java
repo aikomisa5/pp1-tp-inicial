@@ -172,10 +172,6 @@ public class FormularioContactos extends JFrame {
 		lblDepartamento.setBounds(20, 168, 113, 14);
 		panel.add(lblDepartamento);
 
-		JLabel lblLocalidad = new JLabel("Localidad");
-		lblLocalidad.setBounds(20, 199, 113, 14);
-		panel.add(lblLocalidad);
-
 		tfEmail = new JTextField();
 		tfEmail.setColumns(10);
 		tfEmail.setBounds(133, 227, 164, 20);
@@ -258,18 +254,16 @@ public class FormularioContactos extends JFrame {
 		if (persona == null)
 			persona = new PersonaDTO(0);
 
-		LocalidadDTO localidadSeleccionada = getLocalidadSeleccionada();
-		TipoDeContactoDTO tipoDeContactoSeleccionado = getTipoDeContactoSeleccionado();
-
 		persona.setDomicilio(new DomicilioDTO(tfCalle.getText(), Integer.parseInt(tfAltura.getText()),
-				Integer.parseInt(tfPiso.getText()), tfDepto.getText(), localidadSeleccionada));
+				Integer.parseInt(tfPiso.getText()), tfDepto.getText(), getLocalidadSeleccionada()));
 		java.util.Date date = datePicker.getDate();
 		LocalDate ldate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 		persona.setFechaCumpleaños(java.sql.Date.valueOf(ldate));
 		persona.setMail(tfEmail.getText());
 		persona.setNombre(tfNombre.getText());
 		persona.setTelefono(tfTelefono.getText());
-		persona.setTipoDeContacto(tipoDeContactoSeleccionado);
+		persona.setTipoDeContacto(getTipoDeContactoSeleccionado());
+		System.out.println("Tipo de contacto seleccionado: "+ getTipoDeContactoSeleccionado().toString());
 	}
 
 	private LocalidadDTO getLocalidadSeleccionada() {
@@ -278,7 +272,8 @@ public class FormularioContactos extends JFrame {
 	}
 
 	private TipoDeContactoDTO getTipoDeContactoSeleccionado() {
-		TipoDeContactoDTO tipoDeContactoSeleccionado = comboTipoDeContacto.getItemAt(comboTipoDeContacto.getSelectedIndex());
+		TipoDeContactoDTO tipoDeContactoSeleccionado = (TipoDeContactoDTO) comboTipoDeContacto.getSelectedItem();
+		System.out.println(tipoDeContactoSeleccionado);
 		return tipoDeContactoSeleccionado;
 	}
 
@@ -301,11 +296,17 @@ public class FormularioContactos extends JFrame {
 		tiposDeContacto.forEach(t -> comboTipoDeContacto.addItem(t));
 		comboTipoDeContacto.setBounds(133, 320, 164, 20);
 		panel.add(comboTipoDeContacto);
+		comboTipoDeContacto.addActionListener( e -> System.out.println(comboTipoDeContacto.getSelectedItem()));
 	}
 	
 	public void resetCombos() {
 		comboLocalidad.setSelectedItem(localidades.get(0));
 		comboTipoDeContacto.setSelectedItem(localidades.get(0));
+	}
+	
+	public void setCombos() {
+		comboLocalidad.setSelectedItem(persona.getDomicilio().getLocalidad());
+		comboTipoDeContacto.setSelectedItem(persona.getTipoDeContacto());
 	}
 	
 	

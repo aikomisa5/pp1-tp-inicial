@@ -2,6 +2,7 @@ package presentacion.controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Date;
 
 import javax.swing.JOptionPane;
 
@@ -18,7 +19,6 @@ public class ControladorContactos implements ActionListener {
 
 	private ControladorContactos() {
 		agenda = new Agenda();
-		formularioContactos = new FormularioContactos(this);
 	}
 
 	public static ControladorContactos getInstance() {
@@ -32,7 +32,7 @@ public class ControladorContactos implements ActionListener {
 	}
 
 	public void abrirVentana(PersonaDTO persona) {
-
+		formularioContactos = new FormularioContactos(this);
 		formularioContactos.setLocalidad(agenda.getLocalidades());
 		formularioContactos.setTiposDeContacto(agenda.getTiposDeContacto());
 		formularioContactos.cargarCombos();
@@ -66,7 +66,8 @@ public class ControladorContactos implements ActionListener {
 		formularioContactos.getTfNombre().setText(persona.getNombre());
 		formularioContactos.getTfPiso().setText(Integer.toString(persona.getDomicilio().getPiso()));
 		formularioContactos.getTfTelefono().setText(persona.getTelefono());
-		formularioContactos.resetCombos();
+		formularioContactos.setCombos();
+		formularioContactos.getDatePicker().setDate(Date.valueOf(persona.getFechaCumpleaños().toString()));
 
 	}
 
