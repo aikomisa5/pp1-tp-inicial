@@ -3,11 +3,13 @@ package presentacion.controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+
+import javax.swing.JOptionPane;
+
 import modelo.Agenda;
 import presentacion.reportes.ReporteAgenda;
 import presentacion.vista.VentanaPersona;
 import presentacion.vista.Vista;
-import dto.DomicilioDTO;
 import dto.LocalidadDTO;
 import dto.PersonaDTO;
 import dto.TipoDeContactoDTO;
@@ -28,7 +30,7 @@ public class Controlador implements ActionListener {
 		this.agenda = agenda;
 		this.personasEnTabla = null;
 		localidades = agenda.getLocalidades();
-		tiposDeContacto = agenda.getTiposDeContacto();			
+		tiposDeContacto = agenda.getTiposDeContacto();
 	}
 
 	public void inicializar() {
@@ -66,25 +68,37 @@ public class Controlador implements ActionListener {
 			reporte.mostrar();
 		} else if (e.getSource() == ventanaPersona.getBtnAgregarPersona()) {
 			agregarPersona();
-			updateTabla();
-			ventanaPersona.dispose();
 		} else if (e.getSource() == vista.getBtnEditar()) {
 			int indexFilaSeleccionada = vista.getTablaPersonas().getSelectedRow();
-			abrirVentanaPersona(personasEnTabla.get(indexFilaSeleccionada));			
+			abrirVentanaPersona(personasEnTabla.get(indexFilaSeleccionada));
 		}
 	}
 
 	private void agregarPersona() {
-		if(camposSonValidos()) {
+		if (camposSonValidos()) {
 			ventanaPersona.cargarDatosEnDTO();
 			agenda.agregarPersona(ventanaPersona.getPersona());
-		}		
+			updateTabla();
+			ventanaPersona.dispose();
+		} else {
+			JOptionPane.showMessageDialog(ventanaPersona, "No se pudo agregar el contacto. Algún campo esta vacio",
+					"Error de alta de contacto", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 	private boolean camposSonValidos() {
 		// TODO efectuar validación
-		boolean sonValidos = true;		
+		if (algunCampoEstaVacio())
+			return false;
+		else {}
+		boolean sonValidos = true;
 		return sonValidos;
+	}
+
+	private boolean algunCampoEstaVacio() {
+		return ventanaPersona.getTfAltura().getText().isEmpty() || ventanaPersona.getTfCalle().getText().isEmpty()
+				|| ventanaPersona.getTfDepto().getText().isEmpty() || ventanaPersona.getTfEmail().getText().isEmpty()
+				|| ventanaPersona.getTfTelefono().getText().isEmpty();
 	}
 
 	private void borrarPersonasSeleccionadas() {
@@ -96,15 +110,14 @@ public class Controlador implements ActionListener {
 
 	private void abrirVentanaPersona(PersonaDTO persona) {
 		ventanaPersona = new VentanaPersona(this);
-		
+
 		ventanaPersona.setLocalidad(localidades);
 		ventanaPersona.setTiposDeContacto(tiposDeContacto);
 		ventanaPersona.cargarCombos();
-		
+
 		ventanaPersona.setPersona(persona);
 		ventanaPersona.cargarPersonaEnFormulario();
-		
-		
+
 		ventanaPersona.setVisible(true);
 	}
 

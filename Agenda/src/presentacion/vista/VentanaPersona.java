@@ -10,11 +10,15 @@ import javax.swing.border.EmptyBorder;
 
 import org.jdesktop.swingx.JXDatePicker;
 
+import dto.DomicilioDTO;
 import dto.LocalidadDTO;
 import dto.PersonaDTO;
 import dto.TipoDeContactoDTO;
 import presentacion.controlador.Controlador;
 import java.awt.Color;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,8 +29,6 @@ public class VentanaPersona extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField tfLocalidad;
-	private JTextField tfFechaNac;
 	private JButton btnAgregarPersona;
 	private Controlador controlador;
 	private JTextField tfNombre;
@@ -86,10 +88,10 @@ public class VentanaPersona extends JFrame {
 
 	private List<TipoDeContactoDTO> tiposDeContacto = null;
 
-	private String[] comboLocalidadItems = {"asd","dsa"};
+	private String[] comboLocalidadItems;
 
-	private String[] comboTipoDeContactoItems = {"asd","dasdsa"};
-	
+	private String[] comboTipoDeContactoItems;
+
 	private JPanel panel;
 
 	public VentanaPersona(Controlador controlador) {
@@ -178,19 +180,10 @@ public class VentanaPersona extends JFrame {
 		lblLocalidad.setBounds(20, 199, 113, 14);
 		panel.add(lblLocalidad);
 
-		tfLocalidad = new JTextField();
-		tfLocalidad.setColumns(10);
-		tfLocalidad.setBounds(133, 196, 164, 20);
-		panel.add(tfLocalidad);
-
 		tfEmail = new JTextField();
 		tfEmail.setColumns(10);
 		tfEmail.setBounds(133, 227, 164, 20);
 		panel.add(tfEmail);
-
-		tfFechaNac = new JTextField();
-		tfFechaNac.setColumns(10);
-		tfFechaNac.setBounds(133, 257, 164, 20);
 
 		JLabel lblEmail = new JLabel("E-mail");
 		lblEmail.setBounds(20, 230, 113, 14);
@@ -215,12 +208,16 @@ public class VentanaPersona extends JFrame {
 		return serialVersionUID;
 	}
 
-	public JTextField getTfLocalidad() {
-		return tfLocalidad;
+	public JComboBox<String> getComboLocalidad() {
+		return comboLocalidad;
 	}
 
-	public JTextField getTfFechaNac() {
-		return tfFechaNac;
+	public JComboBox<String> getComboTipoDeContacto() {
+		return comboTipoDeContacto;
+	}
+
+	public JXDatePicker getDatePicker() {
+		return datePicker;
 	}
 
 	public JTextField getTfNombre() {
@@ -269,8 +266,19 @@ public class VentanaPersona extends JFrame {
 	}
 
 	public void cargarDatosEnDTO() {
-		// TODO Auto-generated method stub
+		if (persona == null)
+			persona = new PersonaDTO(0);
 
+		persona.setDomicilio(new DomicilioDTO(tfCalle.getText(), Integer.parseInt(tfAltura.getText()),
+				Integer.parseInt(tfPiso.getText()), tfDepto.getText(),
+				localidades.get(comboLocalidad.getSelectedIndex())));
+		java.util.Date date = datePicker.getDate();
+		LocalDate ldate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		persona.setFechaCumpleaños(java.sql.Date.valueOf(ldate));
+		persona.setMail(tfEmail.getText());
+		persona.setNombre(tfNombre.getText());
+		persona.setTelefono(tfTelefono.getText());
+		persona.setTipoDeContacto(tiposDeContacto.get(comboTipoDeContacto.getSelectedIndex()));
 	}
 
 	public void setLocalidad(List<LocalidadDTO> localidades) {
@@ -283,19 +291,15 @@ public class VentanaPersona extends JFrame {
 
 	public void cargarCombos() {
 
-		List<String> listaLocalidades = localidades.stream()
-				.map(l -> l.toString())
-				.collect(Collectors.toList());
+		List<String> listaLocalidades = localidades.stream().map(l -> l.toString()).collect(Collectors.toList());
 		comboLocalidadItems = new String[listaLocalidades.size()];
 		comboLocalidadItems = listaLocalidades.toArray(comboLocalidadItems);
-		
+
 		comboLocalidad = new JComboBox<>(comboLocalidadItems);
 		comboLocalidad.setBounds(133, 288, 164, 20);
 		panel.add(comboLocalidad);
 
-		
-		List<String> listaTiposDeContacto = tiposDeContacto.stream()
-				.map(l -> l.toString())
+		List<String> listaTiposDeContacto = tiposDeContacto.stream().map(l -> l.toString())
 				.collect(Collectors.toList());
 		comboTipoDeContactoItems = new String[listaTiposDeContacto.size()];
 		comboTipoDeContactoItems = listaTiposDeContacto.toArray(comboLocalidadItems);

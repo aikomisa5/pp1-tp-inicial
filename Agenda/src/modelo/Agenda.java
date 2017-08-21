@@ -2,6 +2,7 @@ package modelo;
 
 import java.util.List;
 
+import dto.DomicilioDTO;
 import dto.LocalidadDTO;
 import dto.PersonaDTO;
 import dto.TipoDeContactoDTO;
@@ -16,6 +17,7 @@ public class Agenda {
 	private PersonaDAO persona;
 	private LocalidadDAO localidad;
 	private TipoDeContactoDAO tipoDeContacto;
+	private DomicilioDTO domicilio;
 
 	public Agenda() {
 		persona = new PersonaDAOImpl();
@@ -38,7 +40,15 @@ public class Agenda {
 	public void modificarPersona(PersonaDTO personaAModificar) {
 		persona.update(personaAModificar);
 	}
-
+	
+	public void agregarLocalidad(LocalidadDTO nuevaLocalidad) {
+		localidad.insert(nuevaLocalidad);
+	}
+	
+	public void agregarDomicilio(DomicilioDTO nuevoDomicilio) {
+		//TODO
+	}
+	
 	public List<LocalidadDTO> getLocalidades() {
 		return localidad.readAll(); 
 	}
