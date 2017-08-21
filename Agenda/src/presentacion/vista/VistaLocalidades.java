@@ -113,5 +113,5 @@ public class VistaLocalidades extends JFrame {
 		this.setVisible(true);
 	}
 
-	
+
 }
