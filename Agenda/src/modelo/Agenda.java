@@ -69,5 +69,18 @@ public class Agenda {
 		
 	}
 	
+	public void agregarTipoDeContacto(TipoDeContactoDTO tipoDeContactoDTO) {
+		tipoDeContacto.insert(tipoDeContactoDTO);
+	}
+	
+	public void modificarTipoDeContacto(TipoDeContactoDTO tipoDeContactoDTO) {
+		tipoDeContacto.update(tipoDeContactoDTO);
+	}
+
+	public void borrarTipoDeContacto(TipoDeContactoDTO tipoDeContactoDTO) {
+		tipoDeContacto.delete(tipoDeContactoDTO);
+		
+	}
+	
 
 }

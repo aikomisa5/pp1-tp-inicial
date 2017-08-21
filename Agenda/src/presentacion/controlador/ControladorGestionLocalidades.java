@@ -9,7 +9,6 @@ import javax.swing.JOptionPane;
 import dto.LocalidadDTO;
 import modelo.Agenda;
 import presentacion.vista.VistaLocalidades;
-import presentacion.vista.VistaTiposDeContacto;
 
 public class ControladorGestionLocalidades implements ActionListener {
 	
