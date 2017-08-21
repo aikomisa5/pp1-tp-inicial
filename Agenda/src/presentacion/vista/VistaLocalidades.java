@@ -73,7 +73,7 @@ public class VistaLocalidades extends JFrame {
 		panel.add(btnAgregar);
 		
 		JButton btnEditar = new JButton("Editar");
-		btnEditar.setBounds(223, 244, 91, 23);
+		btnEditar.setBounds(211, 244, 91, 23);
 		panel.add(btnEditar);
 		
 		JButton btnEliminar = new JButton("Eliminar");
