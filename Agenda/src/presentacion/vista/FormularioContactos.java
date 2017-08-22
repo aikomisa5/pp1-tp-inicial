@@ -20,11 +20,10 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
 
-
 import javax.swing.JComboBox;
 
 public class FormularioContactos extends JFrame {
-	
+
 	private PersonaDTO persona = null;
 
 	private static final long serialVersionUID = 1L;
@@ -263,7 +262,6 @@ public class FormularioContactos extends JFrame {
 		persona.setNombre(tfNombre.getText());
 		persona.setTelefono(tfTelefono.getText());
 		persona.setTipoDeContacto(getTipoDeContactoSeleccionado());
-		System.out.println("Tipo de contacto seleccionado: "+ getTipoDeContactoSeleccionado().toString());
 	}
 
 	private LocalidadDTO getLocalidadSeleccionada() {
@@ -273,7 +271,6 @@ public class FormularioContactos extends JFrame {
 
 	private TipoDeContactoDTO getTipoDeContactoSeleccionado() {
 		TipoDeContactoDTO tipoDeContactoSeleccionado = (TipoDeContactoDTO) comboTipoDeContacto.getSelectedItem();
-		System.out.println(tipoDeContactoSeleccionado);
 		return tipoDeContactoSeleccionado;
 	}
 
@@ -296,19 +293,17 @@ public class FormularioContactos extends JFrame {
 		tiposDeContacto.forEach(t -> comboTipoDeContacto.addItem(t));
 		comboTipoDeContacto.setBounds(133, 320, 164, 20);
 		panel.add(comboTipoDeContacto);
-		comboTipoDeContacto.addActionListener( e -> System.out.println(comboTipoDeContacto.getSelectedItem()));
 	}
-	
+
 	public void resetCombos() {
 		comboLocalidad.setSelectedItem(localidades.get(0));
 		comboTipoDeContacto.setSelectedItem(localidades.get(0));
 	}
-	
+
 	public void setCombos() {
+		//TODO implementar metodo para obtener indices
 		comboLocalidad.setSelectedItem(persona.getDomicilio().getLocalidad());
 		comboTipoDeContacto.setSelectedItem(persona.getTipoDeContacto());
 	}
-	
-	
 
 }

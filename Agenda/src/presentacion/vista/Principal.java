@@ -17,17 +17,17 @@ public class Principal {
 	private JButton btnEditar;
 	private JButton btnReporte;
 	private DefaultTableModel modelPersonas;
-	private  String[] nombreColumnas = {"Nombre y apellido","Teléfono","Calle","Altura","Piso","Depto","Localidad","Mail","FechaNac","TipoContacto"};
+	private String[] nombreColumnas = { "Nombre y apellido", "Teléfono", "Calle", "Altura", "Piso", "Depto",
+			"Localidad", "Mail", "FechaNac", "TipoContacto" };
 	private JButton btnGestionDeTipos;
 	private JButton btnGestionLocalidades;
-
-
 
 	public Principal() {
 		super();
 		initialize();
 	}
 
+	@SuppressWarnings("serial")
 	private void initialize() {
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -50,7 +50,12 @@ public class Principal {
 		spPersonas.setBounds(10, 11, 877, 182);
 		panel.add(spPersonas);
 
-		modelPersonas = new DefaultTableModel(null, nombreColumnas);
+		modelPersonas = new DefaultTableModel(null, nombreColumnas) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
 		tablaPersonas = new JTable(modelPersonas);
 
 		tablaPersonas.getColumnModel().getColumn(0).setPreferredWidth(103);
@@ -75,11 +80,11 @@ public class Principal {
 		btnReporte = new JButton("Reporte");
 		btnReporte.setBounds(307, 228, 89, 23);
 		panel.add(btnReporte);
-		
+
 		btnGestionLocalidades = new JButton("Gestion de Localidades");
 		btnGestionLocalidades.setBounds(406, 228, 151, 23);
 		panel.add(btnGestionLocalidades);
-		
+
 		btnGestionDeTipos = new JButton("Gestion de Tipos de Contacto");
 		btnGestionDeTipos.setBounds(567, 228, 192, 23);
 		panel.add(btnGestionDeTipos);

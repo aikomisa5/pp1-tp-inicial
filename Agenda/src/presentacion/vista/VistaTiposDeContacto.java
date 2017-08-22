@@ -17,31 +17,12 @@ public class VistaTiposDeContacto extends JFrame {
 
 	private JPanel panel;
 	private JTable tablaTiposDeContacto;
-	private String [] nombreColumnas= {"Etiqueta"};
+	private String[] nombreColumnas = { "Etiqueta" };
 	private DefaultTableModel modelTiposDeContacto;
 	JButton btnAgregar = new JButton("Agregar");
 	JButton btnEditar = new JButton("Editar");
 	JButton btnEliminar = new JButton("Eliminar");
 
-	/**
-	 * Launch the application.
-	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					VistaTiposDeContacto frame = new VistaTiposDeContacto();
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
-
-	/**
-	 * Create the frame.
-	 */
 	public VistaTiposDeContacto() {
 		initialize();
 	}
@@ -53,36 +34,38 @@ public class VistaTiposDeContacto extends JFrame {
 			// TODO: handle exception
 		}
 		this.setBounds(100, 100, 548, 455);
-		
+
 		panel = new JPanel();
 		panel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(panel);
 		panel.setLayout(null);
-		
+
 		JScrollPane spLocalidades = new JScrollPane();
 		spLocalidades.setBounds(49, 11, 446, 180);
 		panel.add(spLocalidades);
-		
-		
-		modelTiposDeContacto = new DefaultTableModel(null, nombreColumnas);
+
+		modelTiposDeContacto = new DefaultTableModel(null, nombreColumnas) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
 		tablaTiposDeContacto = new JTable(modelTiposDeContacto);
 		tablaTiposDeContacto.setBounds(503, 312, -376, -257);
-		
+
 		spLocalidades.setViewportView(tablaTiposDeContacto);
-		
+
 		btnAgregar.setBounds(49, 244, 91, 23);
 		panel.add(btnAgregar);
-		
+
 		btnEditar.setBounds(211, 244, 91, 23);
 		panel.add(btnEditar);
-		
+
 		btnEliminar.setBounds(372, 244, 91, 23);
 		panel.add(btnEliminar);
-		
-		//panel.add(table);
-		
+
 	}
-	
+
 	public JPanel getPanel() {
 		return panel;
 	}
@@ -110,10 +93,9 @@ public class VistaTiposDeContacto extends JFrame {
 	public JButton getBtnEliminar() {
 		return btnEliminar;
 	}
-	
+
 	public void mostrar() {
 		this.setVisible(true);
 	}
-
 
 }
