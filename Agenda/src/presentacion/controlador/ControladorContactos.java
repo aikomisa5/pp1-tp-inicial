@@ -18,7 +18,7 @@ public class ControladorContactos implements ActionListener, Observador {
 	private static Agenda agenda;
 
 	private ControladorContactos() {
-		agenda =Agenda.getInstance();
+		agenda = Agenda.getInstance();
 		agenda.registrarObservador(this);
 
 	}
@@ -28,7 +28,7 @@ public class ControladorContactos implements ActionListener, Observador {
 			instancia = new ControladorContactos();
 		return instancia;
 	}
-	
+
 	public void abrirVentana(PersonaDTO persona) {
 		formularioContactos = new FormularioContactos(this);
 		formularioContactos.setLocalidades(agenda.getLocalidades());
@@ -101,8 +101,9 @@ public class ControladorContactos implements ActionListener, Observador {
 	private boolean camposSonValidos() {
 		boolean sonValidos = false;
 		if (algunCampoEstaVacio()) {
-			JOptionPane.showMessageDialog(formularioContactos, "No se pudo editar/agregar el contacto. Algún campo esta vacio",
-					"Error de contacto", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(formularioContactos,
+					"No se pudo editar/agregar el contacto. Algún campo esta vacio", "Error de contacto",
+					JOptionPane.ERROR_MESSAGE);
 			return false;
 		} else {
 			String nombre = formularioContactos.getTfNombre().getText();
@@ -118,10 +119,11 @@ public class ControladorContactos implements ActionListener, Observador {
 					&& Validador.esStringNoEmpezadoEnEspacios(calle, 45) && Validador.esIntValido(altura)
 					&& Validador.esIntValido(piso) && Validador.esStringNoEmpezadoEnEspacios(depto, 15)
 					&& Validador.esMailValido(email, 45);
-			
-			if(!sonValidos) {
-				JOptionPane.showMessageDialog(formularioContactos, "Error de validación, verifica que los campos esten ingresados correctamente.",
-						"Error de contacto", JOptionPane.ERROR_MESSAGE);				
+
+			if (!sonValidos) {
+				JOptionPane.showMessageDialog(formularioContactos,
+						"Error de validación, verifica que los campos esten ingresados correctamente.",
+						"Error de contacto", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 
@@ -140,9 +142,11 @@ public class ControladorContactos implements ActionListener, Observador {
 
 	@Override
 	public void update() {
-		formularioContactos.setLocalidades(agenda.getLocalidades());
-		formularioContactos.setTiposDeContacto(agenda.getTiposDeContacto());
-		formularioContactos.cargarCombos();		
+		if (formularioContactos != null) {
+			formularioContactos.setLocalidades(agenda.getLocalidades());
+			formularioContactos.setTiposDeContacto(agenda.getTiposDeContacto());
+			formularioContactos.cargarCombos();
+		}
 	}
 
 }

@@ -121,9 +121,11 @@ public class ControladorGestionDeTiposContacto implements ActionListener, Observ
 
 	private void borrar(int indexFilaSeleccionada) {
 		try {
-			this.agenda.borrarTipoDeContacto(
+			boolean resultado = this.agenda.borrarTipoDeContacto(
 					new TipoDeContactoDTO(tiposDeContactoEnTabla.get(indexFilaSeleccionada).getId()));
-			updateTabla();
+			if (resultado == false) 
+				JOptionPane.showMessageDialog(null,
+						"Error, el tipo de contacto no esta siendo utilizado.");
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null,
 					"Error, verifique que la etiqueta no este siendo utilizada en algun contacto");

@@ -113,8 +113,11 @@ public class ControladorGestionLocalidades implements ActionListener, Observador
 	
 	private void borrar(int indexFilaSeleccionada) {
 		try {
-				this.agenda.borrarLocalidad(new LocalidadDTO(localidadesEnTabla.get(indexFilaSeleccionada).getId()));
-				updateTabla();
+				boolean resultado = this.agenda.borrarLocalidad(new LocalidadDTO(localidadesEnTabla.get(indexFilaSeleccionada).getId()));
+				if (resultado == false) 
+					JOptionPane.showMessageDialog(null,
+							"Error, La localidad esta siendo utilizada.");
+
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Error, verifique que la localidad no este siendo usada en algun contacto");
 		}

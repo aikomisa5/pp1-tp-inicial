@@ -66,7 +66,7 @@ public class LocalidadDAOImpl implements LocalidadDAO{
 		} 
 		catch (SQLException e) 
 		{
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		finally //Se ejecuta siempre
 		{

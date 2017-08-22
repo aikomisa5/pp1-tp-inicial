@@ -88,7 +88,7 @@ public class TipoDeContactoDAOImpl implements TipoDeContactoDAO {
 		} 
 		catch (SQLException e) 
 		{
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		finally //Se ejecuta siempre
 		{

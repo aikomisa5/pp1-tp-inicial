@@ -83,10 +83,11 @@ public class Agenda implements Observable {
 		notificarObservadores();
 	}
 
-	public void borrarLocalidad(LocalidadDTO localidadABorrar) {
-		localidad.delete(localidadABorrar);
+	public boolean borrarLocalidad(LocalidadDTO localidadABorrar) {
+		boolean ret = localidad.delete(localidadABorrar);
+		if (ret)
 		notificarObservadores();
-
+		return ret;
 	}
 
 	public void agregarTipoDeContacto(TipoDeContactoDTO tipoDeContactoDTO) {
@@ -99,9 +100,11 @@ public class Agenda implements Observable {
 		notificarObservadores();
 	}
 
-	public void borrarTipoDeContacto(TipoDeContactoDTO tipoDeContactoDTO) {
-		tipoDeContacto.delete(tipoDeContactoDTO);
+	public boolean borrarTipoDeContacto(TipoDeContactoDTO tipoDeContactoDTO) {
+		boolean ret = tipoDeContacto.delete(tipoDeContactoDTO);
+		if (ret)
 		notificarObservadores();
+		return ret;
 	}
 
 	@Override
