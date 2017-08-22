@@ -54,19 +54,8 @@ public class Validador {
 	
 	public static boolean esFechaNacimientoValida(Date fecha) {
 		boolean ret = false;
-		
-		Calendar calFechaHoy = Calendar.getInstance();
-		int añoHoy = calFechaHoy.get(Calendar.YEAR);
-		int mesHoy = calFechaHoy.get(Calendar.MONTH);
-		int diaHoy = calFechaHoy.get(Calendar.DATE);
-		
-		
-		Calendar calFecha = Calendar.getInstance();
-		calFecha.setTime(fecha);
-		int añoFecha = calFecha.get(Calendar.YEAR);
-		int mesFecha = calFecha.get(Calendar.MONTH);
-		int diaFecha = calFecha.get(Calendar.DATE);
-		
+		if (fecha.compareTo(new Date()) <= 0)
+			ret = true;
 		return ret;
 		
 	}

@@ -113,12 +113,14 @@ public class ControladorContactos implements ActionListener, Observador {
 			String piso = formularioContactos.getTfPiso().getText();
 			String depto = formularioContactos.getTfDepto().getText();
 			String email = formularioContactos.getTfEmail().getText();
+			java.util.Date fechaNac = formularioContactos.getDatePicker().getDate();
 
 			sonValidos = Validador.esStringNoEmpezadoEnEspacios(nombre, 45)
 					&& Validador.esStringNoEmpezadoEnEspacios(telefono, 20)
 					&& Validador.esStringNoEmpezadoEnEspacios(calle, 45) && Validador.esIntValido(altura)
 					&& Validador.esIntValido(piso) && Validador.esStringNoEmpezadoEnEspacios(depto, 15)
-					&& Validador.esMailValido(email, 45);
+					&& Validador.esMailValido(email, 45)
+					&& Validador.esFechaNacimientoValida(fechaNac);
 
 			if (!sonValidos) {
 				JOptionPane.showMessageDialog(formularioContactos,
