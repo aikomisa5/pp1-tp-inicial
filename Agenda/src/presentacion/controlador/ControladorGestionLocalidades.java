@@ -9,9 +9,10 @@ import javax.swing.JOptionPane;
 import dto.LocalidadDTO;
 import modelo.Agenda;
 import modelo.Validador;
+import patrones.observer.Observador;
 import presentacion.vista.VistaLocalidades;
 
-public class ControladorGestionLocalidades implements ActionListener {
+public class ControladorGestionLocalidades implements ActionListener, Observador {
 	
 	private static ControladorGestionLocalidades controlador=null;
 	private Agenda agenda;
@@ -19,7 +20,9 @@ public class ControladorGestionLocalidades implements ActionListener {
 	private List<LocalidadDTO>localidadesEnTabla;
 
 	private ControladorGestionLocalidades() {// TODO hacer singleton de agenda/modelo.
-		this.agenda = new Agenda();
+		this.agenda =Agenda.getInstance();
+		agenda.registrarObservador(this);
+		
 		this.vistaLocalidades= new VistaLocalidades();
 		this.vistaLocalidades.getBtnAgregar().addActionListener(this);
 		this.vistaLocalidades.getBtnEditar().addActionListener(this);
@@ -49,7 +52,6 @@ public class ControladorGestionLocalidades implements ActionListener {
 		this.localidadesEnTabla = agenda.getLocalidades();
 		localidadesEnTabla.forEach(this::añadirLocalidadATabla);
 
-		vistaLocalidades.mostrar();
 	}
 	
 	private void añadirLocalidadATabla(LocalidadDTO localidad) {
@@ -117,6 +119,11 @@ public class ControladorGestionLocalidades implements ActionListener {
 			JOptionPane.showMessageDialog(null, "Error, verifique que la localidad no este siendo usada en algun contacto");
 		}
 		
+	}
+
+	@Override
+	public void update() {
+		updateTabla();
 	}
 	
 

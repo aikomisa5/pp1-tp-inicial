@@ -274,7 +274,7 @@ public class FormularioContactos extends JFrame {
 		return tipoDeContactoSeleccionado;
 	}
 
-	public void setLocalidad(List<LocalidadDTO> localidades) {
+	public void setLocalidades(List<LocalidadDTO> localidades) {
 		this.localidades = localidades;
 	}
 

@@ -11,7 +11,7 @@ public class Main
 	public static void main(String[] args) 
 	{
 		Principal vista = new Principal();
-		Agenda modelo = new Agenda();
+		Agenda modelo = Agenda.getInstance();
 		ControladorPrincipal controlador = new ControladorPrincipal(vista, modelo);
 		controlador.inicializar();
 	}

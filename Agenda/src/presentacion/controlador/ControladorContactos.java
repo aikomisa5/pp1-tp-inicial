@@ -9,16 +9,18 @@ import javax.swing.JOptionPane;
 import dto.PersonaDTO;
 import modelo.Agenda;
 import modelo.Validador;
+import patrones.observer.Observador;
 import presentacion.vista.FormularioContactos;
 
-public class ControladorContactos implements ActionListener {
+public class ControladorContactos implements ActionListener, Observador {
 	private static ControladorContactos instancia;
 	private static FormularioContactos formularioContactos;
 	private static Agenda agenda;
-	private static ControladorPrincipal controladorPrincipal;
 
 	private ControladorContactos() {
-		agenda = new Agenda();
+		agenda =Agenda.getInstance();
+		agenda.registrarObservador(this);
+
 	}
 
 	public static ControladorContactos getInstance() {
@@ -27,13 +29,9 @@ public class ControladorContactos implements ActionListener {
 		return instancia;
 	}
 	
-	public void setControladorPrincipal(ControladorPrincipal cp) {
-		controladorPrincipal = cp;
-	}
-
 	public void abrirVentana(PersonaDTO persona) {
 		formularioContactos = new FormularioContactos(this);
-		formularioContactos.setLocalidad(agenda.getLocalidades());
+		formularioContactos.setLocalidades(agenda.getLocalidades());
 		formularioContactos.setTiposDeContacto(agenda.getTiposDeContacto());
 		formularioContactos.cargarCombos();
 		formularioContactos.setPersona(persona);
@@ -90,7 +88,6 @@ public class ControladorContactos implements ActionListener {
 					agenda.agregarPersona(persona);
 				else
 					agenda.modificarPersona(persona);
-				controladorPrincipal.updateTabla();
 				formularioContactos.dispose();
 			} else {
 				JOptionPane.showMessageDialog(formularioContactos,
@@ -134,6 +131,13 @@ public class ControladorContactos implements ActionListener {
 				|| formularioContactos.getTfTelefono().getText().isEmpty()
 				|| formularioContactos.getTfNombre().getText().isEmpty()
 				|| formularioContactos.getTfPiso().getText().isEmpty();
+	}
+
+	@Override
+	public void update() {
+		formularioContactos.setLocalidades(agenda.getLocalidades());
+		formularioContactos.setTiposDeContacto(agenda.getTiposDeContacto());
+		formularioContactos.cargarCombos();		
 	}
 
 }

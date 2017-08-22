@@ -3,25 +3,16 @@ package presentacion.controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-
 import modelo.Agenda;
-import modelo.Validador;
+import patrones.observer.Observador;
 import presentacion.reportes.ReporteAgenda;
-import presentacion.vista.FormularioContactos;
 import presentacion.vista.Principal;
-import dto.LocalidadDTO;
 import dto.PersonaDTO;
-import dto.TipoDeContactoDTO;
 
-public class ControladorPrincipal implements ActionListener {
+public class ControladorPrincipal implements ActionListener, Observador {
 	private Principal vista;
 	private List<PersonaDTO> personasEnTabla;
-	private List<LocalidadDTO> localidades;
-	private List<TipoDeContactoDTO> tiposDeContacto;
-	private FormularioContactos ventanaPersona;
 	private Agenda agenda;
 	private ControladorGestionLocalidades controladorLocalidades;
 	private ControladorGestionDeTiposContacto controladorTipos;
@@ -36,13 +27,11 @@ public class ControladorPrincipal implements ActionListener {
 		this.vista.getBtnGestionDeTipos().addActionListener(this);
 		this.vista.getBtnGestionLocalidades().addActionListener(this);
 		this.agenda = agenda;
+		agenda.registrarObservador(this);
 		this.personasEnTabla = null;
-		localidades = agenda.getLocalidades();
-		tiposDeContacto = agenda.getTiposDeContacto();
 		controladorLocalidades = ControladorGestionLocalidades.getInstance();
 		controladorTipos = ControladorGestionDeTiposContacto.getInstance();
 		controladorContactos = ControladorContactos.getInstance();
-		controladorContactos.setControladorPrincipal(this);
 	}
 
 	public void inicializar() {
@@ -91,13 +80,11 @@ public class ControladorPrincipal implements ActionListener {
 			else
 				JOptionPane.showMessageDialog(null, "Selecciona una persona para editar primero", "Aviso",
 						JOptionPane.ERROR_MESSAGE);
-		}
-		else if (e.getSource() == vista.getBtnGestionDeTipos()) {
+		} else if (e.getSource() == vista.getBtnGestionDeTipos()) {
 			abrirGestionDeTipos();
-		}
-		else if (e.getSource() == vista.getBtnGestionLocalidades()) {
+		} else if (e.getSource() == vista.getBtnGestionLocalidades()) {
 			abrirGestionLocalidades();
-		}		
+		}
 	}
 
 	private void abrirGestionLocalidades() {
@@ -108,10 +95,6 @@ public class ControladorPrincipal implements ActionListener {
 		controladorTipos.abrirVentana();
 	}
 
-	
-
-	
-
 	private void borrarPersonasSeleccionadas() {
 		int[] filas_seleccionadas = this.vista.getTablaPersonas().getSelectedRows();
 		for (int fila : filas_seleccionadas) {
@@ -119,6 +102,9 @@ public class ControladorPrincipal implements ActionListener {
 		}
 	}
 
-	
+	@Override
+	public void update() {
+		updateTabla();
+	}
 
 }
