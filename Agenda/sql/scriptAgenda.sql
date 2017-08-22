@@ -1,6 +1,6 @@
-create database if not exists tpi_g15;
+create database if not exists tpi_g2;
 
-use tpi_g15;
+use tpi_g2;
 
 drop table if exists personas;
 drop table if exists tiposDeContacto; 

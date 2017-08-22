@@ -43,7 +43,7 @@ public class PersonaDAOImpl implements PersonaDAO
 			statement.setString(1, persona.getNombre());
 			statement.setString(2, persona.getTelefono());
 			statement.setString(3, persona.getMail());
-			statement.setDate(4, persona.getFechaCumplea√±os());
+			statement.setDate(4, persona.getFechaCumpleaÒos());
 			statement.setInt(5, persona.getTipoDeContacto().getId());
 			statement.setInt(6, persona.getDomicilio().getIdDomicilio());
 			if(statement.executeUpdate() > 0) //Si se ejecut√≥ devuelvo true
@@ -123,7 +123,7 @@ public class PersonaDAOImpl implements PersonaDAO
 			statement.setString(1, persona.getNombre());
 			statement.setString(2, persona.getTelefono());
 			statement.setString(3, persona.getMail());
-			statement.setDate(4, persona.getFechaCumplea√±os());
+			statement.setDate(4, persona.getFechaCumpleaÒos());
 			statement.setInt(5, persona.getTipoDeContacto().getId());
 			statement.setInt(6, persona.getDomicilio().getIdDomicilio());
 			statement.setInt(7, persona.getIdPersona());

@@ -43,46 +43,46 @@ public class FormularioContactos extends JFrame {
 
 	private List<LocalidadDTO> localidades = null;
 
-	// TODO crear mÃ±todo para agregar esta lista de localidades a la bd.
+	// TODO crear mñtodo para agregar esta lista de localidades a la bd.
 	/*
-	 * { "17 de Agosto", "25 de Mayo", "9 de Julio / La NiÃ±a", "Acassuso",
+	 * { "17 de Agosto", "25 de Mayo", "9 de Julio / La Niña", "Acassuso",
 	 * "Aguas Verdes", "Alberti", "Arenas Verdes", "Arrecifes", "Avellaneda",
-	 * "Ayacucho", "Azul", "BahÃ±a Blanca", "BahÃ±a San Blas", "Balcarce",
+	 * "Ayacucho", "Azul", "Bahña Blanca", "Bahña San Blas", "Balcarce",
 	 * "Balneario Marisol", "Balneario Orense", "Balneario Reta",
-	 * "Balneario San Cayetano", "Baradero", "Bella Vista", "Benito JuÃ±rez",
+	 * "Balneario San Cayetano", "Baradero", "Bella Vista", "Benito Juñrez",
 	 * "Berazategui", "Berisso", "Boulogne", "Bragado", "Brandsen", "Campana",
-	 * "Capilla del SeÃ±or", "Capital Federal", "CapitÃ±n Sarmiento", "Carapachay",
-	 * "Carhue", "CarhuÃ±", "Carlos Keen", "Carmen de Areco", "Carmen de Patagones",
-	 * "Caseros", "Castelar", "Castelli", "Chacabuco", "ChascomÃ±s", "Chivilcoy",
-	 * "City Bell", "Ciudadela", "ClaromecÃ±", "ColÃ±n", "Coronel Dorrego",
-	 * "Coronel Pringles", "Coronel SuÃ±rez", "Darregueira", "Dunamar", "Escobar",
-	 * "Ezeiza", "Florencio Varela", "Florida", "FortÃ±n Mercedes", "Garin",
+	 * "Capilla del Señor", "Capital Federal", "Capitñn Sarmiento", "Carapachay",
+	 * "Carhue", "Carhuñ", "Carlos Keen", "Carmen de Areco", "Carmen de Patagones",
+	 * "Caseros", "Castelar", "Castelli", "Chacabuco", "Chascomñs", "Chivilcoy",
+	 * "City Bell", "Ciudadela", "Claromecñ", "Colñn", "Coronel Dorrego",
+	 * "Coronel Pringles", "Coronel Suñrez", "Darregueira", "Dunamar", "Escobar",
+	 * "Ezeiza", "Florencio Varela", "Florida", "Fortñn Mercedes", "Garin",
 	 * "General Arenales", "General Belgrano", "General Madariaga",
-	 * "General Villegas", "Gral. Daniel Cerri", "Gran Buenos Aires", "GuaminÃ±",
-	 * "Haedo", "Huanguelen", "Hurlingham", "Isla MartÃ±n GarcÃ±a", "Ituzaingo",
-	 * "JunÃ±n", "La Plata", "La Tablada", "Laferrere", "Lanus", "Laprida",
+	 * "General Villegas", "Gral. Daniel Cerri", "Gran Buenos Aires", "Guaminñ",
+	 * "Haedo", "Huanguelen", "Hurlingham", "Isla Martñn Garcña", "Ituzaingo",
+	 * "Junñn", "La Plata", "La Tablada", "Laferrere", "Lanus", "Laprida",
 	 * "Las Flores", "Las Gaviotas", "Las Toninas", "Lima", "Lisandro Olmos",
 	 * "Llavallol", "Lobos", "Lomas de Zamora", "Los Toldos - Gral. Viamonte",
-	 * "Los Polvorines", "Lucila del Mar", "Luis GuillÃ±n", "LujÃ±n", "Magdalena",
-	 * "MaipÃ±", "Mar Azul", "Mar Chiquita", "Mar de AjÃ±", "Mar de Cobo",
-	 * "Mar del Plata", "Mar del Sud", "Mar del TuyÃ±", "Martinez",
-	 * "MÃ±danos / Laguna ChasicÃ±", "Mercedes", "Merlo", "Miramar", "Monte Hermoso",
-	 * "Moreno", "MorÃ±n", "Munro", "Navarro", "Necochea", "Nueva Atlantis",
-	 * "OlavarrÃ±a", "Olivos", "Open Door", "Ostende", "Pedro Luro", "PehuajÃ±",
-	 * "Pehuen CÃ±", "Pergamino", "PigÃ±Ã±", "Pilar", "Pinamar",
+	 * "Los Polvorines", "Lucila del Mar", "Luis Guillñn", "Lujñn", "Magdalena",
+	 * "Maipñ", "Mar Azul", "Mar Chiquita", "Mar de Ajñ", "Mar de Cobo",
+	 * "Mar del Plata", "Mar del Sud", "Mar del Tuyñ", "Martinez",
+	 * "Mñdanos / Laguna Chasicñ", "Mercedes", "Merlo", "Miramar", "Monte Hermoso",
+	 * "Moreno", "Morñn", "Munro", "Navarro", "Necochea", "Nueva Atlantis",
+	 * "Olavarrña", "Olivos", "Open Door", "Ostende", "Pedro Luro", "Pehuajñ",
+	 * "Pehuen Cñ", "Pergamino", "Pigññ", "Pilar", "Pinamar",
 	 * "Provincia de Buenos Aires", "Puan", "Punta Alta", "Punta Indio",
-	 * "Punta Lara", "QuequÃ±n", "Quilmes", "Ramallo", "Ramos MejÃ±a", "Ranchos",
-	 * "Rauch", "Rivadavia", "Rojas", "Roque PÃ±rez", "Saenz PeÃ±a", "Saladillo",
+	 * "Punta Lara", "Quequñn", "Quilmes", "Ramallo", "Ramos Mejña", "Ranchos",
+	 * "Rauch", "Rivadavia", "Rojas", "Roque Pñrez", "Saenz Peña", "Saladillo",
 	 * "Salto", "San Antonio de Areco", "San Bernardo", "San Cayetano",
-	 * "San Clemente del TuyÃ±", "San Fernando", "San Isidro", "San Justo",
-	 * "San Martin", "San Miguel del Monte", "San NicolÃ±s", "San Pedro",
-	 * "San Vicente", "Santa Clara del Mar", "Santa Teresita", "SarandÃ±",
+	 * "San Clemente del Tuyñ", "San Fernando", "San Isidro", "San Justo",
+	 * "San Martin", "San Miguel del Monte", "San Nicolñs", "San Pedro",
+	 * "San Vicente", "Santa Clara del Mar", "Santa Teresita", "Sarandñ",
 	 * "Sierra de la Ventana", "Sierra de los Padres", "Sierras de los Padres",
-	 * "Tandil", "TapalquÃ±", "Temperley", "Tigre", "Tornquist / Ruta Prov. 76",
+	 * "Tandil", "Tapalquñ", "Temperley", "Tigre", "Tornquist / Ruta Prov. 76",
 	 * "Trenque Lauquen", "Tres Arroyos", "Turdera", "Valentin Alsina",
 	 * "Vicente Lopez", "Victoria", "Villa Ballester", "Villa Gesell",
 	 * "Villa Lynch", "Villa Serrana La Gruta", "Villa Ventana", "Villalonga",
-	 * "Wilde", "ZÃ±rate" };
+	 * "Wilde", "Zñrate" };
 	 */
 
 	private List<TipoDeContactoDTO> tiposDeContacto = null;
@@ -257,7 +257,7 @@ public class FormularioContactos extends JFrame {
 				Integer.parseInt(tfPiso.getText()), tfDepto.getText(), getLocalidadSeleccionada()));
 		java.util.Date date = datePicker.getDate();
 		LocalDate ldate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-		persona.setFechaCumpleaÃ±os(java.sql.Date.valueOf(ldate));
+		persona.setFechaCumpleaños(java.sql.Date.valueOf(ldate));
 		persona.setMail(tfEmail.getText());
 		persona.setNombre(tfNombre.getText());
 		persona.setTelefono(tfTelefono.getText());

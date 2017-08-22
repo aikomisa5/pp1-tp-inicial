@@ -8,7 +8,7 @@ public class PersonaDTO
 	private String nombre;
 	private String telefono;
 	private String mail;
-	private Date fechaCumpleaÃ±os;
+	private Date fechaCumpleaños;
 	private TipoDeContactoDTO tipoDeContacto;
 	private DomicilioDTO domicilio;
 
@@ -19,25 +19,25 @@ public class PersonaDTO
 		this.telefono = telefono;
 	}
 
-	public PersonaDTO(int idPersona, String nombre, String telefono, String mail, Date fechaCumpleaÃ±os,
+	public PersonaDTO(int idPersona, String nombre, String telefono, String mail, Date fechaCumpleaños,
 			TipoDeContactoDTO tipoDeContacto, DomicilioDTO domicilio) {
 		super();
 		this.idPersona = idPersona;
 		this.nombre = nombre;
 		this.telefono = telefono;
 		this.mail = mail;
-		this.fechaCumpleaÃ±os = fechaCumpleaÃ±os;
+		this.fechaCumpleaños = fechaCumpleaños;
 		this.tipoDeContacto = tipoDeContacto;
 		this.domicilio = domicilio;
 	}
 
-	public PersonaDTO(String nombre, String telefono, String mail, Date fechaCumpleaÃ±os,
+	public PersonaDTO(String nombre, String telefono, String mail, Date fechaCumpleaños,
 			TipoDeContactoDTO tipoDeContacto, DomicilioDTO domicilio) {
 		super();
 		this.nombre = nombre;
 		this.telefono = telefono;
 		this.mail = mail;
-		this.fechaCumpleaÃ±os = fechaCumpleaÃ±os;
+		this.fechaCumpleaños = fechaCumpleaños;
 		this.tipoDeContacto = tipoDeContacto;
 		this.domicilio = domicilio;
 	}
@@ -85,12 +85,12 @@ public class PersonaDTO
 		this.mail = mail;
 	}
 
-	public Date getFechaCumpleaÃ±os() {
-		return fechaCumpleaÃ±os;
+	public Date getFechaCumpleaños() {
+		return fechaCumpleaños;
 	}
 
-	public void setFechaCumpleaÃ±os(Date fechaCumpleaÃ±os) {
-		this.fechaCumpleaÃ±os = fechaCumpleaÃ±os;
+	public void setFechaCumpleaños(Date fechaCumpleaños) {
+		this.fechaCumpleaños = fechaCumpleaños;
 	}
 
 	public TipoDeContactoDTO getTipoDeContacto() {

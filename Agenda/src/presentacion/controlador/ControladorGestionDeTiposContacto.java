@@ -52,11 +52,11 @@ public class ControladorGestionDeTiposContacto implements ActionListener, Observ
 				.setColumnIdentifiers(this.vistaTipoDeContacto.getNombreColumnas());
 
 		this.tiposDeContactoEnTabla = agenda.getTiposDeContacto();
-		tiposDeContactoEnTabla.forEach(this::aÃ±adirTipoDeContacto);
+		tiposDeContactoEnTabla.forEach(this::añadirTipoDeContacto);
 
 	}
 
-	private void aÃ±adirTipoDeContacto(TipoDeContactoDTO tipoDeContactoDTO) {
+	private void añadirTipoDeContacto(TipoDeContactoDTO tipoDeContactoDTO) {
 		Object[] fila = { tipoDeContactoDTO.getNombre() };
 		vistaTipoDeContacto.getModelTipoDeContacto().addRow(fila);
 	}

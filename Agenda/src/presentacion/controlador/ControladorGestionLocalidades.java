@@ -50,11 +50,11 @@ public class ControladorGestionLocalidades implements ActionListener, Observador
 		this.vistaLocalidades.getModelLocalidades().setColumnIdentifiers(this.vistaLocalidades.getNombreColumnas());
 
 		this.localidadesEnTabla = agenda.getLocalidades();
-		localidadesEnTabla.forEach(this::aÃ±adirLocalidadATabla);
+		localidadesEnTabla.forEach(this::añadirLocalidadATabla);
 
 	}
 	
-	private void aÃ±adirLocalidadATabla(LocalidadDTO localidad) {
+	private void añadirLocalidadATabla(LocalidadDTO localidad) {
 		Object[] fila = { localidad.getNombre()};
 		vistaLocalidades.getModelLocalidades().addRow(fila);
 	}

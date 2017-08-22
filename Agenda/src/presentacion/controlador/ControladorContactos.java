@@ -65,7 +65,7 @@ public class ControladorContactos implements ActionListener, Observador {
 		formularioContactos.getTfPiso().setText(Integer.toString(persona.getDomicilio().getPiso()));
 		formularioContactos.getTfTelefono().setText(persona.getTelefono());
 		formularioContactos.setCombos();
-		formularioContactos.getDatePicker().setDate(Date.valueOf(persona.getFechaCumpleaÃ±os().toString()));
+		formularioContactos.getDatePicker().setDate(Date.valueOf(persona.getFechaCumpleaños().toString()));
 
 	}
 
@@ -102,7 +102,7 @@ public class ControladorContactos implements ActionListener, Observador {
 		boolean sonValidos = false;
 		if (algunCampoEstaVacio()) {
 			JOptionPane.showMessageDialog(formularioContactos,
-					"No se pudo editar/agregar el contacto. AlgÃ±n campo esta vacio", "Error de contacto",
+					"No se pudo editar/agregar el contacto. Algún campo esta vacio", "Error de contacto",
 					JOptionPane.ERROR_MESSAGE);
 			return false;
 		} else {
@@ -124,7 +124,7 @@ public class ControladorContactos implements ActionListener, Observador {
 
 			if (!sonValidos) {
 				JOptionPane.showMessageDialog(formularioContactos,
-						"Error de validaciÃ±n, verifica que los campos esten ingresados correctamente.",
+						"Error de validación, verifica que los campos esten ingresados correctamente.",
 						"Error de contacto", JOptionPane.ERROR_MESSAGE);
 			}
 		}
