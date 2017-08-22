@@ -44,15 +44,15 @@ public class ControladorPrincipal implements ActionListener, Observador {
 		this.vista.getModelPersonas().setColumnIdentifiers(this.vista.getNombreColumnas());
 
 		this.personasEnTabla = agenda.obtenerPersonas();
-		personasEnTabla.forEach(this::añadirPersonaATabla);
+		personasEnTabla.forEach(this::aÃ±adirPersonaATabla);
 
 		this.vista.show();
 	}
 
-	private void añadirPersonaATabla(PersonaDTO p) {
+	private void aÃ±adirPersonaATabla(PersonaDTO p) {
 		Object[] fila = { p.getNombre(), p.getTelefono(), p.getDomicilio().getCalle(), p.getDomicilio().getAltura(),
 				p.getDomicilio().getPiso(), p.getDomicilio().getDepartamento(),
-				p.getDomicilio().getLocalidad().getNombre(), p.getMail(), p.getFechaCumpleaños(),
+				p.getDomicilio().getLocalidad().getNombre(), p.getMail(), p.getFechaCumpleaÃ±os(),
 				p.getTipoDeContacto().getNombre() };
 		vista.getModelPersonas().addRow(fila);
 	}

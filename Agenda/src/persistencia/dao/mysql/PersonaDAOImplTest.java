@@ -21,7 +21,7 @@ public class PersonaDAOImplTest {
 			ArrayList<PersonaDTO>resultado = (ArrayList<PersonaDTO>) dao.readAll();
 			for(PersonaDTO p : resultado) {
 				System.out.println(p.getNombre()+" de "+p.getDomicilio().getLocalidad().getNombre()+" tipo de contacto: "+p.getTipoDeContacto().getNombre()
-						+ " Fecha cumpleaños "+p.getFechaCumpleaños().toString());
+						+ " Fecha cumpleaï¿½os "+p.getFechaCumpleaÃ±os().toString());
 			}
 		}
 		
