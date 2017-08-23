@@ -43,7 +43,7 @@ public class FormularioContactos extends JFrame {
 
 	private List<LocalidadDTO> localidades = null;
 
-	// TODO crear mñtodo para agregar esta lista de localidades a la bd.
+	// TODO crear método para agregar esta lista de localidades a la bd.
 	/*
 	 * { "17 de Agosto", "25 de Mayo", "9 de Julio / La Niña", "Acassuso",
 	 * "Aguas Verdes", "Alberti", "Arenas Verdes", "Arrecifes", "Avellaneda",
@@ -255,6 +255,7 @@ public class FormularioContactos extends JFrame {
 
 		persona.setDomicilio(new DomicilioDTO(tfCalle.getText(), Integer.parseInt(tfAltura.getText()),
 				Integer.parseInt(tfPiso.getText()), tfDepto.getText(), getLocalidadSeleccionada()));
+
 		java.util.Date date = datePicker.getDate();
 		LocalDate ldate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 		persona.setFechaCumpleaños(java.sql.Date.valueOf(ldate));
@@ -301,9 +302,33 @@ public class FormularioContactos extends JFrame {
 	}
 
 	public void setCombos() {
-		//TODO implementar metodo para obtener indices
-		comboLocalidad.setSelectedItem(persona.getDomicilio().getLocalidad());
-		comboTipoDeContacto.setSelectedItem(persona.getTipoDeContacto());
+		comboLocalidad.setSelectedIndex(getIndexLocalidad(persona.getDomicilio().getLocalidad()));
+		comboTipoDeContacto.setSelectedIndex(getIndexTipoDeContacto(persona.getTipoDeContacto()));
 	}
+
+	private int getIndexLocalidad(LocalidadDTO localidad) {
+		int index = 0;
+		boolean encontrado = false;
+		for (int i = 0; !encontrado && i < localidades.size(); i++) {
+			if (localidad.equals(localidades.get(i))) {
+				encontrado = true;
+				index = i;
+			}
+		}
+		return index;
+	}
+	
+	private int getIndexTipoDeContacto(TipoDeContactoDTO contacto) {
+		int index = 0;
+		boolean encontrado = false;
+		for (int i = 0; !encontrado && i < tiposDeContacto.size(); i++) {
+			if (contacto.equals(tiposDeContacto.get(i))) {
+				encontrado = true;
+				index = i;
+			}
+		}
+		return index;
+	}
+
 
 }

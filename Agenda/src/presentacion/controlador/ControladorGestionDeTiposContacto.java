@@ -21,7 +21,7 @@ public class ControladorGestionDeTiposContacto implements ActionListener, Observ
 	private VistaTiposDeContacto vistaTipoDeContacto;
 	private List<TipoDeContactoDTO> tiposDeContactoEnTabla;
 
-	private ControladorGestionDeTiposContacto() {// TODO hacer singleton de agenda/modelo.
+	private ControladorGestionDeTiposContacto() {
 		this.agenda = Agenda.getInstance();
 		agenda.registrarObservador(this);
 		this.vistaTipoDeContacto = new VistaTiposDeContacto();
@@ -125,7 +125,7 @@ public class ControladorGestionDeTiposContacto implements ActionListener, Observ
 					new TipoDeContactoDTO(tiposDeContactoEnTabla.get(indexFilaSeleccionada).getId()));
 			if (resultado == false) 
 				JOptionPane.showMessageDialog(null,
-						"Error, el tipo de contacto no esta siendo utilizado.");
+						"Error, el tipo de contacto esta siendo utilizado.");
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null,
 					"Error, verifique que la etiqueta no este siendo utilizada en algun contacto");
