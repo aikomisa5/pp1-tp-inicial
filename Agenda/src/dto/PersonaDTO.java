@@ -1,6 +1,7 @@
 package dto;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 public class PersonaDTO 
 {
@@ -107,6 +108,12 @@ public class PersonaDTO
 
 	public void setDomicilio(DomicilioDTO domicilio) {
 		this.domicilio = domicilio;
+	}
+	
+	public String getFechaOrdenada() {
+		SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+		String formatString= format.format(this.fechaCumpleaños);
+		return formatString;
 	}
 
 	

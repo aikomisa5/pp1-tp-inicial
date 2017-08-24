@@ -55,7 +55,7 @@ public class ControladorPrincipal implements ActionListener, Observador {
 		
 		Object[] fila = { p.getNombre(), p.getTelefono(), p.getDomicilio().getCalle(), p.getDomicilio().getAltura(),
 				p.getDomicilio().getPiso(), p.getDomicilio().getDepartamento(),
-				p.getDomicilio().getLocalidad().getNombre(), p.getMail(), parsearFecha(p.getFechaCumpleaños()) ,
+				p.getDomicilio().getLocalidad().getNombre(), p.getMail(), p.getFechaOrdenada() ,
 				p.getTipoDeContacto().getNombre() };
 		vista.getModelPersonas().addRow(fila);
 	}
