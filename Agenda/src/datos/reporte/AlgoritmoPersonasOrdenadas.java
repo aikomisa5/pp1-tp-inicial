@@ -33,14 +33,23 @@ public class AlgoritmoPersonasOrdenadas {
 		
 		llenarListaPersonasDTO();
 		llenarListaPersonas(lista);
+		asignarSignoAPersonas(listaPersonas);
 		
 		Collections.sort(listaPersonas, new OrdenarPorDia());
 		
-	for (int i=0; i < listaPersonas.size(); i++){
-		System.out.println(listaPersonas.get(i).getFechaCumpleaños()); 
+		//XXX No olvidar borrar
+		for (int i=0; i < listaPersonas.size(); i++){
+			System.out.println(listaPersonas.get(i).getFechaCumpleaños()); 
+			System.out.println(listaPersonas.get(i).getSigno()); 
 		}
-		
+			
 		}
+	
+	public void asignarSignoAPersonas(ArrayList<PersonaDTOJasper> listaPersonas){
+		for (PersonaDTOJasper p : listaPersonas){
+			p.calcularYAsignarSigno(p.getFechaCumpleaños());
+		}
+	}
 
 	}
 
