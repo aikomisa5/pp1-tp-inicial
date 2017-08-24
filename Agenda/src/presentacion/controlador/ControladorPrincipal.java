@@ -2,6 +2,8 @@ package presentacion.controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.JOptionPane;
 import modelo.Agenda;
@@ -50,11 +52,18 @@ public class ControladorPrincipal implements ActionListener, Observador {
 	}
 
 	private void añadirPersonaATabla(PersonaDTO p) {
+		
 		Object[] fila = { p.getNombre(), p.getTelefono(), p.getDomicilio().getCalle(), p.getDomicilio().getAltura(),
 				p.getDomicilio().getPiso(), p.getDomicilio().getDepartamento(),
-				p.getDomicilio().getLocalidad().getNombre(), p.getMail(), p.getFechaCumpleaños(),
+				p.getDomicilio().getLocalidad().getNombre(), p.getMail(), parsearFecha(p.getFechaCumpleaños()) ,
 				p.getTipoDeContacto().getNombre() };
 		vista.getModelPersonas().addRow(fila);
+	}
+	
+	private String parsearFecha(Date fecha) {
+		SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+		String formatString= format.format(fecha);
+		return formatString;
 	}
 
 	public void actionPerformed(ActionEvent e) {
