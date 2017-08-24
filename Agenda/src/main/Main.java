@@ -1,5 +1,6 @@
 package main;
 
+import datos.reporte.AlgoritmoPersonasOrdenadas;
 import modelo.Agenda;
 import presentacion.controlador.ControladorPrincipal;
 import presentacion.vista.Principal;
@@ -14,5 +15,7 @@ public class Main
 		Agenda modelo = Agenda.getInstance();
 		ControladorPrincipal controlador = new ControladorPrincipal(vista, modelo);
 		controlador.inicializar();
+		AlgoritmoPersonasOrdenadas algoritmo = new AlgoritmoPersonasOrdenadas();
+		algoritmo.getListaPersonasOrdenadasPorDia();
 	}
 }

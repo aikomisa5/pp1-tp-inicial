@@ -1,5 +1,6 @@
 package persistencia.dao.mysql;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -43,7 +44,7 @@ public class PersonaDAOImpl implements PersonaDAO
 			statement.setString(1, persona.getNombre());
 			statement.setString(2, persona.getTelefono());
 			statement.setString(3, persona.getMail());
-			statement.setDate(4, persona.getFechaCumpleaños());
+			statement.setDate(4, (Date) persona.getFechaCumpleaños());
 			statement.setInt(5, persona.getTipoDeContacto().getId());
 			statement.setInt(6, persona.getDomicilio().getIdDomicilio());
 			if(statement.executeUpdate() > 0) //Si se ejecutÃ³ devuelvo true
@@ -123,7 +124,7 @@ public class PersonaDAOImpl implements PersonaDAO
 			statement.setString(1, persona.getNombre());
 			statement.setString(2, persona.getTelefono());
 			statement.setString(3, persona.getMail());
-			statement.setDate(4, persona.getFechaCumpleaños());
+			statement.setDate(4, (Date) persona.getFechaCumpleaños());
 			statement.setInt(5, persona.getTipoDeContacto().getId());
 			statement.setInt(6, persona.getDomicilio().getIdDomicilio());
 			statement.setInt(7, persona.getIdPersona());
