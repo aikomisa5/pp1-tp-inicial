@@ -30,7 +30,7 @@ public class AlgoritmoPersonasOrdenadas {
 	}
 	
 	public ArrayList<PersonaDTOJasper> getListaPersonasOrdenadasPorDia(){
-		
+		listaPersonas.clear();
 		llenarListaPersonasDTO();
 		llenarListaPersonas(lista);
 		asignarSignoAPersonas(listaPersonas);

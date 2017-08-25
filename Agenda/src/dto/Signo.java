@@ -12,5 +12,6 @@ public enum Signo {
 	Sagitario,
 	Capricornio,
 	Acuario,
-	Picis
+	Piscis;	
 }
+

@@ -3,9 +3,13 @@ package dto;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.List;
+import java.util.Vector;
+import java.util.stream.Collectors;
 
 import datos.reporte.SignoZodiaco;
+import modelo.Agenda;
 
 public class PersonaJasperDTO extends PersonaDTO implements Comparable<PersonaJasperDTO>{
 	
@@ -59,7 +63,7 @@ public class PersonaJasperDTO extends PersonaDTO implements Comparable<PersonaJa
 		if (diaFecha >= 21 && mesFecha == 1 || diaFecha <= 18 && mesFecha == 2)
 			signo= Signo.Acuario;
 		if (diaFecha >= 19 && mesFecha == 2 || diaFecha <= 20 && mesFecha == 3)
-			signo= Signo.Picis;
+			signo= Signo.Piscis;
 		return signo;
 	}
 
@@ -92,6 +96,16 @@ public class PersonaJasperDTO extends PersonaDTO implements Comparable<PersonaJa
 		return personasJasper;
 	}
 	
+	public String getSigno() {
+		return signo.toString();
+	}
+	
+	@SuppressWarnings("rawtypes")
+	public static Collection generarDatosDeReporte() {
+		Agenda  agenda = Agenda.getInstance();
+		Collection datosDeReporte = jasperizarPersonas(agenda.obtenerPersonas());		
+		return datosDeReporte;
+	}
 	
 
 	
