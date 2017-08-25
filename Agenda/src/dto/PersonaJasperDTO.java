@@ -67,13 +67,13 @@ public class PersonaJasperDTO extends PersonaDTO implements Comparable<PersonaJa
 		fecha2.set(Calendar.YEAR, 1000);
 		
 		
-		if(fecha1.get(Calendar.DAY_OF_MONTH) < fecha2.get(Calendar.DAY_OF_MONTH))
+		if(fecha1.get(Calendar.DAY_OF_MONTH) > fecha2.get(Calendar.DAY_OF_MONTH))
 			return 1;
-		else if(fecha1.get(Calendar.DAY_OF_MONTH) > fecha2.get(Calendar.DAY_OF_MONTH))
+		else if(fecha1.get(Calendar.DAY_OF_MONTH) < fecha2.get(Calendar.DAY_OF_MONTH))
 			return -1;
-		else if(fecha1.get(Calendar.MONTH) < fecha2.get(Calendar.MONTH))
-			return 1;
 		else if(fecha1.get(Calendar.MONTH) > fecha2.get(Calendar.MONTH))
+			return 1;
+		else if(fecha1.get(Calendar.MONTH) < fecha2.get(Calendar.MONTH))
 			return -1;
 		else 
 			return 0;
