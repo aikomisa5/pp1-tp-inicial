@@ -29,7 +29,7 @@ public class AlgoritmoPersonasOrdenadas {
 		}
 	}
 	
-	public void getListaPersonasOrdenadasPorDia(){
+	public ArrayList<PersonaDTOJasper> getListaPersonasOrdenadasPorDia(){
 		
 		llenarListaPersonasDTO();
 		llenarListaPersonas(lista);
@@ -37,17 +37,24 @@ public class AlgoritmoPersonasOrdenadas {
 		
 		Collections.sort(listaPersonas, new OrdenarPorDia());
 		
+		
+		return listaPersonas;
+		
+		/*
 		//XXX No olvidar borrar
 		for (int i=0; i < listaPersonas.size(); i++){
 			System.out.println(listaPersonas.get(i).getFechaCumpleaños()); 
 			System.out.println(listaPersonas.get(i).getSigno()); 
 		}
+		*/
 			
 		}
 	
 	public void asignarSignoAPersonas(ArrayList<PersonaDTOJasper> listaPersonas){
 		for (PersonaDTOJasper p : listaPersonas){
-			p.calcularYAsignarSigno(p.getFechaCumpleaños());
+			SignoZodiaco sig = null;
+			sig = p.calcularYAsignarSigno(p.getFechaCumpleaños());
+			p.setSigno(sig);
 		}
 	}
 

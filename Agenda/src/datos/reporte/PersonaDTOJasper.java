@@ -40,7 +40,7 @@ public class PersonaDTOJasper extends PersonaDTO{
 			this.signo = signo;
 	}
 
-	public void calcularYAsignarSigno(Date fechaCumpleaños){
+	public SignoZodiaco calcularYAsignarSigno(Date fechaCumpleaños){
 		
 		Calendar calFecha = Calendar.getInstance();
 	    calFecha.setTime(fechaCumpleaños);
@@ -52,30 +52,30 @@ public class PersonaDTOJasper extends PersonaDTO{
 	    System.out.println("El mes es: "+ mesFecha);
 		
 		if (diaFecha >= 21 && mesFecha == 3 || diaFecha <= 20 && mesFecha == 4)
-			this.signo = SignoZodiaco.ARIES;
+			return SignoZodiaco.ARIES;
 		if (diaFecha >= 21 && mesFecha == 4 || diaFecha <= 21 && mesFecha == 5)
-			this.signo = SignoZodiaco.TAURO;
+			return  SignoZodiaco.TAURO;
 		if (diaFecha >= 22 && mesFecha == 5 || diaFecha <= 21 && mesFecha == 6)
-			this.signo = SignoZodiaco.GÉMINIS;
+			return SignoZodiaco.GÉMINIS;
 		if (diaFecha >= 22 && mesFecha == 6 || diaFecha <= 22 && mesFecha == 7)
-			this.signo = SignoZodiaco.CÁNCER;
+			return SignoZodiaco.CÁNCER;
 		if (diaFecha >= 23 && mesFecha == 7 || diaFecha <= 23 && mesFecha == 8)
-			this.signo = SignoZodiaco.LEO;
+			return SignoZodiaco.LEO;
 		if (diaFecha >= 24 && mesFecha == 8 || diaFecha <= 23 && mesFecha == 9)
-			this.signo = SignoZodiaco.VIRGO;
+			return SignoZodiaco.VIRGO;
 		if (diaFecha >= 24 && mesFecha == 9 || diaFecha <= 23 && mesFecha == 10)
-			this.signo = SignoZodiaco.LIBRA;
+			return SignoZodiaco.LIBRA;
 		if (diaFecha >= 24 && mesFecha == 10 || diaFecha <= 22 && mesFecha == 11)
-			this.signo = SignoZodiaco.ESCORPIÓN;
+			return SignoZodiaco.ESCORPIÓN;
 		if (diaFecha >= 23 && mesFecha == 11 || diaFecha <= 21 && mesFecha == 12)
-			this.signo = SignoZodiaco.SAGITARIO;
+			return SignoZodiaco.SAGITARIO;
 		if (diaFecha >= 22 && mesFecha == 12 || diaFecha <= 20 && mesFecha == 1)
-			this.signo = SignoZodiaco.CAPRICORNIO;
+			return SignoZodiaco.CAPRICORNIO;
 		if (diaFecha >= 21 && mesFecha == 1 || diaFecha <= 18 && mesFecha == 2)
-			this.signo = SignoZodiaco.ACUARIO;
-		if (diaFecha >= 19 && mesFecha == 2 || diaFecha <= 20 && mesFecha == 3)
-			this.signo = SignoZodiaco.PISCIS;
-			
+			return SignoZodiaco.ACUARIO;
+		//if (diaFecha >= 19 && mesFecha == 2 || diaFecha <= 20 && mesFecha == 3)
+		else
+			return SignoZodiaco.PISCIS;			
 			
 			
 			

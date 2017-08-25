@@ -4,8 +4,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+
+import datos.reporte.*;
+import datos.reporte.AlgoritmoPersonasOrdenadas;
 import modelo.Agenda;
 import patrones.observer.Observador;
 import presentacion.reportes.ReporteAgenda;
@@ -19,6 +23,9 @@ public class ControladorPrincipal implements ActionListener, Observador {
 	private ControladorGestionLocalidades controladorLocalidades;
 	private ControladorGestionDeTiposContacto controladorTipos;
 	private ControladorContactos controladorContactos;
+	private AlgoritmoPersonasOrdenadas algoritmo;
+	private ArrayList<PersonaDTOJasper> personasConSigno;
+			
 
 	public ControladorPrincipal(Principal vista, Agenda agenda) {
 		this.vista = vista;
@@ -34,6 +41,8 @@ public class ControladorPrincipal implements ActionListener, Observador {
 		controladorLocalidades = ControladorGestionLocalidades.getInstance();
 		controladorTipos = ControladorGestionDeTiposContacto.getInstance();
 		controladorContactos = ControladorContactos.getInstance();
+		algoritmo = new AlgoritmoPersonasOrdenadas();
+		personasConSigno = new ArrayList<PersonaDTOJasper>();
 	}
 
 	public void inicializar() {
@@ -80,7 +89,8 @@ public class ControladorPrincipal implements ActionListener, Observador {
 						JOptionPane.ERROR_MESSAGE);
 
 		} else if (e.getSource() == vista.getBtnReporte()) {
-			ReporteAgenda reporte = new ReporteAgenda(agenda.obtenerPersonas());
+			personasConSigno = algoritmo.getListaPersonasOrdenadasPorDia();
+			ReporteAgenda reporte = new ReporteAgenda(personasConSigno);
 			reporte.mostrar();
 		} else if (e.getSource() == vista.getBtnEditar()) {
 			int indexFilaSeleccionada = vista.getTablaPersonas().getSelectedRow();
