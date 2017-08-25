@@ -1,7 +1,9 @@
 package dto;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import datos.reporte.SignoZodiaco;
 
@@ -16,6 +18,11 @@ public class PersonaJasperDTO extends PersonaDTO implements Comparable<PersonaJa
 		///usamos el constructor de PersonaDTO
 		super(nombre, telefono, mail, fechaCumpleaños, tipoDeContacto, domicilio);
 		//Usamos el metodo para calcular su signo
+		signo = calcularSigno(this.getFechaCumpleaños());
+	}
+	
+	public PersonaJasperDTO(PersonaDTO persona) {
+		super(persona.getIdPersona(), persona.getNombre(), persona.getTelefono(), persona.getMail(), persona.getFechaCumpleaños(), null, null);
 		signo = calcularSigno(this.getFechaCumpleaños());
 	}
 	
@@ -78,6 +85,14 @@ public class PersonaJasperDTO extends PersonaDTO implements Comparable<PersonaJa
 		else 
 			return 0;
 	}
+	
+	public List<PersonaJasperDTO> jasperizarPersonas(List<PersonaDTO>personas) {
+		List<PersonaJasperDTO>personasJasper=new ArrayList<>();
+		personas.forEach(p -> personasJasper.add(new PersonaJasperDTO(p)));
+		return personasJasper;
+	}
+	
+	
 
 	
 	
