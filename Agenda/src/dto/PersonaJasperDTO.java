@@ -3,6 +3,7 @@ package dto;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 
 import datos.reporte.SignoZodiaco;
@@ -89,8 +90,11 @@ public class PersonaJasperDTO extends PersonaDTO implements Comparable<PersonaJa
 	public static List<PersonaJasperDTO> jasperizarPersonas(List<PersonaDTO>personas) {
 		List<PersonaJasperDTO>personasJasper=new ArrayList<>();
 		personas.forEach(p -> personasJasper.add(new PersonaJasperDTO(p)));
+		Collections.sort(personasJasper);
 		return personasJasper;
 	}
+	
+	
 	
 	
 

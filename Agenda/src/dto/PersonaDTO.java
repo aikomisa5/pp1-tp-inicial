@@ -116,6 +116,50 @@ public class PersonaDTO
 		return formatString;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		PersonaDTO other = (PersonaDTO) obj;
+		if (domicilio == null) {
+			if (other.domicilio != null)
+				return false;
+		} else if (!domicilio.equals(other.domicilio))
+			return false;
+		if (fechaCumpleaños == null) {
+			if (other.fechaCumpleaños != null)
+				return false;
+		} else if (!fechaCumpleaños.equals(other.fechaCumpleaños))
+			return false;
+		if (idPersona != other.idPersona)
+			return false;
+		if (mail == null) {
+			if (other.mail != null)
+				return false;
+		} else if (!mail.equals(other.mail))
+			return false;
+		if (nombre == null) {
+			if (other.nombre != null)
+				return false;
+		} else if (!nombre.equals(other.nombre))
+			return false;
+		if (telefono == null) {
+			if (other.telefono != null)
+				return false;
+		} else if (!telefono.equals(other.telefono))
+			return false;
+		if (tipoDeContacto == null) {
+			if (other.tipoDeContacto != null)
+				return false;
+		} else if (!tipoDeContacto.equals(other.tipoDeContacto))
+			return false;
+		return true;
+	}
+
 	
 		
 }
