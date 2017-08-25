@@ -90,7 +90,6 @@ public class ControladorPrincipal implements ActionListener, Observador {
 
 		} else if (e.getSource() == vista.getBtnReporte()) {
 			personasConSigno = algoritmo.getListaPersonasOrdenadasPorDia();
-			//ReporteAgenda reporte = new ReporteAgenda(agenda.obtenerPersonas());
 			ReporteAgenda reporte = new ReporteAgenda(personasConSigno);
 			reporte.mostrar();
 		} else if (e.getSource() == vista.getBtnEditar()) {
