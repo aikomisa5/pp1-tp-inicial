@@ -86,7 +86,7 @@ public class PersonaJasperDTO extends PersonaDTO implements Comparable<PersonaJa
 			return 0;
 	}
 	
-	public List<PersonaJasperDTO> jasperizarPersonas(List<PersonaDTO>personas) {
+	public static List<PersonaJasperDTO> jasperizarPersonas(List<PersonaDTO>personas) {
 		List<PersonaJasperDTO>personasJasper=new ArrayList<>();
 		personas.forEach(p -> personasJasper.add(new PersonaJasperDTO(p)));
 		return personasJasper;
