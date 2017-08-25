@@ -4,12 +4,10 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
-import java.util.Vector;
-import java.util.stream.Collectors;
 
 import datos.reporte.SignoZodiaco;
-import modelo.Agenda;
 
 public class PersonaJasperDTO extends PersonaDTO implements Comparable<PersonaJasperDTO>{
 	
@@ -93,19 +91,12 @@ public class PersonaJasperDTO extends PersonaDTO implements Comparable<PersonaJa
 	public static List<PersonaJasperDTO> jasperizarPersonas(List<PersonaDTO>personas) {
 		List<PersonaJasperDTO>personasJasper=new ArrayList<>();
 		personas.forEach(p -> personasJasper.add(new PersonaJasperDTO(p)));
+		Collections.sort(personasJasper);
 		return personasJasper;
 	}
 	
-	public String getSigno() {
-		return signo.toString();
-	}
 	
-	@SuppressWarnings("rawtypes")
-	public static Collection generarDatosDeReporte() {
-		Agenda  agenda = Agenda.getInstance();
-		Collection datosDeReporte = jasperizarPersonas(agenda.obtenerPersonas());		
-		return datosDeReporte;
-	}
+	
 	
 
 	
