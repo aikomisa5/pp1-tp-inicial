@@ -10,6 +10,5 @@
 	<classpathentry kind="lib" path="lib/commons-logging-1.1.1.jar"/>
 	<classpathentry kind="lib" path="lib/swingx-1.6.1.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="D:/Mis Cosas/Cursada 2-2017/jasperreports-6.4.1/dist/jasperreports-6.4.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
