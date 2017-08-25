@@ -12,7 +12,7 @@ public class Conexion
 	{
 		try
 		{
-			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/tpi_g15","root","sarasa");
+			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/tpi_g2","root","sarasa");
 			System.out.println("Conexion exitosa");
 		}
 		catch(Exception e)
