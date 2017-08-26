@@ -36,7 +36,7 @@
 					</graphicElement>
 				</rectangle>
 				<textField>
-					<reportElement uuid="0a1232d7-9cbe-4072-a90f-e3f6bb115ca6" x="20" y="0" width="70" height="30"/>
+					<reportElement uuid="0a1232d7-9cbe-4072-a90f-e3f6bb115ca6" x="20" y="0" width="340" height="30"/>
 					<textElement>
 						<font fontName="Serif" size="16" isBold="true" isUnderline="true"/>
 					</textElement>
