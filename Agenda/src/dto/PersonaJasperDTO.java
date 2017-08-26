@@ -94,6 +94,10 @@ public class PersonaJasperDTO extends PersonaDTO implements Comparable<PersonaJa
 		return personasJasper;
 	}
 	
+	public String getSigno() {
+		return this.signo.toString();
+	}
+	
 	
 	
 	
