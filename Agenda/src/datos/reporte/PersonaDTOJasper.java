@@ -7,54 +7,38 @@ import dto.DomicilioDTO;
 import dto.PersonaDTO;
 import dto.TipoDeContactoDTO;
 
-public class PersonaDTOJasper extends PersonaDTO{
-
-	String nombre;
-	String telefono;
-	String mail;
-	Date fechaCumpleaños;
-	TipoDeContactoDTO tipoDeContacto;
-	DomicilioDTO domicilio;
+public class PersonaDTOJasper extends PersonaDTO implements Comparable<PersonaDTOJasper> {
 	SignoZodiaco signo;
-	
+
 	public PersonaDTOJasper(String nombre, String telefono, String mail, Date fechaCumpleaños,
 			TipoDeContactoDTO tipoDeContacto, DomicilioDTO domicilio, SignoZodiaco SignoZodiaco) {
 		super(nombre, telefono, mail, fechaCumpleaños, tipoDeContacto, domicilio);
-		// TODO Auto-generated constructor stub
-		
-		nombre = this.nombre;
-		telefono = this.telefono;
-		mail = this.mail;
-		fechaCumpleaños = this.fechaCumpleaños;
-		tipoDeContacto = this.tipoDeContacto;
-		domicilio = this.domicilio;
+
 		SignoZodiaco = this.signo;
 	}
 
-	
 	public SignoZodiaco getSigno() {
-			return signo;
+		return signo;
 	}
 
 	public void setSigno(SignoZodiaco signo) {
-			this.signo = signo;
+		this.signo = signo;
 	}
 
-	public SignoZodiaco calcularYAsignarSigno(Date fechaCumpleaños){
-		
+	public SignoZodiaco calcularYAsignarSigno(Date fechaCumpleaños) {
+
 		Calendar calFecha = Calendar.getInstance();
-	    calFecha.setTime(fechaCumpleaños);
-	    int añoFecha = calFecha.get(Calendar.YEAR);
-	    int mesFecha = calFecha.get(Calendar.MONTH)+1; //+1 porque si es mes 8, trae 7
-	    int diaFecha = calFecha.get(Calendar.DATE);
-	    
-	    System.out.println("El dia de mes es: "+ diaFecha);
-	    System.out.println("El mes es: "+ mesFecha);
-		
+		calFecha.setTime(fechaCumpleaños);
+		int mesFecha = calFecha.get(Calendar.MONTH) + 1; // +1 porque si es mes 8, trae 7
+		int diaFecha = calFecha.get(Calendar.DATE);
+
+		System.out.println("El dia de mes es: " + diaFecha);
+		System.out.println("El mes es: " + mesFecha);
+
 		if (diaFecha >= 21 && mesFecha == 3 || diaFecha <= 20 && mesFecha == 4)
 			return SignoZodiaco.ARIES;
 		if (diaFecha >= 21 && mesFecha == 4 || diaFecha <= 21 && mesFecha == 5)
-			return  SignoZodiaco.TAURO;
+			return SignoZodiaco.TAURO;
 		if (diaFecha >= 22 && mesFecha == 5 || diaFecha <= 21 && mesFecha == 6)
 			return SignoZodiaco.GÉMINIS;
 		if (diaFecha >= 22 && mesFecha == 6 || diaFecha <= 22 && mesFecha == 7)
@@ -73,12 +57,33 @@ public class PersonaDTOJasper extends PersonaDTO{
 			return SignoZodiaco.CAPRICORNIO;
 		if (diaFecha >= 21 && mesFecha == 1 || diaFecha <= 18 && mesFecha == 2)
 			return SignoZodiaco.ACUARIO;
-		//if (diaFecha >= 19 && mesFecha == 2 || diaFecha <= 20 && mesFecha == 3)
+		// if (diaFecha >= 19 && mesFecha == 2 || diaFecha <= 20 && mesFecha == 3)
 		else
-			return SignoZodiaco.PISCIS;			
-			
-			
-			
+			return SignoZodiaco.PISCIS;
+
+	}
+
+	@Override
+	public int compareTo(PersonaDTOJasper o) {
+		Calendar fecha1 = Calendar.getInstance();
+		fecha1.setTime(this.getFechaCumpleaños());
+		fecha1.set(Calendar.YEAR, 1000);
+
+		Calendar fecha2 = Calendar.getInstance();
+		fecha2.setTime(o.getFechaCumpleaños());
+		fecha2.set(Calendar.YEAR, 1000);
+
+		if (fecha1.get(Calendar.MONTH) > fecha2.get(Calendar.MONTH))
+			return 1;
+		else if (fecha1.get(Calendar.MONTH) < fecha2.get(Calendar.MONTH))
+			return -1;
+		else if (fecha1.get(Calendar.DAY_OF_MONTH) > fecha2.get(Calendar.DAY_OF_MONTH))
+			return 1;
+		else if (fecha1.get(Calendar.DAY_OF_MONTH) < fecha2.get(Calendar.DAY_OF_MONTH))
+			return -1;
+		else
+			return 0;
+
 	}
 
 }

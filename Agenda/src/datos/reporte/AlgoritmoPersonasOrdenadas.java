@@ -35,7 +35,7 @@ public class AlgoritmoPersonasOrdenadas {
 		llenarListaPersonas(lista);
 		asignarSignoAPersonas(listaPersonas);
 		
-		Collections.sort(listaPersonas, new OrdenarPorDia());
+		Collections.sort(listaPersonas);
 		
 		
 		return listaPersonas;
