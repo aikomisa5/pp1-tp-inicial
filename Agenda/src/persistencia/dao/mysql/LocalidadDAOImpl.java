@@ -6,9 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mysql.jdbc.Statement;
-
-import dto.DomicilioDTO;
 import dto.LocalidadDTO;
 import persistencia.conexion.Conexion;
 import persistencia.dao.interfaz.LocalidadDAO;
@@ -30,7 +27,7 @@ public class LocalidadDAOImpl implements LocalidadDAO{
 		ResultSet rs;
 		try 
 		{
-			statement = conexion.getSQLConexion().prepareStatement(insertDomicilio, Statement.RETURN_GENERATED_KEYS);
+			statement = conexion.getSQLConexion().prepareStatement(insertDomicilio, java.sql.Statement.RETURN_GENERATED_KEYS);
 			statement.setString(1, localidad.getNombre());
 			
 			if(statement.executeUpdate() > 0) //Si se ejecutó devuelvo true
@@ -101,7 +98,7 @@ public class LocalidadDAOImpl implements LocalidadDAO{
 	public List<LocalidadDTO> readAll() {
 		PreparedStatement statement;
 		ResultSet resultSet; //Guarda el resultado de la query
-		ArrayList<LocalidadDTO> localidades = new ArrayList<LocalidadDTO>();
+		ArrayList<LocalidadDTO> localidades = new ArrayList<>();
 		try 
 		{
 			statement = conexion.getSQLConexion().prepareStatement(readAll);

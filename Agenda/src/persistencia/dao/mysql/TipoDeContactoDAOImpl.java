@@ -6,9 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mysql.jdbc.Statement;
-
-import dto.LocalidadDTO;
 import dto.TipoDeContactoDTO;
 import persistencia.conexion.Conexion;
 import persistencia.dao.interfaz.TipoDeContactoDAO;
@@ -30,7 +27,7 @@ public class TipoDeContactoDAOImpl implements TipoDeContactoDAO {
 		ResultSet rs;
 		try 
 		{
-			statement = conexion.getSQLConexion().prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
+			statement = conexion.getSQLConexion().prepareStatement(insert, java.sql.Statement.RETURN_GENERATED_KEYS);
 			statement.setString(1, tipoDeContacto.getNombre());
 			
 			
@@ -101,7 +98,7 @@ public class TipoDeContactoDAOImpl implements TipoDeContactoDAO {
 	public List<TipoDeContactoDTO> readAll() {
 		PreparedStatement statement;
 		ResultSet resultSet; //Guarda el resultado de la query
-		ArrayList<TipoDeContactoDTO> localidades = new ArrayList<TipoDeContactoDTO>();
+		ArrayList<TipoDeContactoDTO> localidades = new ArrayList<>();
 		try 
 		{
 			statement = conexion.getSQLConexion().prepareStatement(readAll);

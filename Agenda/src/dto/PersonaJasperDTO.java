@@ -3,11 +3,8 @@ package dto;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-
-import datos.reporte.SignoZodiaco;
 
 public class PersonaJasperDTO extends PersonaDTO implements Comparable<PersonaJasperDTO>{
 	
@@ -31,7 +28,7 @@ public class PersonaJasperDTO extends PersonaDTO implements Comparable<PersonaJa
 	public static Signo calcularSigno(Date fechaNacimiento) {
 		Calendar calFecha = Calendar.getInstance();
 	    calFecha.setTime(fechaNacimiento);
-	    int añoFecha = calFecha.get(Calendar.YEAR);
+	    calFecha.get(Calendar.YEAR);
 	    int mesFecha = calFecha.get(Calendar.MONTH)+1; //+1 porque si es mes 8, trae 7
 	    int diaFecha = calFecha.get(Calendar.DAY_OF_MONTH);
 	    Signo signo= null;

@@ -4,14 +4,11 @@ import static org.junit.Assert.*;
 
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.Test;
 
 import dto.DomicilioDTO;
 import dto.PersonaDTO;
 import dto.TipoDeContactoDTO;
-import persistencia.dao.interfaz.PersonaDAO;
 
 public class PersonaDAOImplTest {
 	PersonaDAOImpl dao = new PersonaDAOImpl();

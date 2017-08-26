@@ -75,6 +75,7 @@ public class ControladorPrincipal implements ActionListener, Observador {
 		return formatString;
 	}
 
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == vista.getBtnAgregar()) {
 			controladorContactos.abrirVentana(null);

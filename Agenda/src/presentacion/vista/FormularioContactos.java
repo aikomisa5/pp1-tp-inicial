@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
 import org.jdesktop.swingx.JXDatePicker;
@@ -93,7 +94,7 @@ public class FormularioContactos extends JFrame {
 		super();
 		this.controlador = controlador;
 
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 409, 462);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.LIGHT_GRAY);

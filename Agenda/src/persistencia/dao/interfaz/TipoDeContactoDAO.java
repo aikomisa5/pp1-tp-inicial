@@ -2,7 +2,6 @@ package persistencia.dao.interfaz;
 
 import java.util.List;
 
-import dto.DomicilioDTO;
 import dto.TipoDeContactoDTO;
 
 public interface TipoDeContactoDAO {

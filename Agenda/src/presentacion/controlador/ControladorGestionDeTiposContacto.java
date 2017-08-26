@@ -6,12 +6,10 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
-import dto.LocalidadDTO;
 import dto.TipoDeContactoDTO;
 import modelo.Agenda;
 import modelo.Validador;
 import patrones.observer.Observador;
-import presentacion.vista.VistaLocalidades;
 import presentacion.vista.VistaTiposDeContacto;
 
 public class ControladorGestionDeTiposContacto implements ActionListener, Observador {
