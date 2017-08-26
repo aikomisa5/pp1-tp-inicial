@@ -15,7 +15,7 @@ public class PersonaJasperDTOTest {
 	public void testCompareTo() {
 		PersonaJasperDTO persona1 = new PersonaJasperDTO("dasda", "dsadas", "dasdas", Date.valueOf("1993-07-04"),null, null);
 		PersonaJasperDTO persona2 = new PersonaJasperDTO("dasda", "dsadas", "dasdas", Date.valueOf("1995-01-03"),null, null);
-		PersonaJasperDTO persona3 = new PersonaJasperDTO("dasda", "dsadas", "dasdas", Date.valueOf("1998-06-07"),null, null);
+		PersonaJasperDTO persona3 = new PersonaJasperDTO("dasda", "dsadas", "dasdas", Date.valueOf("1998-08-07"),null, null);
 		PersonaJasperDTO persona4 = new PersonaJasperDTO("dasda", "dsadas", "dasdas", Date.valueOf("1991-07-05"),null, null);
 		PersonaJasperDTO persona5 = new PersonaJasperDTO("dasda", "dsadas", "dasdas", Date.valueOf("1993-07-05"),null, null);
 		
@@ -38,7 +38,7 @@ public class PersonaJasperDTOTest {
 	public void compareTo() {
 		PersonaDTO persona1 = new PersonaDTO("dasda", "dsadas", "dasdas", Date.valueOf("1993-07-04"),null, null);
 		PersonaDTO persona2 = new PersonaDTO("dasda", "dsadas", "dasdas", Date.valueOf("1995-01-03"),null, null);
-		PersonaDTO persona3 = new PersonaDTO("dasda", "dsadas", "dasdas", Date.valueOf("1998-06-07"),null, null);
+		PersonaDTO persona3 = new PersonaDTO("dasda", "dsadas", "dasdas", Date.valueOf("1998-08-07"),null, null);
 		PersonaDTO persona4 = new PersonaDTO("dasda", "dsadas", "dasdas", Date.valueOf("1991-07-05"),null, null);
 		PersonaDTO persona5 = new PersonaDTO("dasda", "dsadas", "dasdas", Date.valueOf("1993-07-05"),null, null);
 		
