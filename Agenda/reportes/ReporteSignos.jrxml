@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version last-->
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteSignos" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" uuid="b2d43651-37d7-4972-b17b-5a94a91cfce8">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<queryString language="SQL">
@@ -21,22 +21,25 @@
 		<fieldDescription><![CDATA[telefono]]></fieldDescription>
 	</field>
 	<sortField name="signo"/>
-	<variable name="signo1" class="java.lang.Integer" resetType="Group" resetGroup="Group1" calculation="Count">
+	<variable name="subtotalSigno" class="java.lang.Integer" resetType="Group" resetGroup="Group1" calculation="Count">
 		<variableExpression><![CDATA[$F{signo}]]></variableExpression>
 	</variable>
-	<variable name="otroSigno" class="java.lang.String"/>
+	<variable name="Total" class="java.lang.Integer" incrementType="Group" incrementGroup="Group1" calculation="Sum">
+		<variableExpression><![CDATA[$V{subtotalSigno}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
 	<group name="Group1">
 		<groupExpression><![CDATA[$F{signo}]]></groupExpression>
 		<groupHeader>
 			<band height="32">
 				<rectangle>
-					<reportElement uuid="626de2e9-2003-4983-b78d-7be80ae80bf2" mode="Opaque" x="-1" y="0" width="551" height="30" backcolor="#0080FF"/>
+					<reportElement mode="Opaque" x="-1" y="0" width="551" height="30" backcolor="#0080FF" uuid="626de2e9-2003-4983-b78d-7be80ae80bf2"/>
 					<graphicElement>
 						<pen lineWidth="0.0"/>
 					</graphicElement>
 				</rectangle>
 				<textField>
-					<reportElement uuid="0a1232d7-9cbe-4072-a90f-e3f6bb115ca6" x="20" y="0" width="340" height="30"/>
+					<reportElement x="20" y="0" width="340" height="30" uuid="0a1232d7-9cbe-4072-a90f-e3f6bb115ca6"/>
 					<textElement>
 						<font fontName="Serif" size="16" isBold="true" isUnderline="true"/>
 					</textElement>
@@ -45,27 +48,27 @@
 			</band>
 		</groupHeader>
 		<groupFooter>
-			<band height="30">
+			<band height="50">
 				<rectangle>
-					<reportElement uuid="6fb50429-dad0-4e68-8a20-556fd54a5519" x="0" y="0" width="555" height="30"/>
+					<reportElement x="0" y="0" width="555" height="30" uuid="6fb50429-dad0-4e68-8a20-556fd54a5519"/>
 					<graphicElement>
 						<pen lineWidth="0.0"/>
 					</graphicElement>
 				</rectangle>
-				<textField>
-					<reportElement uuid="bc14f416-f208-48e9-acb5-17138850bf6a" x="460" y="10" width="80" height="20"/>
-					<textElement>
-						<font size="12"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$V{signo1}]]></textFieldExpression>
-				</textField>
 				<staticText>
-					<reportElement uuid="c3dcb63a-97bb-4daf-86d9-aaae7edb16a1" x="410" y="10" width="50" height="20"/>
+					<reportElement x="360" y="10" width="70" height="20" uuid="c3dcb63a-97bb-4daf-86d9-aaae7edb16a1"/>
 					<textElement>
 						<font size="14" isBold="true"/>
 					</textElement>
-					<text><![CDATA[Total:]]></text>
+					<text><![CDATA[Subtotal:]]></text>
 				</staticText>
+				<textField>
+					<reportElement positionType="FixRelativeToBottom" x="430" y="10" width="122" height="20" uuid="55e5b4ec-abcf-405c-90ed-b776efddfb35"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{subtotalSigno}]]></textFieldExpression>
+				</textField>
 			</band>
 		</groupFooter>
 	</group>
@@ -75,20 +78,18 @@
 	<title>
 		<band height="45" splitType="Stretch">
 			<staticText>
-				<reportElement uuid="4dfddb6e-1669-46fb-aae3-76876e3af334" x="150" y="20" width="240" height="25"/>
+				<reportElement x="150" y="20" width="240" height="25" uuid="4dfddb6e-1669-46fb-aae3-76876e3af334"/>
 				<textElement textAlignment="Center">
 					<font fontName="Serif" size="18" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Reporte de Signos de Personas]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="a9c3b98b-40ff-4a72-a583-7f08edf078fe" x="5" y="0" width="95" height="20"/>
-				<textElement/>
+				<reportElement x="5" y="0" width="95" height="20" uuid="a9c3b98b-40ff-4a72-a583-7f08edf078fe"/>
 				<text><![CDATA[Reporte generado el:]]></text>
 			</staticText>
 			<textField pattern="d/M/yy">
-				<reportElement uuid="75cb8dea-855a-4865-b3d0-4e86b4393bf1" x="100" y="0" width="110" height="20"/>
-				<textElement/>
+				<reportElement x="100" y="0" width="110" height="20" uuid="75cb8dea-855a-4865-b3d0-4e86b4393bf1"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 		</band>
@@ -96,7 +97,7 @@
 	<pageHeader>
 		<band height="35" splitType="Stretch">
 			<staticText>
-				<reportElement uuid="264ca248-7a05-4647-8100-4c036674666a" x="60" y="10" width="420" height="23"/>
+				<reportElement x="60" y="10" width="420" height="23" uuid="264ca248-7a05-4647-8100-4c036674666a"/>
 				<textElement textAlignment="Center">
 					<font size="16"/>
 				</textElement>
@@ -107,30 +108,30 @@
 	<columnHeader>
 		<band height="34" splitType="Stretch">
 			<frame>
-				<reportElement uuid="69131558-90ce-4e83-8684-884119feb6a7" x="0" y="0" width="550" height="30"/>
+				<reportElement x="0" y="0" width="550" height="30" uuid="69131558-90ce-4e83-8684-884119feb6a7"/>
 				<staticText>
-					<reportElement uuid="9e23a124-d6ff-4fd6-972e-83d402889ca4" x="20" y="10" width="100" height="20"/>
+					<reportElement x="20" y="10" width="100" height="20" uuid="9e23a124-d6ff-4fd6-972e-83d402889ca4"/>
 					<textElement>
 						<font size="14" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Fecha de Nac.]]></text>
 				</staticText>
 				<staticText>
-					<reportElement uuid="39b3cf9a-681c-4377-8e3c-539e507fb282" x="140" y="10" width="160" height="20"/>
+					<reportElement x="140" y="10" width="160" height="20" uuid="39b3cf9a-681c-4377-8e3c-539e507fb282"/>
 					<textElement>
 						<font size="14" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Nombre]]></text>
 				</staticText>
 				<staticText>
-					<reportElement uuid="4d10cf90-ffaf-4482-8629-a15207a48542" x="320" y="10" width="70" height="20"/>
+					<reportElement x="320" y="10" width="70" height="20" uuid="4d10cf90-ffaf-4482-8629-a15207a48542"/>
 					<textElement>
 						<font size="14" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Teléfono]]></text>
 				</staticText>
 				<staticText>
-					<reportElement uuid="e917d5b7-ebff-4543-a9b9-f476673a58bd" x="410" y="10" width="130" height="20"/>
+					<reportElement x="410" y="10" width="130" height="20" uuid="e917d5b7-ebff-4543-a9b9-f476673a58bd"/>
 					<textElement>
 						<font size="14" isBold="true"/>
 					</textElement>
@@ -142,30 +143,30 @@
 	<detail>
 		<band height="35" splitType="Stretch">
 			<frame>
-				<reportElement uuid="fbc12300-0931-40e1-b698-1c5a0ee73af6" x="5" y="0" width="550" height="30"/>
+				<reportElement x="5" y="0" width="550" height="30" uuid="fbc12300-0931-40e1-b698-1c5a0ee73af6"/>
 				<textField pattern="d/M/yy">
-					<reportElement uuid="dc9cc4db-8b3b-4097-aee3-782286bb5c06" x="15" y="10" width="100" height="20"/>
+					<reportElement x="15" y="10" width="100" height="20" uuid="dc9cc4db-8b3b-4097-aee3-782286bb5c06"/>
 					<textElement>
 						<font size="12"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{fechaCumpleaños}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement uuid="b99dede0-3914-4a53-bff5-7b4592405d51" x="135" y="10" width="160" height="20"/>
+					<reportElement x="135" y="10" width="160" height="20" uuid="b99dede0-3914-4a53-bff5-7b4592405d51"/>
 					<textElement>
 						<font size="12"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement uuid="30453985-c77f-4af7-85e3-47b704dd1d30" x="310" y="10" width="70" height="20"/>
+					<reportElement x="310" y="10" width="70" height="20" uuid="30453985-c77f-4af7-85e3-47b704dd1d30"/>
 					<textElement>
 						<font size="12"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement uuid="abc10809-d63d-4cac-afea-cf66662c8839" x="405" y="10" width="130" height="20"/>
+					<reportElement x="405" y="10" width="130" height="20" uuid="abc10809-d63d-4cac-afea-cf66662c8839"/>
 					<textElement>
 						<font size="12"/>
 					</textElement>
@@ -184,22 +185,39 @@
 		<band height="400" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 			<pieChart>
-				<chart evaluationTime="Report">
-					<reportElement uuid="15cc76d5-5d36-4c5e-a4c0-ad57b774a508" x="216" y="79" width="200" height="200"/>
-					<chartTitle/>
+				<chart evaluationTime="Report" theme="default">
+					<reportElement positionType="FixRelativeToBottom" x="-3" y="60" width="555" height="340" uuid="08ffe437-f99a-4869-a63b-3376aa365c97"/>
+					<chartTitle>
+						<font size="19"/>
+						<titleExpression><![CDATA["Porcentaje de contactos por signo"]]></titleExpression>
+					</chartTitle>
 					<chartSubtitle/>
 					<chartLegend/>
 				</chart>
 				<pieDataset>
 					<dataset incrementType="Group" incrementGroup="Group1"/>
 					<keyExpression><![CDATA[$F{signo}]]></keyExpression>
-					<valueExpression><![CDATA[$V{signo1}]]></valueExpression>
+					<valueExpression><![CDATA[$V{subtotalSigno}]]></valueExpression>
 				</pieDataset>
-				<piePlot>
+				<piePlot labelFormat="{2}">
 					<plot/>
 					<itemLabel/>
 				</piePlot>
 			</pieChart>
+			<staticText>
+				<reportElement x="330" y="0" width="140" height="30" uuid="18c76f6c-b39c-4535-89e7-c076c4c0ddff"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Total de contactos:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="470" y="1" width="85" height="30" uuid="5264bdda-7115-4348-8a31-6b153958a63e"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{Total}]]></textFieldExpression>
+			</textField>
 		</band>
 	</summary>
 </jasperReport>
