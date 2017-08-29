@@ -17,34 +17,34 @@ public class GeneradorDeDatos {
 			"Nathan", "Tania", "Lory", "Eladia", "Kitty", "Elyse", "Kandice", "Charlene", "Isobel", "Morris",
 			"Rosalina", "Narcisa", "Eun", "Alda", "Marilou", "Beatrice", "Marcy", "Margery", "Bradley			",
 			"Raeann", "Katheryn", "Brandy", "Hulda" };
-	private static String[] calles = { "lima", "buenos aires", "gaspar campos", "ecuador", "colombia", "san martÃ­n",
+	private static String[] calles = { "lima", "buenos aires", "gaspar campos", "ecuador", "colombia", "san martín",
 			"quito", "calle 1", "calle2", "calle 3" };
-	private static String[] localidades = { "17 de Agosto", "25 de Mayo", "9 de Julio / La Niï¿½a", "Acassuso",
-			"Aguas Verdes", "Alberti", "Arenas Verdes", "Arrecifes", "Avellaneda", "Ayacucho", "Azul", "Bahï¿½a Blanca",
-			"Bahï¿½a San Blas", "Balcarce", "Balneario Marisol", "Balneario Orense", "Balneario Reta",
-			"Balneario San Cayetano", "Baradero", "Bella Vista", "Benito Juï¿½rez", "Berazategui", "Berisso", "Boulogne",
-			"Bragado", "Brandsen", "Campana", "Capilla del Seï¿½or", "Capital Federal", "Capitï¿½n Sarmiento", "Carapachay",
-			"Carhue", "Carhuï¿½", "Carlos Keen", "Carmen de Areco", "Carmen de Patagones", "Caseros", "Castelar",
-			"Castelli", "Chacabuco", "Chascomï¿½s", "Chivilcoy", "City Bell", "Ciudadela", "Claromecï¿½", "Colï¿½n",
-			"Coronel Dorrego", "Coronel Pringles", "Coronel Suï¿½rez", "Darregueira", "Dunamar", "Escobar", "Ezeiza",
-			"Florencio Varela", "Florida", "Fortï¿½n Mercedes", "Garin", "General Arenales", "General Belgrano",
-			"General Madariaga", "General Villegas", "Gral. Daniel Cerri", "Gran Buenos Aires", "Guaminï¿½", "Haedo",
-			"Huanguelen", "Hurlingham", "Isla Martï¿½n Garcï¿½a", "Ituzaingo", "Junï¿½n", "La Plata", "La Tablada",
-			"Laferrere", "Lanus", "Laprida", "Las Flores", "Las Gaviotas", "Las Toninas", "Lima", "Lisandro Olmos",
-			"Llavallol", "Lobos", "Lomas de Zamora", "Los Toldos - Gral. Viamonte", "Los Polvorines", "Lucila del Mar",
-			"Luis Guillï¿½n", "Lujï¿½n", "Magdalena", "Maipï¿½", "Mar Azul", "Mar Chiquita", "Mar de Ajï¿½", "Mar de Cobo",
-			"Mar del Plata", "Mar del Sud", "Mar del Tuyï¿½", "Martinez", "Mï¿½danos / Laguna Chasicï¿½", "Mercedes", "Merlo",
-			"Miramar", "Monte Hermoso", "Moreno", "Morï¿½n", "Munro", "Navarro", "Necochea", "Nueva Atlantis",
-			"Olavarrï¿½a", "Olivos", "Open Door", "Ostende", "Pedro Luro", "Pehuajï¿½", "Pehuen Cï¿½", "Pergamino", "Pigï¿½ï¿½",
-			"Pilar", "Pinamar", "Provincia de Buenos Aires", "Puan", "Punta Alta", "Punta Indio", "Punta Lara",
-			"Quequï¿½n", "Quilmes", "Ramallo", "Ramos Mejï¿½a", "Ranchos", "Rauch", "Rivadavia", "Rojas", "Roque Pï¿½rez",
-			"Saenz Peï¿½a", "Saladillo", "Salto", "San Antonio de Areco", "San Bernardo", "San Cayetano",
-			"San Clemente del Tuyï¿½", "San Fernando", "San Isidro", "San Justo", "San Martin", "San Miguel del Monte",
-			"San Nicolï¿½s", "San Pedro", "San Vicente", "Santa Clara del Mar", "Santa Teresita", "Sarandï¿½",
-			"Sierra de la Ventana", "Sierra de los Padres", "Sierras de los Padres", "Tandil", "Tapalquï¿½", "Temperley",
-			"Tigre", "Tornquist / Ruta Prov. 76", "Trenque Lauquen", "Tres Arroyos", "Turdera", "Valentin Alsina",
-			"Vicente Lopez", "Victoria", "Villa Ballester", "Villa Gesell", "Villa Lynch", "Villa Serrana La Gruta",
-			"Villa Ventana", "Villalonga", "Wilde", "Zï¿½rate" };
+	private static String[] localidades = { "17 de Agosto", "25 de Mayo", "9 de Julio / La Niña", "Acassuso", "Aguas Verdes",
+  			"Alberti", "Arenas Verdes", "Arrecifes", "Avellaneda", "Ayacucho", "Azul", "Bahía Blanca", "Bahía San Blas",
+  			"Balcarce", "Balneario Marisol", "Balneario Orense", "Balneario Reta", "Balneario San Cayetano", "Baradero",
+ 			"Bella Vista", "Benito Juárez", "Berazategui", "Berisso", "Boulogne", "Bragado", "Brandsen", "Campana",
+ 			"Capilla del Señor", "Capital Federal", "Capitán Sarmiento", "Carapachay", "Carhue", "Carhué",
+ 			"Carlos Keen", "Carmen de Areco", "Carmen de Patagones", "Caseros", "Castelar", "Castelli", "Chacabuco",
+ 			"Chascomús", "Chivilcoy", "City Bell", "Ciudadela", "Claromecó", "Colón", "Coronel Dorrego",
+ 			"Coronel Pringles", "Coronel Suárez", "Darregueira", "Dunamar", "Escobar", "Ezeiza", "Florencio Varela",
+ 			"Florida", "Fortín Mercedes", "Garin", "General Arenales", "General Belgrano", "General Madariaga",
+ 			"General Villegas", "Gral. Daniel Cerri", "Gran Buenos Aires", "Guaminí", "Haedo", "Huanguelen",
+ 			"Hurlingham", "Isla Martín García", "Ituzaingo", "Junín", "La Plata", "La Tablada", "Laferrere", "Lanus",
+ 			"Laprida", "Las Flores", "Las Gaviotas", "Las Toninas", "Lima", "Lisandro Olmos", "Llavallol", "Lobos",
+ 			"Lomas de Zamora", "Los Toldos - Gral. Viamonte", "Los Polvorines", "Lucila del Mar", "Luis Guillón",
+ 			"Luján", "Magdalena", "Maipú", "Mar Azul", "Mar Chiquita", "Mar de Ajó", "Mar de Cobo", "Mar del Plata",
+ 			"Mar del Sud", "Mar del Tuyú", "Martinez", "Médanos / Laguna Chasicó", "Mercedes", "Merlo", "Miramar",
+ 			"Monte Hermoso", "Moreno", "Morón", "Munro", "Navarro", "Necochea", "Nueva Atlantis", "Olavarría", "Olivos",
+ 			"Open Door", "Ostende", "Pedro Luro", "Pehuajó", "Pehuen Có", "Pergamino", "Pigüé", "Pilar", "Pinamar",
+ 			"Provincia de Buenos Aires", "Puan", "Punta Alta", "Punta Indio", "Punta Lara", "Quequén", "Quilmes",
+ 			"Ramallo", "Ramos Mejía", "Ranchos", "Rauch", "Rivadavia", "Rojas", "Roque Pérez", "Saenz Peña",
+ 			"Saladillo", "Salto", "San Antonio de Areco", "San Bernardo", "San Cayetano", "San Clemente del Tuyú",
+ 			"San Fernando", "San Isidro", "San Justo", "San Martin", "San Miguel del Monte", "San Nicolás", "San Pedro",
+ 			"San Vicente", "Santa Clara del Mar", "Santa Teresita", "Sarandí", "Sierra de la Ventana",
+ 			"Sierra de los Padres", "Sierras de los Padres", "Tandil", "Tapalqué", "Temperley", "Tigre",
+ 			"Tornquist / Ruta Prov. 76", "Trenque Lauquen", "Tres Arroyos", "Turdera", "Valentin Alsina",
+ 			"Vicente Lopez", "Victoria", "Villa Ballester", "Villa Gesell", "Villa Lynch", "Villa Serrana La Gruta",
+ 			"Villa Ventana", "Villalonga", "Wilde", "Zárate" };
 	private static Random random = new Random();
 	private static Agenda agenda = Agenda.getInstance();
 
@@ -77,7 +77,7 @@ public class GeneradorDeDatos {
 				+ "-" + Integer.toString(1 + random.nextInt(28)));
 	}
 
-	public static void generarDatos() {
+	public static void generarDatos(int cantidad) {
 		for (int i = 0; i < localidades.length; i++) {
 			agenda.agregarLocalidad(new LocalidadDTO(localidades[i]));
 		}
@@ -85,7 +85,7 @@ public class GeneradorDeDatos {
 		List<LocalidadDTO> listaLocalidades = agenda.getLocalidades();
 		List<TipoDeContactoDTO> listaContactos = agenda.getTiposDeContacto();
 
-		for (int i = 0; i < 50; i++) {
+		for (int i = 0; i < cantidad; i++) {
 			DomicilioDTO d = new DomicilioDTO(calles[random.nextInt(calles.length)], getAltura(), getPiso(), getDepto(),listaLocalidades.get(random.nextInt(listaLocalidades.size())));
 			int idDomicilio= agenda.agregarDomicilio(d);
 			d.setIdDomicilio(idDomicilio);
@@ -95,6 +95,7 @@ public class GeneradorDeDatos {
 			
 			agenda.agregarPersona(p);
 		}
+		System.out.println("Agregadas " + cantidad +" personas a la base de datos.");
 	}
 
 }

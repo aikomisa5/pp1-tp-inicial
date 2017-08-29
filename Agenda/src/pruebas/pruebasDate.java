@@ -44,7 +44,7 @@ public class pruebasDate {
 //		System.out.println("Comparamos 2 calendar iguales: "+fecha3.compareTo(fecha1)+" "+fecha1.compareTo(fecha3));
 //		System.out.println("DayOfMouth "+fecha1.get(Calendar.DAY_OF_MONTH));
 		
-		GeneradorDeDatos.generarDatos();
+		GeneradorDeDatos.generarDatos(100);
 		
 	}
 
