@@ -9,6 +9,7 @@ import javax.swing.JTable;
 import javax.swing.UIManager;
 import javax.swing.JButton;
 
+@SuppressWarnings("serial")
 public class VistaLocalidades extends JFrame {
 
 	private JPanel panel;

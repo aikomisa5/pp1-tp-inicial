@@ -1,9 +1,6 @@
 package pruebas;
 
-import static org.junit.Assert.*;
-
 import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import org.junit.Test;
