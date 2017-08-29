@@ -51,7 +51,7 @@ public class pruebas {
 	
 	@Test
 	public void generarDatos() {
-		GeneradorDeDatos.generarDatos(100);		
+		GeneradorDeDatos.generarDatos(20);		
 	}
 
 }
