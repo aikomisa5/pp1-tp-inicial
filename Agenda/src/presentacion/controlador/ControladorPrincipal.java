@@ -90,9 +90,15 @@ public class ControladorPrincipal implements ActionListener, Observador {
 						JOptionPane.ERROR_MESSAGE);
 
 		} else if (e.getSource() == vista.getBtnReporte()) {
+			if(agenda.obtenerPersonas().size() !=0) {
 			personasConSigno = algoritmo.getListaPersonasOrdenadasPorDia();
 			ReporteAgenda reporte = new ReporteAgenda(personasConSigno);
 			reporte.mostrar();
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "No hay personas para generar el informe", "Aviso",
+						JOptionPane.ERROR_MESSAGE);
+			}
 		} else if (e.getSource() == vista.getBtnEditar()) {
 			int indexFilaSeleccionada = vista.getTablaPersonas().getSelectedRow();
 			if (indexFilaSeleccionada != -1)
