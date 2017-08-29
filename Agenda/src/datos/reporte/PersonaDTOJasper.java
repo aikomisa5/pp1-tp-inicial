@@ -32,9 +32,6 @@ public class PersonaDTOJasper extends PersonaDTO implements Comparable<PersonaDT
 		int mesFecha = calFecha.get(Calendar.MONTH) + 1; // +1 porque si es mes 8, trae 7
 		int diaFecha = calFecha.get(Calendar.DATE);
 
-		System.out.println("El dia de mes es: " + diaFecha);
-		System.out.println("El mes es: " + mesFecha);
-
 		if (diaFecha >= 21 && mesFecha == 3 || diaFecha <= 20 && mesFecha == 4)
 			return SignoZodiaco.ARIES;
 		if (diaFecha >= 21 && mesFecha == 4 || diaFecha <= 21 && mesFecha == 5)
