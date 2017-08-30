@@ -1,42 +1,42 @@
 package persistencia.conexion;
 
+import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class Conexion 
-{
+import dto.ConfiguracionDTO;
+import persistencia.configuracion.Configuracion;
+
+public class Conexion {
 	public static Conexion instancia;
 	private Connection conexion;
-	
-	public Conexion()
-	{
-		try
-		{
-			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/tpi_g2","root","sarasa");
-			System.out.println("Conexion exitosa");
-		}
-		catch(Exception e)
-		{
-			System.out.println("Conexion fallida");
+
+	private Conexion() throws Exception {
+		try {
+			ConfiguracionDTO config = Configuracion.getConfiguracion();
+			conexion = DriverManager.getConnection("jdbc:mysql://" + config.getServerUrl() + ":" + config.getServerPuerto() + "/" + config.getBdNombre(),
+					config.getUserName(), config.getUserPass());
+		} catch (Exception e) {
+			throw new Exception("Conexión fallida");
 		}
 	}
-	
-	public static Conexion getConexion()   
-	{								
-		if(instancia == null)
-		{
+
+	public static Conexion getConexion() throws Exception {
+		if (instancia == null) {
 			instancia = new Conexion();
 		}
 		return instancia;
 	}
 
-	public Connection getSQLConexion() 
-	{
+	public Connection getSQLConexion() {
 		return conexion;
 	}
-	
-	public void cerrarConexion()
-	{
+
+	public void cerrarConexion() {
 		instancia = null;
+	}
+
+	public static void probarConexion() throws Exception {
+		getConexion();
 	}
 }

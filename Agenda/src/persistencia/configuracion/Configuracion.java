@@ -11,7 +11,7 @@ import dto.ConfiguracionDTO;
 
 public class Configuracion {
 	private static Properties p = new Properties();
-	public static final String PARAM_FILE = File.pathSeparator + "Agenda.properties";
+	public static final String PARAM_FILE = "properties" + File.separator + "Agenda.properties";
 
 	public static final String serverUrl = "server.url";
 	public static final String serverPuerto = "server.puerto";
