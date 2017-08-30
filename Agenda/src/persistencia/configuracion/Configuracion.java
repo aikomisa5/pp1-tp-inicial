@@ -29,9 +29,11 @@ public class Configuracion {
 		try {
 			FileInputStream fis = new FileInputStream(PARAM_FILE);
 			p.load(fis);
+			fis.close();
 		} catch (Exception e) {
 			throw new FileNotFoundException();
 		}
+		
 
 	}
 

@@ -21,6 +21,7 @@ public class Principal {
 			"Localidad", "Mail", "FechaNac", "TipoContacto" };
 	private JButton btnGestionDeTipos;
 	private JButton btnGestionLocalidades;
+	private JButton btnEditarConexion;
 
 	public Principal() {
 		super();
@@ -36,7 +37,8 @@ public class Principal {
 		}
 
 		frame = new JFrame();
-		frame.setBounds(100, 100, 913, 355);
+		frame.setResizable(false);
+		frame.setBounds(100, 100, 900, 290);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
@@ -81,13 +83,17 @@ public class Principal {
 		btnReporte.setBounds(307, 228, 89, 23);
 		panel.add(btnReporte);
 
-		btnGestionLocalidades = new JButton("Gestion de Localidades");
+		btnGestionLocalidades = new JButton("Gesti\u00F3n de Localidades");
 		btnGestionLocalidades.setBounds(406, 228, 151, 23);
 		panel.add(btnGestionLocalidades);
 
-		btnGestionDeTipos = new JButton("Gestion de Tipos de Contacto");
+		btnGestionDeTipos = new JButton("Gesti\u00F3n de Tipos de Contacto");
 		btnGestionDeTipos.setBounds(567, 228, 192, 23);
 		panel.add(btnGestionDeTipos);
+		
+		btnEditarConexion = new JButton("Editar conexi\u00F3n");
+		btnEditarConexion.setBounds(768, 228, 119, 23);
+		panel.add(btnEditarConexion);
 	}
 
 	public void show() {
@@ -116,6 +122,10 @@ public class Principal {
 
 	public JButton getBtnGestionLocalidades() {
 		return btnGestionLocalidades;
+	}
+
+	public JButton getBtnEditarConexion() {
+		return btnEditarConexion;
 	}
 
 	public DefaultTableModel getModelPersonas() {

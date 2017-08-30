@@ -9,7 +9,7 @@ import persistencia.configuracion.Configuracion;
 
 public class Conexion {
 	public static Conexion instancia;
-	private Connection conexion;
+	private static Connection conexion;
 
 	private Conexion() throws Exception {
 		try {
@@ -37,6 +37,12 @@ public class Conexion {
 	}
 
 	public static void probarConexion() throws Exception {
-		getConexion();
+		try {
+			ConfiguracionDTO config = Configuracion.getConfiguracion();
+			conexion = DriverManager.getConnection("jdbc:mysql://" + config.getServerUrl() + ":" + config.getServerPuerto() + "/" + config.getBdNombre(),
+					config.getUserName(), config.getUserPass());
+		} catch (Exception e) {
+			throw new Exception("Conexión fallida");
+		}
 	}
 }

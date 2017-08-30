@@ -22,9 +22,9 @@ public class ControladorPrincipal implements ActionListener, Observador {
 	private ControladorGestionLocalidades controladorLocalidades;
 	private ControladorGestionDeTiposContacto controladorTipos;
 	private ControladorContactos controladorContactos;
-	
+	private ControladorConfiguracion controladorConfiguracion;
+
 	private List<PersonaReporteSigno> personasConSigno;
-			
 
 	public ControladorPrincipal(Principal vista, Agenda agenda) {
 		this.vista = vista;
@@ -34,12 +34,14 @@ public class ControladorPrincipal implements ActionListener, Observador {
 		this.vista.getBtnReporte().addActionListener(this);
 		this.vista.getBtnGestionDeTipos().addActionListener(this);
 		this.vista.getBtnGestionLocalidades().addActionListener(this);
+		this.vista.getBtnEditarConexion().addActionListener(this);
 		this.agenda = agenda;
 		agenda.registrarObservador(this);
 		this.personasEnTabla = null;
 		controladorLocalidades = ControladorGestionLocalidades.getInstance();
 		controladorTipos = ControladorGestionDeTiposContacto.getInstance();
 		controladorContactos = ControladorContactos.getInstance();
+		controladorConfiguracion = ControladorConfiguracion.getInstance();
 		personasConSigno = new ArrayList<PersonaReporteSigno>();
 	}
 
@@ -59,17 +61,17 @@ public class ControladorPrincipal implements ActionListener, Observador {
 	}
 
 	private void añadirPersonaATabla(PersonaDTO p) {
-		
+
 		Object[] fila = { p.getNombre(), p.getTelefono(), p.getDomicilio().getCalle(), p.getDomicilio().getAltura(),
 				p.getDomicilio().getPiso(), p.getDomicilio().getDepartamento(),
-				p.getDomicilio().getLocalidad().getNombre(), p.getMail(), p.getFechaOrdenada() ,
+				p.getDomicilio().getLocalidad().getNombre(), p.getMail(), p.getFechaOrdenada(),
 				p.getTipoDeContacto().getNombre() };
 		vista.getModelPersonas().addRow(fila);
 	}
-	
+
 	private String parsearFecha(Date fecha) {
 		SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-		String formatString= format.format(fecha);
+		String formatString = format.format(fecha);
 		return formatString;
 	}
 
@@ -88,12 +90,11 @@ public class ControladorPrincipal implements ActionListener, Observador {
 						JOptionPane.ERROR_MESSAGE);
 
 		} else if (e.getSource() == vista.getBtnReporte()) {
-			if(agenda.obtenerPersonas().size() !=0) {
-			personasConSigno = PersonaReporteSigno.getListaPersonasOrdenadasPorDia(agenda.obtenerPersonas());
-			ReporteSignos reporte = new ReporteSignos(personasConSigno);
-			reporte.mostrar();
-			}
-			else {
+			if (agenda.obtenerPersonas().size() != 0) {
+				personasConSigno = PersonaReporteSigno.getListaPersonasOrdenadasPorDia(agenda.obtenerPersonas());
+				ReporteSignos reporte = new ReporteSignos(personasConSigno);
+				reporte.mostrar();
+			} else {
 				JOptionPane.showMessageDialog(null, "No hay personas para generar el informe", "Aviso",
 						JOptionPane.ERROR_MESSAGE);
 			}
@@ -104,6 +105,8 @@ public class ControladorPrincipal implements ActionListener, Observador {
 			else
 				JOptionPane.showMessageDialog(null, "Selecciona una persona para editar primero", "Aviso",
 						JOptionPane.ERROR_MESSAGE);
+		} else if (e.getSource() == vista.getBtnEditarConexion()) {
+			controladorConfiguracion.mostrarVentana();
 		} else if (e.getSource() == vista.getBtnGestionDeTipos()) {
 			abrirGestionDeTipos();
 		} else if (e.getSource() == vista.getBtnGestionLocalidades()) {

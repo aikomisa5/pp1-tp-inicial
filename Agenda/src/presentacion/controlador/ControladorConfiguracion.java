@@ -19,7 +19,8 @@ public class ControladorConfiguracion implements ActionListener {
 		vistaConfiguracion = VistaConfiguracion.getIntance();
 		vistaConfiguracion.getBtnCancelar().addActionListener(this);
 		vistaConfiguracion.getBtnGuardar().addActionListener(this);
-		}
+		vistaConfiguracion.getBtnProbarConexion().addActionListener(this);
+	}
 
 	public static ControladorConfiguracion getInstance() {
 		if (instancia == null)
@@ -42,6 +43,11 @@ public class ControladorConfiguracion implements ActionListener {
 
 	}
 
+	public void mostrarVentana() {
+		vistaConfiguracion.setConfiguracion(loaderConfiguracion.getConfiguracion());
+		vistaConfiguracion.mostrarVentana();
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == vistaConfiguracion.getBtnGuardar()) {
@@ -49,21 +55,30 @@ public class ControladorConfiguracion implements ActionListener {
 			if (loaderConfiguracion.probarConexion()) {
 				if (!loaderConfiguracion.guardarConfiguracion()) {
 					JOptionPane.showMessageDialog(null, "Error, No se pudo guardar la configuración.");
-					
 				}
 				vistaConfiguracion.setVisible(false);
 			} else {
 				JOptionPane.showMessageDialog(null, "Error, Los datos de conexión no son válidos.");
 				vistaConfiguracion.mostrarVentana();
 			}
-		// se presionó el botón cancelar.
-		}else {
-			if(!loaderConfiguracion.probarConexion()) {
-				JOptionPane.showMessageDialog(null, "Error, Los datos de conexión no son válidos. El programa se cerrará.");
+		} else if (e.getSource() == vistaConfiguracion.getBtnCancelar()) {
+			if (!loaderConfiguracion.probarConexion()) {
+				JOptionPane.showMessageDialog(null,
+						"Error, Los datos de conexión no son válidos. El programa se cerrará.");
 				System.exit(0);
-			}else {
+			} else {
 				vistaConfiguracion.setVisible(false);
 			}
+		}else {
+			loaderConfiguracion.setConfiguracion(vistaConfiguracion.getConfiguracion());
+			if(loaderConfiguracion.probarConexion()) {
+				JOptionPane.showMessageDialog(null,
+						"Prueba de conexión, Conexión exitosa.");
+			}else {
+				JOptionPane.showMessageDialog(null,
+						"Prueba de conexión, Conexión fallida.");
+			}
+			loaderConfiguracion.cargarConfiguracion();
 		}
 
 	}

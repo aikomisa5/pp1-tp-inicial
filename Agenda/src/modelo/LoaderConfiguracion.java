@@ -61,4 +61,8 @@ public class LoaderConfiguracion {
 		}
 	}
 
+	public ConfiguracionDTO getConfiguracion() {
+		return Configuracion.getConfiguracion();
+	}
+
 }
