@@ -59,6 +59,7 @@ public class ControladorConfiguracion implements ActionListener {
 				vistaConfiguracion.setVisible(false);
 			} else {
 				JOptionPane.showMessageDialog(null, "Error, Los datos de conexión no son válidos.");
+				loaderConfiguracion.cargarConfiguracion();
 				vistaConfiguracion.mostrarVentana();
 			}
 		} else if (e.getSource() == vistaConfiguracion.getBtnCancelar()) {

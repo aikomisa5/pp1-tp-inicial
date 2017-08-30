@@ -5,13 +5,15 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.Properties;
 
 import dto.ConfiguracionDTO;
 
 public class Configuracion {
 	private static Properties p = new Properties();
-	public static final String PARAM_FILE = "properties" + File.separator + "Agenda.properties";
+	public static final String PARAM_FOLDER = "configuracion";
+	public static final String PARAM_FILE = PARAM_FOLDER + File.separator + "Agenda.properties";
 
 	public static final String serverUrl = "server.url";
 	public static final String serverPuerto = "server.puerto";
@@ -51,6 +53,9 @@ public class Configuracion {
 
 	public static void guardarConfiguracion() throws IOException {
 		try {
+			File path =  new File(PARAM_FOLDER);
+			if (!path.exists() || !path.isDirectory())
+				path.mkdir();
 			p.store(new FileOutputStream(PARAM_FILE), "");
 		} catch (IOException e) {
 			throw e;
