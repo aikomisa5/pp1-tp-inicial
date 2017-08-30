@@ -15,7 +15,7 @@ import dto.TipoDeContactoDTO;
 
 public class PersonaDAOImpl implements PersonaDAO
 {
-	private static final Conexion conexion = Conexion.getConexion();
+	private static Conexion conexion;
 	
 	private static final String insertPersona = "INSERT INTO personas(nombre, telefono, mail, cumpleanios, idTipo, idDomicilio) VALUES(?, ?, ?, ?, ?, ?)";
 	private static final String delete = "DELETE FROM personas WHERE idPersona = ?";
@@ -31,6 +31,17 @@ public class PersonaDAOImpl implements PersonaDAO
 	private static final String update = "UPDATE personas " + 
 						"SET Nombre = ?, telefono = ?, mail = ?, cumpleanios = ?, idTipo = ?, idDomicilio = ? " + 
 						"WHERE idPersona = ?";
+	
+	
+	public PersonaDAOImpl() {
+		try {
+			conexion = Conexion.getConexion();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 	
 	@Override
 	public boolean insert(PersonaDTO persona)

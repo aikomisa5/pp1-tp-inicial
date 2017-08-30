@@ -12,7 +12,7 @@ import persistencia.dao.interfaz.LocalidadDAO;
 
 public class LocalidadDAOImpl implements LocalidadDAO{
 	
-	private static final Conexion conexion = Conexion.getConexion();
+	private static Conexion conexion;
 	
 	private static final String insertDomicilio="INSERT INTO localidades(nombreLocalidad) VALUES(?)";
 	private static final String delete = "DELETE FROM localidades WHERE idLocalidad = ?";
@@ -21,6 +21,16 @@ public class LocalidadDAOImpl implements LocalidadDAO{
 			"WHERE idLocalidad = ?";
 	private static final String readAll="select * from localidades";
 
+	
+	public LocalidadDAOImpl() {
+		try {
+			conexion = Conexion.getConexion();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 	@Override
 	public int insert(LocalidadDTO localidad) {
 		PreparedStatement statement;

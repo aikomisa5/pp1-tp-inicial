@@ -12,7 +12,7 @@ import persistencia.dao.interfaz.TipoDeContactoDAO;
 
 public class TipoDeContactoDAOImpl implements TipoDeContactoDAO {
 
-	private static final Conexion conexion = Conexion.getConexion();
+	private static Conexion conexion;
 	
 	private static final String insert="INSERT INTO tiposDeContacto (nombreTipo) VALUES(?)";
 	private static final String delete = "DELETE FROM tiposDeContacto WHERE idTipo = ?";
@@ -20,6 +20,16 @@ public class TipoDeContactoDAOImpl implements TipoDeContactoDAO {
 			"SET nombreTipo = ? " + 
 			"WHERE idTipo = ?";
 	private static final String readAll="select * from tiposDeContacto";
+	
+	public TipoDeContactoDAOImpl() {
+		try {
+			conexion = Conexion.getConexion();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 	
 	@Override
 	public int insert(TipoDeContactoDTO tipoDeContacto) {
