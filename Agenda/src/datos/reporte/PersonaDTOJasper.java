@@ -1,20 +1,28 @@
 package datos.reporte;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.List;
 
 import dto.DomicilioDTO;
 import dto.PersonaDTO;
+import dto.PersonaJasperDTO;
 import dto.TipoDeContactoDTO;
 
 public class PersonaDTOJasper extends PersonaDTO implements Comparable<PersonaDTOJasper> {
 	SignoZodiaco signo;
 
-	public PersonaDTOJasper(String nombre, String telefono, String mail, Date fechaCumpleaños,
-			TipoDeContactoDTO tipoDeContacto, DomicilioDTO domicilio, SignoZodiaco SignoZodiaco) {
-		super(nombre, telefono, mail, fechaCumpleaños, tipoDeContacto, domicilio);
+	public PersonaDTOJasper(String nombre, String telefono, String mail, Date fechaCumpleaños) {
+		super(nombre, telefono, mail, fechaCumpleaños, null, null);
 
-		SignoZodiaco = this.signo;
+		this.signo = this.calcularSigno();
+	}
+
+	public PersonaDTOJasper(PersonaDTO p) {
+		super(p.getNombre(),p.getTelefono(),p.getMail(),p.getFechaCumpleaños(),null,null);
+		this.signo = this.calcularSigno();
 	}
 
 	public SignoZodiaco getSigno() {
@@ -25,10 +33,10 @@ public class PersonaDTOJasper extends PersonaDTO implements Comparable<PersonaDT
 		this.signo = signo;
 	}
 
-	public SignoZodiaco calcularYAsignarSigno(Date fechaCumpleaños) {
+	public SignoZodiaco calcularSigno() {
 
 		Calendar calFecha = Calendar.getInstance();
-		calFecha.setTime(fechaCumpleaños);
+		calFecha.setTime(this.getFechaCumpleaños());
 		int mesFecha = calFecha.get(Calendar.MONTH) + 1; // +1 porque si es mes 8, trae 7
 		int diaFecha = calFecha.get(Calendar.DATE);
 
@@ -81,6 +89,13 @@ public class PersonaDTOJasper extends PersonaDTO implements Comparable<PersonaDT
 		else
 			return 0;
 
+	}
+
+	public static List<PersonaDTOJasper> getListaPersonasOrdenadasPorDia(List<PersonaDTO> personas) {
+		List<PersonaDTOJasper>personasJasper=new ArrayList<>();
+		personas.forEach(p -> personasJasper.add(new PersonaDTOJasper(p)));
+		Collections.sort(personasJasper);
+		return personasJasper;
 	}
 
 }

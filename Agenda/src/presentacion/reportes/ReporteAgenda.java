@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import datos.reporte.PersonaDTOJasper;
@@ -22,7 +23,7 @@ public class ReporteAgenda
 	private JasperPrint	reporteLleno;
 	
 	//Recibe la lista de personas para armar el reporte
-    public ReporteAgenda(ArrayList<PersonaDTOJasper> personas)
+    public ReporteAgenda(List<PersonaDTOJasper> personas)
     {
     	//Hardcodeado
 		Map<String, Object> parametersMap = new HashMap<String, Object>();

@@ -9,7 +9,6 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 import datos.reporte.*;
-import datos.reporte.AlgoritmoPersonasOrdenadas;
 import modelo.Agenda;
 import patrones.observer.Observador;
 import presentacion.reportes.ReporteAgenda;
@@ -23,8 +22,8 @@ public class ControladorPrincipal implements ActionListener, Observador {
 	private ControladorGestionLocalidades controladorLocalidades;
 	private ControladorGestionDeTiposContacto controladorTipos;
 	private ControladorContactos controladorContactos;
-	private AlgoritmoPersonasOrdenadas algoritmo;
-	private ArrayList<PersonaDTOJasper> personasConSigno;
+	
+	private List<PersonaDTOJasper> personasConSigno;
 			
 
 	public ControladorPrincipal(Principal vista, Agenda agenda) {
@@ -41,7 +40,6 @@ public class ControladorPrincipal implements ActionListener, Observador {
 		controladorLocalidades = ControladorGestionLocalidades.getInstance();
 		controladorTipos = ControladorGestionDeTiposContacto.getInstance();
 		controladorContactos = ControladorContactos.getInstance();
-		algoritmo = new AlgoritmoPersonasOrdenadas();
 		personasConSigno = new ArrayList<PersonaDTOJasper>();
 	}
 
@@ -91,7 +89,7 @@ public class ControladorPrincipal implements ActionListener, Observador {
 
 		} else if (e.getSource() == vista.getBtnReporte()) {
 			if(agenda.obtenerPersonas().size() !=0) {
-			personasConSigno = algoritmo.getListaPersonasOrdenadasPorDia();
+			personasConSigno = PersonaDTOJasper.getListaPersonasOrdenadasPorDia(agenda.obtenerPersonas());
 			ReporteAgenda reporte = new ReporteAgenda(personasConSigno);
 			reporte.mostrar();
 			}
