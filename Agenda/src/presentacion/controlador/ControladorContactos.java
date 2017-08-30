@@ -20,7 +20,6 @@ public class ControladorContactos implements ActionListener, Observador {
 	private ControladorContactos() {
 		agenda = Agenda.getInstance();
 		agenda.registrarObservador(this);
-
 	}
 
 	public static ControladorContactos getInstance() {

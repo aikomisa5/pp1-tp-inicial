@@ -43,49 +43,6 @@ public class FormularioContactos extends JFrame {
 	private JComboBox<TipoDeContactoDTO> comboTipoDeContacto;
 
 	private List<LocalidadDTO> localidades = null;
-
-	// TODO crear método para agregar esta lista de localidades a la bd.
-	/*
-	 * { "17 de Agosto", "25 de Mayo", "9 de Julio / La Niña", "Acassuso",
-	 * "Aguas Verdes", "Alberti", "Arenas Verdes", "Arrecifes", "Avellaneda",
-	 * "Ayacucho", "Azul", "Bahña Blanca", "Bahña San Blas", "Balcarce",
-	 * "Balneario Marisol", "Balneario Orense", "Balneario Reta",
-	 * "Balneario San Cayetano", "Baradero", "Bella Vista", "Benito Juñrez",
-	 * "Berazategui", "Berisso", "Boulogne", "Bragado", "Brandsen", "Campana",
-	 * "Capilla del Señor", "Capital Federal", "Capitñn Sarmiento", "Carapachay",
-	 * "Carhue", "Carhuñ", "Carlos Keen", "Carmen de Areco", "Carmen de Patagones",
-	 * "Caseros", "Castelar", "Castelli", "Chacabuco", "Chascomñs", "Chivilcoy",
-	 * "City Bell", "Ciudadela", "Claromecñ", "Colñn", "Coronel Dorrego",
-	 * "Coronel Pringles", "Coronel Suñrez", "Darregueira", "Dunamar", "Escobar",
-	 * "Ezeiza", "Florencio Varela", "Florida", "Fortñn Mercedes", "Garin",
-	 * "General Arenales", "General Belgrano", "General Madariaga",
-	 * "General Villegas", "Gral. Daniel Cerri", "Gran Buenos Aires", "Guaminñ",
-	 * "Haedo", "Huanguelen", "Hurlingham", "Isla Martñn Garcña", "Ituzaingo",
-	 * "Junñn", "La Plata", "La Tablada", "Laferrere", "Lanus", "Laprida",
-	 * "Las Flores", "Las Gaviotas", "Las Toninas", "Lima", "Lisandro Olmos",
-	 * "Llavallol", "Lobos", "Lomas de Zamora", "Los Toldos - Gral. Viamonte",
-	 * "Los Polvorines", "Lucila del Mar", "Luis Guillñn", "Lujñn", "Magdalena",
-	 * "Maipñ", "Mar Azul", "Mar Chiquita", "Mar de Ajñ", "Mar de Cobo",
-	 * "Mar del Plata", "Mar del Sud", "Mar del Tuyñ", "Martinez",
-	 * "Mñdanos / Laguna Chasicñ", "Mercedes", "Merlo", "Miramar", "Monte Hermoso",
-	 * "Moreno", "Morñn", "Munro", "Navarro", "Necochea", "Nueva Atlantis",
-	 * "Olavarrña", "Olivos", "Open Door", "Ostende", "Pedro Luro", "Pehuajñ",
-	 * "Pehuen Cñ", "Pergamino", "Pigññ", "Pilar", "Pinamar",
-	 * "Provincia de Buenos Aires", "Puan", "Punta Alta", "Punta Indio",
-	 * "Punta Lara", "Quequñn", "Quilmes", "Ramallo", "Ramos Mejña", "Ranchos",
-	 * "Rauch", "Rivadavia", "Rojas", "Roque Pñrez", "Saenz Peña", "Saladillo",
-	 * "Salto", "San Antonio de Areco", "San Bernardo", "San Cayetano",
-	 * "San Clemente del Tuyñ", "San Fernando", "San Isidro", "San Justo",
-	 * "San Martin", "San Miguel del Monte", "San Nicolñs", "San Pedro",
-	 * "San Vicente", "Santa Clara del Mar", "Santa Teresita", "Sarandñ",
-	 * "Sierra de la Ventana", "Sierra de los Padres", "Sierras de los Padres",
-	 * "Tandil", "Tapalquñ", "Temperley", "Tigre", "Tornquist / Ruta Prov. 76",
-	 * "Trenque Lauquen", "Tres Arroyos", "Turdera", "Valentin Alsina",
-	 * "Vicente Lopez", "Victoria", "Villa Ballester", "Villa Gesell",
-	 * "Villa Lynch", "Villa Serrana La Gruta", "Villa Ventana", "Villalonga",
-	 * "Wilde", "Zñrate" };
-	 */
-
 	private List<TipoDeContactoDTO> tiposDeContacto = null;
 
 	private JPanel panel;

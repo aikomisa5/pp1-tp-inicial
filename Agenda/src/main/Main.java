@@ -11,7 +11,8 @@ public class Main
 
 	public static void main(String[] args) 
 	{
-		ControladorConfiguracion.getInstance().inicializar();
+		ControladorConfiguracion controladorConfig= ControladorConfiguracion.getInstance();
+		controladorConfig.inicializar();
 		Principal vista = new Principal();
 		Agenda modelo = Agenda.getInstance();
 		ControladorPrincipal controlador = new ControladorPrincipal(vista, modelo);
