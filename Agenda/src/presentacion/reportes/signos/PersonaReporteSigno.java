@@ -1,39 +1,33 @@
-package datos.reporte;
+package presentacion.reportes.signos;
 
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-
-import dto.DomicilioDTO;
 import dto.PersonaDTO;
-import dto.PersonaJasperDTO;
-import dto.TipoDeContactoDTO;
+import modelo.Agenda;
 
-public class PersonaDTOJasper extends PersonaDTO implements Comparable<PersonaDTOJasper> {
-	SignoZodiaco signo;
+public class PersonaReporteSigno extends PersonaDTO implements Comparable<PersonaReporteSigno> {
+	String signo;
 
-	public PersonaDTOJasper(String nombre, String telefono, String mail, Date fechaCumpleaños) {
+	public PersonaReporteSigno(String nombre, String telefono, String mail, Date fechaCumpleaños) {
 		super(nombre, telefono, mail, fechaCumpleaños, null, null);
 
 		this.signo = this.calcularSigno();
 	}
 
-	public PersonaDTOJasper(PersonaDTO p) {
+	public PersonaReporteSigno(PersonaDTO p) {
 		super(p.getNombre(),p.getTelefono(),p.getMail(),p.getFechaCumpleaños(),null,null);
 		this.signo = this.calcularSigno();
 	}
 
-	public SignoZodiaco getSigno() {
+	public String getSigno() {
 		return signo;
 	}
 
-	public void setSigno(SignoZodiaco signo) {
-		this.signo = signo;
-	}
-
-	public SignoZodiaco calcularSigno() {
+	private String calcularSigno() {
 
 		Calendar calFecha = Calendar.getInstance();
 		calFecha.setTime(this.getFechaCumpleaños());
@@ -41,35 +35,35 @@ public class PersonaDTOJasper extends PersonaDTO implements Comparable<PersonaDT
 		int diaFecha = calFecha.get(Calendar.DATE);
 
 		if (diaFecha >= 21 && mesFecha == 3 || diaFecha <= 20 && mesFecha == 4)
-			return SignoZodiaco.ARIES;
+			return SignoZodiaco.ARIES.toString();
 		if (diaFecha >= 21 && mesFecha == 4 || diaFecha <= 21 && mesFecha == 5)
-			return SignoZodiaco.TAURO;
+			return SignoZodiaco.TAURO.toString();
 		if (diaFecha >= 22 && mesFecha == 5 || diaFecha <= 21 && mesFecha == 6)
-			return SignoZodiaco.GÉMINIS;
+			return SignoZodiaco.GÉMINIS.toString();
 		if (diaFecha >= 22 && mesFecha == 6 || diaFecha <= 22 && mesFecha == 7)
-			return SignoZodiaco.CÁNCER;
+			return SignoZodiaco.CÁNCER.toString();
 		if (diaFecha >= 23 && mesFecha == 7 || diaFecha <= 23 && mesFecha == 8)
-			return SignoZodiaco.LEO;
+			return SignoZodiaco.LEO.toString();
 		if (diaFecha >= 24 && mesFecha == 8 || diaFecha <= 23 && mesFecha == 9)
-			return SignoZodiaco.VIRGO;
+			return SignoZodiaco.VIRGO.toString();
 		if (diaFecha >= 24 && mesFecha == 9 || diaFecha <= 23 && mesFecha == 10)
-			return SignoZodiaco.LIBRA;
+			return SignoZodiaco.LIBRA.toString();
 		if (diaFecha >= 24 && mesFecha == 10 || diaFecha <= 22 && mesFecha == 11)
-			return SignoZodiaco.ESCORPIÓN;
+			return SignoZodiaco.ESCORPIÓN.toString();
 		if (diaFecha >= 23 && mesFecha == 11 || diaFecha <= 21 && mesFecha == 12)
-			return SignoZodiaco.SAGITARIO;
+			return SignoZodiaco.SAGITARIO.toString();
 		if (diaFecha >= 22 && mesFecha == 12 || diaFecha <= 20 && mesFecha == 1)
-			return SignoZodiaco.CAPRICORNIO;
+			return SignoZodiaco.CAPRICORNIO.toString();
 		if (diaFecha >= 21 && mesFecha == 1 || diaFecha <= 18 && mesFecha == 2)
-			return SignoZodiaco.ACUARIO;
+			return SignoZodiaco.ACUARIO.toString();
 		// if (diaFecha >= 19 && mesFecha == 2 || diaFecha <= 20 && mesFecha == 3)
 		else
-			return SignoZodiaco.PISCIS;
+			return SignoZodiaco.PISCIS.toString();
 
 	}
 
 	@Override
-	public int compareTo(PersonaDTOJasper o) {
+	public int compareTo(PersonaReporteSigno o) {
 		Calendar fecha1 = Calendar.getInstance();
 		fecha1.setTime(this.getFechaCumpleaños());
 		fecha1.set(Calendar.YEAR, 1000);
@@ -91,9 +85,17 @@ public class PersonaDTOJasper extends PersonaDTO implements Comparable<PersonaDT
 
 	}
 
-	public static List<PersonaDTOJasper> getListaPersonasOrdenadasPorDia(List<PersonaDTO> personas) {
-		List<PersonaDTOJasper>personasJasper=new ArrayList<>();
-		personas.forEach(p -> personasJasper.add(new PersonaDTOJasper(p)));
+	public static List<PersonaReporteSigno> getListaPersonasOrdenadasPorDia(List<PersonaDTO> personas) {
+		List<PersonaReporteSigno>personasJasper=new ArrayList<>();
+		personas.forEach(p -> personasJasper.add(new PersonaReporteSigno(p)));
+		Collections.sort(personasJasper);
+		return personasJasper;
+	}
+	
+	public static Collection<?> getListaPersonasOrdenadasPorDia2() {
+		List <PersonaDTO> personas = Agenda.getInstance().obtenerPersonas();
+		List<PersonaReporteSigno>personasJasper=new ArrayList<>();
+		personas.forEach(p -> personasJasper.add(new PersonaReporteSigno(p)));
 		Collections.sort(personasJasper);
 		return personasJasper;
 	}

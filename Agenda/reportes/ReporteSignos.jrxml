@@ -11,14 +11,14 @@
 	<field name="mail" class="java.lang.String">
 		<fieldDescription><![CDATA[mail]]></fieldDescription>
 	</field>
-	<field name="nombre" class="java.lang.String">
-		<fieldDescription><![CDATA[nombre]]></fieldDescription>
-	</field>
-	<field name="signo" class="datos.reporte.SignoZodiaco">
+	<field name="signo" class="java.lang.String">
 		<fieldDescription><![CDATA[signo]]></fieldDescription>
 	</field>
 	<field name="telefono" class="java.lang.String">
 		<fieldDescription><![CDATA[telefono]]></fieldDescription>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[nombre]]></fieldDescription>
 	</field>
 	<sortField name="signo"/>
 	<variable name="subtotalSigno" class="java.lang.Integer" resetType="Group" resetGroup="Group1" calculation="Count">

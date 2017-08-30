@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-import datos.reporte.*;
 import modelo.Agenda;
 import patrones.observer.Observador;
-import presentacion.reportes.ReporteAgenda;
+import presentacion.reportes.signos.PersonaReporteSigno;
+import presentacion.reportes.signos.ReporteSignos;
 import presentacion.vista.Principal;
 import dto.PersonaDTO;
 
@@ -23,7 +23,7 @@ public class ControladorPrincipal implements ActionListener, Observador {
 	private ControladorGestionDeTiposContacto controladorTipos;
 	private ControladorContactos controladorContactos;
 	
-	private List<PersonaDTOJasper> personasConSigno;
+	private List<PersonaReporteSigno> personasConSigno;
 			
 
 	public ControladorPrincipal(Principal vista, Agenda agenda) {
@@ -40,7 +40,7 @@ public class ControladorPrincipal implements ActionListener, Observador {
 		controladorLocalidades = ControladorGestionLocalidades.getInstance();
 		controladorTipos = ControladorGestionDeTiposContacto.getInstance();
 		controladorContactos = ControladorContactos.getInstance();
-		personasConSigno = new ArrayList<PersonaDTOJasper>();
+		personasConSigno = new ArrayList<PersonaReporteSigno>();
 	}
 
 	public void inicializar() {
@@ -89,8 +89,8 @@ public class ControladorPrincipal implements ActionListener, Observador {
 
 		} else if (e.getSource() == vista.getBtnReporte()) {
 			if(agenda.obtenerPersonas().size() !=0) {
-			personasConSigno = PersonaDTOJasper.getListaPersonasOrdenadasPorDia(agenda.obtenerPersonas());
-			ReporteAgenda reporte = new ReporteAgenda(personasConSigno);
+			personasConSigno = PersonaReporteSigno.getListaPersonasOrdenadasPorDia(agenda.obtenerPersonas());
+			ReporteSignos reporte = new ReporteSignos(personasConSigno);
 			reporte.mostrar();
 			}
 			else {
