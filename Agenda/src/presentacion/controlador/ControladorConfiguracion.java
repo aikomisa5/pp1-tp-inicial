@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+import modelo.Agenda;
 import modelo.LoaderConfiguracion;
 import presentacion.vista.VistaConfiguracion;
 
@@ -57,6 +58,7 @@ public class ControladorConfiguracion implements ActionListener {
 					JOptionPane.showMessageDialog(null, "Error, No se pudo guardar la configuración.");
 				}
 				vistaConfiguracion.setVisible(false);
+				Agenda.getInstance().notificarObservadores();
 			} else {
 				JOptionPane.showMessageDialog(null, "Error, Los datos de conexión no son válidos.");
 				loaderConfiguracion.cargarConfiguracion();
@@ -69,6 +71,7 @@ public class ControladorConfiguracion implements ActionListener {
 				System.exit(0);
 			} else {
 				vistaConfiguracion.setVisible(false);
+				Agenda.getInstance().notificarObservadores();
 			}
 		}else {
 			loaderConfiguracion.setConfiguracion(vistaConfiguracion.getConfiguracion());
