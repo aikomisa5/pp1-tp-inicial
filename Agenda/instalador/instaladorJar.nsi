@@ -1,4 +1,4 @@
-
+﻿
 
 #Nombre del directorio
 !define NOMBRE "Agenda2017"
@@ -49,7 +49,7 @@ Section "instaladorJar"
 	
 	
 	#crearAccesos:
-	createShortCut "$DESKTOP\Agenda2017.lnk" "$INSTDIR\programa.jar" "" "$INSTDIR\icono.ico" #
+	createShortCut "$DESKTOP\Agenda2017.lnk" "$INSTDIR\Agenda2017.jar" "" "$INSTDIR\icono.ico" #
 
 	#Con esto se informa el tamaño de la 	createShortCut "$DESKTOP" -jar $\"$INSTDIR\programa.jar" "" "$INSTDIR\icono.ico" #instalacion
 	WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${NOMBRE}" "EstimatedSize" ${INSTALLSIZE}
