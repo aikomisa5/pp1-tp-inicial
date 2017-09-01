@@ -1,11 +1,16 @@
 package persistencia.conexion;
 
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 import dto.ConfiguracionDTO;
 import persistencia.configuracion.Configuracion;
+import persistencia.configuracion.ScriptRunner;
 
 public class Conexion {
 	public static Conexion instancia;
@@ -45,4 +50,14 @@ public class Conexion {
 			throw new Exception("Conexión fallida");
 		}
 	}
+	
+	public static void correrScript(String path)  {
+		ScriptRunner runner = new ScriptRunner(conexion, false, false);
+		try {
+			runner.runScript(new BufferedReader(new FileReader(path)));
+		} catch (IOException | SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 }
