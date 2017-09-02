@@ -6,6 +6,7 @@ public class ConfiguracionDTO {
 	private String bdNombre;
 	private String userName;
 	private String userPass;
+	private String firstTime;
 
 		
 	public ConfiguracionDTO(String serverUrl, String serverPuerto, String bdNombre, String userName, String userPass) {
@@ -14,6 +15,15 @@ public class ConfiguracionDTO {
 		this.bdNombre = bdNombre;
 		this.userName = userName;
 		this.userPass = userPass;
+	}
+	
+	public ConfiguracionDTO(String serverUrl, String serverPuerto, String bdNombre, String userName, String userPass, String ft) {
+		this.serverUrl = serverUrl;
+		this.serverPuerto = serverPuerto;
+		this.bdNombre = bdNombre;
+		this.userName = userName;
+		this.userPass = userPass;
+		this.firstTime = ft;
 	}
 
 	public String getServerUrl() {
@@ -55,5 +65,15 @@ public class ConfiguracionDTO {
 	public void setUserPass(String userPass) {
 		this.userPass = userPass;
 	}
+
+	public String getFirstTime() {
+		return firstTime;
+	}
+
+	public void setFirstTime(String firstTime) {
+		this.firstTime = firstTime;
+	}
+	
+	
 
 }

@@ -27,6 +27,18 @@ public class LoaderConfiguracion {
 			return false;
 		}
 	}
+	
+	public boolean primeraVez() {
+		try {
+			Configuracion.cargarConfiguracion();
+			if(!Configuracion.firstTime.equals("false"))
+				return false;
+			return true;
+		} catch (FileNotFoundException e) {
+			return false;
+		}
+		
+	}
 
 	public boolean crearConfiguracionPorDefecto() {
 		try {

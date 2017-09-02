@@ -5,8 +5,10 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+import dto.ConfiguracionDTO;
 import modelo.Agenda;
 import modelo.LoaderConfiguracion;
+import persistencia.configuracion.Configuracion;
 import presentacion.vista.VistaConfiguracion;
 
 public class ControladorConfiguracion implements ActionListener {
@@ -30,7 +32,7 @@ public class ControladorConfiguracion implements ActionListener {
 	}
 
 	public void inicializar() {
-		if (loaderConfiguracion.cargarConfiguracion()) {
+		if (loaderConfiguracion.cargarConfiguracion() && !loaderConfiguracion.primeraVez()) {
 			if (loaderConfiguracion.probarConexion() == false) {
 				JOptionPane.showMessageDialog(null, "Error, los datos de conexión no son válidos.");
 				vistaConfiguracion.mostrarVentana();
@@ -59,6 +61,10 @@ public class ControladorConfiguracion implements ActionListener {
 				}
 				vistaConfiguracion.setVisible(false);
 				Agenda.getInstance().notificarObservadores();
+				ConfiguracionDTO config = loaderConfiguracion.getConfiguracion();
+				config.setFirstTime("false");
+				loaderConfiguracion.setConfiguracion(config);
+				loaderConfiguracion.guardarConfiguracion();
 			} else {
 				JOptionPane.showMessageDialog(null, "Error, Los datos de conexión no son válidos.");
 				loaderConfiguracion.cargarConfiguracion();

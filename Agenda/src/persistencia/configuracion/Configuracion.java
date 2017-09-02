@@ -19,9 +19,10 @@ public class Configuracion {
 	public static final String bdNombre = "bd.nombre";
 	public static final String userName = "user.name";
 	public static final String userPass = "user.pass";
+	public static final String firstTime = "first.time";
 
 	public static void crearArchivoConfiguracionDefault() throws IOException {
-		ConfiguracionDTO configuracion = new ConfiguracionDTO("localhost", "3306", "tpi_g2", "root", "root");
+		ConfiguracionDTO configuracion = new ConfiguracionDTO("localhost", "3306", "tpi_g2", "root", "root", "true");
 		setConfiguracion(configuracion);
 		guardarConfiguracion();
 	}
@@ -39,7 +40,7 @@ public class Configuracion {
 	}
 
 	public static ConfiguracionDTO getConfiguracion() {
-		return new ConfiguracionDTO(p.getProperty(serverUrl), p.getProperty(serverPuerto), p.getProperty(bdNombre), p.getProperty(userName), p.getProperty(userPass));
+		return new ConfiguracionDTO(p.getProperty(serverUrl), p.getProperty(serverPuerto), p.getProperty(bdNombre), p.getProperty(userName), p.getProperty(userPass), p.getProperty(firstTime));
 	}
 
 	public static void setConfiguracion(ConfiguracionDTO configuracion) {
@@ -48,6 +49,7 @@ public class Configuracion {
 		Configuracion.p.setProperty(bdNombre, configuracion.getBdNombre());
 		Configuracion.p.setProperty(userName, configuracion.getUserName());
 		Configuracion.p.setProperty(userPass, configuracion.getUserPass());	
+		Configuracion.p.setProperty(firstTime, configuracion.getFirstTime());
 	}
 
 	public static void guardarConfiguracion() throws IOException {
