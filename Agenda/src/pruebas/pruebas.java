@@ -5,6 +5,8 @@ import java.util.Calendar;
 
 import org.junit.Test;
 
+import presentacion.controlador.ControladorConfiguracion;
+
 public class pruebas {
 
 //	@Test
@@ -51,7 +53,10 @@ public class pruebas {
 	
 	@Test
 	public void generarDatos() {
-		GeneradorDeDatos.generarDatos(20);		
+		System.out.println(System.getenv("APPDATA"));
+				
+		ControladorConfiguracion.getInstance().inicializar();
+		//GeneradorDeDatos.generarDatos(20);		
 	}
 
 }

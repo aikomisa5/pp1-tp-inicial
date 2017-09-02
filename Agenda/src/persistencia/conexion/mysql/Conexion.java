@@ -1,4 +1,4 @@
-package persistencia.conexion;
+package persistencia.conexion.mysql;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

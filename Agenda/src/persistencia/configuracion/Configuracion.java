@@ -11,7 +11,7 @@ import dto.ConfiguracionDTO;
 
 public class Configuracion {
 	private static Properties p = new Properties();
-	public static final String PARAM_FOLDER = "configuracion";
+	public static final String PARAM_FOLDER = System.getenv("APPDATA") + File.separator + "Agenda" + File.separator + "configuracion";
 	public static final String PARAM_FILE = PARAM_FOLDER + File.separator + "Agenda.properties";
 
 	public static final String serverUrl = "server.url";
@@ -54,7 +54,7 @@ public class Configuracion {
 		try {
 			File path =  new File(PARAM_FOLDER);
 			if (!path.exists() || !path.isDirectory())
-				path.mkdir();
+				path.mkdirs();
 			p.store(new FileOutputStream(PARAM_FILE), "");
 		} catch (IOException e) {
 			throw e;

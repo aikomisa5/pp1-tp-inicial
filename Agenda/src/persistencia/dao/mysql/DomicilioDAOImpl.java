@@ -8,7 +8,7 @@ import java.util.List;
 
 import dto.DomicilioDTO;
 import dto.LocalidadDTO;
-import persistencia.conexion.Conexion;
+import persistencia.conexion.mysql.Conexion;
 import persistencia.dao.interfaz.DomicilioDAO;
 
 public class DomicilioDAOImpl implements DomicilioDAO {

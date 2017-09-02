@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dto.LocalidadDTO;
-import persistencia.conexion.Conexion;
+import persistencia.conexion.mysql.Conexion;
 import persistencia.dao.interfaz.LocalidadDAO;
 
 public class LocalidadDAOImpl implements LocalidadDAO{

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dto.TipoDeContactoDTO;
-import persistencia.conexion.Conexion;
+import persistencia.conexion.mysql.Conexion;
 import persistencia.dao.interfaz.TipoDeContactoDAO;
 
 public class TipoDeContactoDAOImpl implements TipoDeContactoDAO {

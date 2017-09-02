@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import persistencia.conexion.Conexion;
+import persistencia.conexion.mysql.Conexion;
 import persistencia.dao.interfaz.PersonaDAO;
 import dto.DomicilioDTO;
 import dto.LocalidadDTO;

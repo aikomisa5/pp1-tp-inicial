@@ -3,7 +3,7 @@ package modelo;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import dto.ConfiguracionDTO;
-import persistencia.conexion.Conexion;
+import persistencia.conexion.mysql.Conexion;
 import persistencia.configuracion.Configuracion;
 
 public class LoaderConfiguracion {
