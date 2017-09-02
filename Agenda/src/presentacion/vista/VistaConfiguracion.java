@@ -38,74 +38,81 @@ public class VistaConfiguracion extends JDialog {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {
 
-		}
+		}		
+		
 		setResizable(false);
-		setBounds(100, 100, 320, 209);
+		setBounds(100, 100, 476, 318);
+			
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.LIGHT_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		JLabel lblUrlServidor = new JLabel("URL servidor");
-		lblUrlServidor.setBounds(33, 39, 61, 14);
+		lblUrlServidor.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblUrlServidor.setBounds(20, 64, 131, 26);
 		getContentPane().add(lblUrlServidor);
 
 		txtUrlServer = new JTextField();
-		txtUrlServer.setBounds(100, 36, 207, 20);
+		txtUrlServer.setBounds(166, 64, 295, 26);
 		getContentPane().add(txtUrlServer);
 		txtUrlServer.setColumns(10);
 
 		JLabel lblPuertoServidor = new JLabel("Puerto servidor");
-		lblPuertoServidor.setBounds(20, 65, 74, 14);
+		lblPuertoServidor.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblPuertoServidor.setBounds(20, 100, 131, 26);
 		getContentPane().add(lblPuertoServidor);
 
 		txtPuerto = new JTextField();
-		txtPuerto.setBounds(100, 62, 207, 20);
+		txtPuerto.setBounds(166, 100, 295, 26);
 		getContentPane().add(txtPuerto);
 		txtPuerto.setColumns(10);
 
 		JLabel lblNombreBd = new JLabel("Nombre bd");
-		lblNombreBd.setBounds(42, 91, 52, 14);
+		lblNombreBd.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNombreBd.setBounds(20, 136, 131, 26);
 		getContentPane().add(lblNombreBd);
 
 		txtNombreBD = new JTextField();
-		txtNombreBD.setBounds(100, 88, 207, 20);
+		txtNombreBD.setBounds(166, 136, 295, 26);
 		getContentPane().add(txtNombreBD);
 		txtNombreBD.setColumns(10);
 
 		JLabel lblNombreUsuario = new JLabel("Nombre usuario");
-		lblNombreUsuario.setBounds(19, 117, 75, 14);
+		lblNombreUsuario.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNombreUsuario.setBounds(20, 172, 131, 26);
 		getContentPane().add(lblNombreUsuario);
 
 		txtNombreUsuario = new JTextField();
-		txtNombreUsuario.setBounds(100, 114, 207, 20);
+		txtNombreUsuario.setBounds(166, 172, 295, 26);
 		getContentPane().add(txtNombreUsuario);
 		txtNombreUsuario.setColumns(10);
 
 		JLabel lblPasswordUsuario = new JLabel("Password usuario");
-		lblPasswordUsuario.setBounds(10, 143, 84, 14);
+		lblPasswordUsuario.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblPasswordUsuario.setBounds(20, 208, 131, 26);
 		getContentPane().add(lblPasswordUsuario);
 
 		txtPasswordUsuario = new JTextField();
-		txtPasswordUsuario.setBounds(100, 140, 207, 20);
+		txtPasswordUsuario.setBounds(166, 208, 295, 26);
 		getContentPane().add(txtPasswordUsuario);
 		txtPasswordUsuario.setColumns(10);
 
 		btnGuardar = new JButton("Guardar");
-		btnGuardar.setBounds(148, 171, 74, 23);
+		btnGuardar.setBounds(195, 261, 121, 42);
 		getContentPane().add(btnGuardar);
 
 		btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(232, 171, 75, 23);
+		btnCancelar.setBounds(331, 261, 130, 42);
 		getContentPane().add(btnCancelar);
 
 		btnProbarConexion = new JButton("Probar Conexi\u00F3n");
-		btnProbarConexion.setBounds(25, 171, 113, 23);
+		btnProbarConexion.setBounds(20, 261, 160, 42);
 		contentPane.add(btnProbarConexion);
 
 		JLabel lblConfiguracinDeConexin = new JLabel("Configuraci\u00F3n de Conexi\u00F3n a base de datos");
 		lblConfiguracinDeConexin.setHorizontalAlignment(SwingConstants.CENTER);
-		lblConfiguracinDeConexin.setBounds(10, 11, 297, 14);
+		lblConfiguracinDeConexin.setBounds(10, 11, 451, 37);
 		contentPane.add(lblConfiguracinDeConexin);
 	}
 
@@ -134,6 +141,7 @@ public class VistaConfiguracion extends JDialog {
 	}
 
 	public void mostrarVentana() {
+		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 	}
 

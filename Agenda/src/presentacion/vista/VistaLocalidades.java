@@ -30,7 +30,8 @@ public class VistaLocalidades extends JFrame {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		this.setBounds(100, 100, 548, 455);
+		this.setBounds(100, 100, 497, 324);
+		this.setLocationRelativeTo(null);
 
 		panel = new JPanel();
 		panel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -38,7 +39,7 @@ public class VistaLocalidades extends JFrame {
 		panel.setLayout(null);
 
 		JScrollPane spLocalidades = new JScrollPane();
-		spLocalidades.setBounds(49, 11, 446, 180);
+		spLocalidades.setBounds(17, 16, 446, 180);
 		panel.add(spLocalidades);
 
 		//Para hacer la tabla no editable.
@@ -53,13 +54,13 @@ public class VistaLocalidades extends JFrame {
 
 		spLocalidades.setViewportView(tablaLocalidades);
 
-		btnAgregar.setBounds(49, 244, 91, 23);
+		btnAgregar.setBounds(81, 212, 91, 42);
 		panel.add(btnAgregar);
 
-		btnEditar.setBounds(211, 244, 91, 23);
+		btnEditar.setBounds(187, 212, 91, 42);
 		panel.add(btnEditar);
 
-		btnEliminar.setBounds(372, 244, 91, 23);
+		btnEliminar.setBounds(293, 212, 91, 42);
 		panel.add(btnEliminar);
 
 		// panel.add(table);
@@ -94,6 +95,7 @@ public class VistaLocalidades extends JFrame {
 	}
 
 	public void mostrar() {
+		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 	}
 
