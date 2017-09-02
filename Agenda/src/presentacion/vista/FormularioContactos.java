@@ -22,6 +22,7 @@ import java.time.ZoneId;
 import java.util.List;
 
 import javax.swing.JComboBox;
+import javax.swing.SwingConstants;
 
 public class FormularioContactos extends JFrame {
 
@@ -52,7 +53,8 @@ public class FormularioContactos extends JFrame {
 		this.controlador = controlador;
 
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 409, 462);
+		setBounds(100, 100, 493, 503);
+		this.setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.LIGHT_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -61,93 +63,103 @@ public class FormularioContactos extends JFrame {
 
 		panel = new JPanel();
 		panel.setBackground(Color.LIGHT_GRAY);
-		panel.setBounds(10, 11, 307, 402);
+		panel.setBounds(10, 11, 449, 422);
 		contentPane.add(panel);
 		panel.setLayout(null);
 
 		datePicker = new JXDatePicker();
-		datePicker.setBounds(133, 257, 164, 22);
+		datePicker.setBounds(193, 266, 235, 26);
 		datePicker.setVisible(true);
 		panel.add(datePicker);
 
 		JLabel lblNombreYApellido = new JLabel("Nombre y apellido");
-		lblNombreYApellido.setBounds(20, 14, 113, 14);
+		lblNombreYApellido.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblNombreYApellido.setBounds(15, 14, 163, 26);
 		panel.add(lblNombreYApellido);
 
 		JLabel lblTelfono = new JLabel("Tel\u00E9fono");
-		lblTelfono.setBounds(20, 45, 113, 14);
+		lblTelfono.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblTelfono.setBounds(15, 50, 163, 26);
 		panel.add(lblTelfono);
 
 		tfNombre = new JTextField();
-		tfNombre.setBounds(133, 11, 164, 20);
+		tfNombre.setBounds(193, 14, 235, 26);
 		panel.add(tfNombre);
 		tfNombre.setColumns(10);
 
 		tfTelefono = new JTextField();
-		tfTelefono.setBounds(133, 42, 164, 20);
+		tfTelefono.setBounds(193, 50, 235, 26);
 		panel.add(tfTelefono);
 		tfTelefono.setColumns(10);
 
 		btnGuardarPersona = new JButton("Guardar");
 		btnGuardarPersona.addActionListener(this.controlador);
-		btnGuardarPersona.setBounds(34, 375, 89, 23);
+		btnGuardarPersona.setBounds(339, 364, 89, 42);
 		panel.add(btnGuardarPersona);
 
 		tfCalle = new JTextField();
 		tfCalle.setColumns(10);
-		tfCalle.setBounds(133, 73, 164, 20);
+		tfCalle.setBounds(193, 86, 235, 26);
 		panel.add(tfCalle);
 
 		tfAltura = new JTextField();
 		tfAltura.setColumns(10);
-		tfAltura.setBounds(133, 104, 164, 20);
+		tfAltura.setBounds(193, 122, 235, 26);
 		panel.add(tfAltura);
 
 		tfPiso = new JTextField();
 		tfPiso.setColumns(10);
-		tfPiso.setBounds(133, 135, 164, 20);
+		tfPiso.setBounds(193, 158, 235, 26);
 		panel.add(tfPiso);
 
 		tfDepto = new JTextField();
 		tfDepto.setColumns(10);
-		tfDepto.setBounds(133, 165, 164, 20);
+		tfDepto.setBounds(193, 194, 235, 26);
 		panel.add(tfDepto);
 
 		JLabel lblCalle = new JLabel("Calle");
-		lblCalle.setBounds(20, 76, 113, 14);
+		lblCalle.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblCalle.setBounds(15, 86, 163, 26);
 		panel.add(lblCalle);
 
 		JLabel lblAltura = new JLabel("Altura");
-		lblAltura.setBounds(20, 107, 113, 14);
+		lblAltura.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblAltura.setBounds(15, 122, 163, 26);
 		panel.add(lblAltura);
 
 		JLabel lblPiso = new JLabel("Piso");
-		lblPiso.setBounds(20, 138, 113, 14);
+		lblPiso.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblPiso.setBounds(15, 158, 163, 26);
 		panel.add(lblPiso);
 
 		JLabel lblDepartamento = new JLabel("Departamento");
-		lblDepartamento.setBounds(20, 168, 113, 14);
+		lblDepartamento.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblDepartamento.setBounds(15, 194, 163, 26);
 		panel.add(lblDepartamento);
 
 		tfEmail = new JTextField();
 		tfEmail.setColumns(10);
-		tfEmail.setBounds(133, 227, 164, 20);
+		tfEmail.setBounds(193, 230, 235, 26);
 		panel.add(tfEmail);
 
 		JLabel lblEmail = new JLabel("E-mail");
-		lblEmail.setBounds(20, 230, 113, 14);
+		lblEmail.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblEmail.setBounds(15, 230, 163, 26);
 		panel.add(lblEmail);
 
 		JLabel lblFechaDeNacimiento = new JLabel("Fecha de Nacimiento");
-		lblFechaDeNacimiento.setBounds(20, 260, 113, 14);
+		lblFechaDeNacimiento.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblFechaDeNacimiento.setBounds(15, 266, 163, 26);
 		panel.add(lblFechaDeNacimiento);
 
 		JLabel label_2 = new JLabel("Localidad");
-		label_2.setBounds(20, 291, 113, 14);
+		label_2.setHorizontalAlignment(SwingConstants.TRAILING);
+		label_2.setBounds(15, 302, 163, 26);
 		panel.add(label_2);
 
 		JLabel lblTipoDeContacto = new JLabel("Tipo de Contacto");
-		lblTipoDeContacto.setBounds(20, 323, 113, 14);
+		lblTipoDeContacto.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblTipoDeContacto.setBounds(15, 338, 163, 26);
 		panel.add(lblTipoDeContacto);
 	}
 
@@ -245,12 +257,12 @@ public class FormularioContactos extends JFrame {
 
 		comboLocalidad = new JComboBox<>();
 		localidades.forEach(l -> comboLocalidad.addItem(l));
-		comboLocalidad.setBounds(133, 288, 164, 20);
+		comboLocalidad.setBounds(193, 299, 235, 26);
 		panel.add(comboLocalidad);
 
 		comboTipoDeContacto = new JComboBox<>();
 		tiposDeContacto.forEach(t -> comboTipoDeContacto.addItem(t));
-		comboTipoDeContacto.setBounds(133, 320, 164, 20);
+		comboTipoDeContacto.setBounds(193, 335, 235, 26);
 		panel.add(comboTipoDeContacto);
 	}
 
