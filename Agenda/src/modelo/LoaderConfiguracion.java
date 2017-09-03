@@ -32,10 +32,10 @@ public class LoaderConfiguracion {
 		try {
 			Configuracion.cargarConfiguracion();
 			if(!Configuracion.firstTime.equals("false"))
-				return false;
-			return true;
-		} catch (FileNotFoundException e) {
+				return true;
 			return false;
+		} catch (FileNotFoundException e) {
+			return true;
 		}
 		
 	}

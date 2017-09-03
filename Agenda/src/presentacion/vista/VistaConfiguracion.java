@@ -136,7 +136,7 @@ public class VistaConfiguracion extends JDialog {
 
 	public ConfiguracionDTO getConfiguracion() {
 		ConfiguracionDTO configuracion = new ConfiguracionDTO(txtUrlServer.getText(), txtPuerto.getText(),
-				txtNombreBD.getText(), txtNombreUsuario.getText(), txtPasswordUsuario.getText());
+				txtNombreBD.getText(), txtNombreUsuario.getText(), txtPasswordUsuario.getText(), "true");
 		return configuracion;
 	}
 

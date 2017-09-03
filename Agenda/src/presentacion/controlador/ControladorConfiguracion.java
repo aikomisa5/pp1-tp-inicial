@@ -32,8 +32,8 @@ public class ControladorConfiguracion implements ActionListener {
 	}
 
 	public void inicializar() {
-		if (loaderConfiguracion.cargarConfiguracion() && !loaderConfiguracion.primeraVez()) {
-			if (loaderConfiguracion.probarConexion() == false) {
+		if (loaderConfiguracion.cargarConfiguracion()) {
+			if (loaderConfiguracion.probarConexion() == false || !loaderConfiguracion.primeraVez()) {
 				JOptionPane.showMessageDialog(null, "Error, los datos de conexión no son válidos.");
 				vistaConfiguracion.mostrarVentana();
 			}
