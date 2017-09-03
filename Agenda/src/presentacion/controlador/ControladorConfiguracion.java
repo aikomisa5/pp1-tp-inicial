@@ -33,7 +33,7 @@ public class ControladorConfiguracion implements ActionListener {
 
 	public void inicializar() {
 		if (loaderConfiguracion.cargarConfiguracion()) {
-			if (loaderConfiguracion.probarConexion() == false || !loaderConfiguracion.primeraVez()) {
+			if (loaderConfiguracion.probarConexion() == false || loaderConfiguracion.primeraVez()) {
 				JOptionPane.showMessageDialog(null, "Error, los datos de conexión no son válidos.");
 				vistaConfiguracion.mostrarVentana();
 			}
@@ -61,10 +61,7 @@ public class ControladorConfiguracion implements ActionListener {
 				}
 				vistaConfiguracion.setVisible(false);
 				Agenda.getInstance().notificarObservadores();
-				ConfiguracionDTO config = loaderConfiguracion.getConfiguracion();
-				config.setFirstTime("false");
-				loaderConfiguracion.setConfiguracion(config);
-				loaderConfiguracion.guardarConfiguracion();
+				
 			} else {
 				JOptionPane.showMessageDialog(null, "Error, Los datos de conexión no son válidos.");
 				loaderConfiguracion.cargarConfiguracion();

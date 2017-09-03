@@ -31,7 +31,7 @@ public class LoaderConfiguracion {
 	public boolean primeraVez() {
 		try {
 			Configuracion.cargarConfiguracion();
-			if(!Configuracion.firstTime.equals("false"))
+			if(!Configuracion.getConfiguracion().getFirstTime().equals("false"))
 				return true;
 			return false;
 		} catch (FileNotFoundException e) {
