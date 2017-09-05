@@ -1,5 +1,5 @@
 !include "MUI2.nsh"
-
+!define MUI_ICON "icono.ico"
 #Nombre del directorio
 !define NOMBRE "AgendaTpiG2"
 #Nombre del jar de la app.
@@ -12,11 +12,12 @@ Name "Agenda Grupo 2"
 Outfile "AG2installer.exe"
 XPStyle on
 
+
 !insertmacro MUI_PAGE_WELCOME
 !insertmacro MUI_PAGE_DIRECTORY
 !insertmacro MUI_PAGE_COMPONENTS
 !insertmacro MUI_PAGE_INSTFILES
-#!insertmacro MUI_PAGE_FINISH
+!insertmacro MUI_PAGE_FINISH
 
 !insertmacro MUI_UNPAGE_CONFIRM
 !insertmacro MUI_UNPAGE_INSTFILES
